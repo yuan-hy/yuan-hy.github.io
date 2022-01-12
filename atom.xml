@@ -3,11 +3,11 @@
   <title>Overdose</title>
   
   <subtitle>学习化繁为简</subtitle>
-  <link href="https://github.com/yuan-hy/yuan-hy.github.io/atom.xml" rel="self"/>
+  <link href="https://yuan-hy.github.io/atom.xml" rel="self"/>
   
-  <link href="https://github.com/yuan-hy/yuan-hy.github.io/"/>
+  <link href="https://yuan-hy.github.io/"/>
   <updated>2022-01-11T14:01:56.018Z</updated>
-  <id>https://github.com/yuan-hy/yuan-hy.github.io/</id>
+  <id>https://yuan-hy.github.io/</id>
   
   <author>
     <name>Overdose</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="https://github.com/yuan-hy/yuan-hy.github.io/2022/01/11/hello-world/"/>
-    <id>https://github.com/yuan-hy/yuan-hy.github.io/2022/01/11/hello-world/</id>
+    <link href="https://yuan-hy.github.io/2022/01/11/hello-world/"/>
+    <id>https://yuan-hy.github.io/2022/01/11/hello-world/</id>
     <published>2022-01-11T14:01:56.018Z</published>
     <updated>2022-01-11T14:01:56.018Z</updated>
     
