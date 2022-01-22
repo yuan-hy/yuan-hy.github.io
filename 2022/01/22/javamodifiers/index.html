@@ -543,11 +543,11 @@
 <td>可访问</td>
 </tr>
 </tbody></table>
-<h2 id="各个修饰符的说明"><a href="#各个修饰符的说明" class="headerlink" title="各个修饰符的说明"></a>各个修饰符的说明</h2><h4 id="1-private"><a href="#1-private" class="headerlink" title="1. private"></a>1. private</h4><p><strong>用 private 修饰的类成员，只能被该类自身的方法访问和修改，而不能被任何其他类（包括该类的子类，注意就算是子类也不能访问，在继承那里可以明显感受到这个特性）访问和引用</strong>。因此，private 修饰符具有最高的保护级别。例如，设 PhoneCard 是电话卡类，电话卡都有密码，因此该类有一个密码域，可以把该类的密码域声明为私有成员。</p>
-<h4 id="2-default（默认）"><a href="#2-default（默认）" class="headerlink" title="2. default（默认）"></a>2. default（默认）</h4><p>如果一个类没有访问控制符，说明它具有默认的访问控制特性。<strong>这种默认的访问控制权规定，该类只能被同一个包中的类访问和引用，而不能被其他包中的类使用，<code>即使其他包中有该类的子类</code>。这种访问特性又称为包访问性（package private）</strong>。</p>
+<h2 id="各个修饰符的说明"><a href="#各个修饰符的说明" class="headerlink" title="各个修饰符的说明"></a>各个修饰符的说明</h2><h3 id="1-private"><a href="#1-private" class="headerlink" title="1. private"></a>1. private</h3><p><strong>用 private 修饰的类成员，只能被该类自身的方法访问和修改，而不能被任何其他类（包括该类的子类，注意就算是子类也不能访问，在继承那里可以明显感受到这个特性）访问和引用</strong>。因此，private 修饰符具有最高的保护级别。例如，设 PhoneCard 是电话卡类，电话卡都有密码，因此该类有一个密码域，可以把该类的密码域声明为私有成员。</p>
+<h3 id="2-default（默认）"><a href="#2-default（默认）" class="headerlink" title="2. default（默认）"></a>2. default（默认）</h3><p>如果一个类没有访问控制符，说明它具有默认的访问控制特性。<strong>这种默认的访问控制权规定，该类只能被同一个包中的类访问和引用，而不能被其他包中的类使用，<code>即使其他包中有该类的子类</code>。这种访问特性又称为包访问性（package private）</strong>。</p>
 <p>同样，类内的成员如果没有访问控制符，也说明它们具有包访问性，或称为友元（friend）。定义在同一个文件夹中的所有类属于一个包，所以前面的程序要把用户自定义的类放在同一个文件夹中（Java 项目默认的包），以便不加修饰符也能运行。</p>
-<h4 id="3-protected"><a href="#3-protected" class="headerlink" title="3. protected"></a>3. protected</h4><p>用保护访问控制符 protected 修饰的类成员可以被三种类所访问：<strong>该类自身</strong>、<strong>与它在同一个包中的其他类</strong>以及<strong>在其他包中的该类的子类</strong>。使用 protected 修饰符的主要作用，是允许其他包中它的子类来访问父类的特定属性和方法，否则可以使用默认访问控制符。</p>
-<h4 id="4-public"><a href="#4-public" class="headerlink" title="4. public"></a>4. public</h4><p>当一个类被声明为 public 时，它就具有了被其他包中的类访问的可能性，只要包中的其他类在程序中使用 import 语句引入 public 类，就可以访问和引用这个类。</p>
+<h3 id="3-protected"><a href="#3-protected" class="headerlink" title="3. protected"></a>3. protected</h3><p>用保护访问控制符 protected 修饰的类成员可以被三种类所访问：<strong>该类自身</strong>、<strong>与它在同一个包中的其他类</strong>以及<strong>在其他包中的该类的子类</strong>。使用 protected 修饰符的主要作用，是允许其他包中它的子类来访问父类的特定属性和方法，否则可以使用默认访问控制符。</p>
+<h3 id="4-public"><a href="#4-public" class="headerlink" title="4. public"></a>4. public</h3><p>当一个类被声明为 public 时，它就具有了被其他包中的类访问的可能性，只要包中的其他类在程序中使用 import 语句引入 public 类，就可以访问和引用这个类。</p>
 <p>类中被设定为 public 的方法是这个类对外的接口部分，避免了程序的其他部分直接去操作类内的数据，实际就是数据封装思想的体现。每个 Java 程序的主类都必须是 public 类，也是基于相同的原因。</p>
 <h2 id="修饰符在继承中的使用例子"><a href="#修饰符在继承中的使用例子" class="headerlink" title="修饰符在继承中的使用例子"></a>修饰符在继承中的使用例子</h2><ul>
 <li><p>测试 private 修饰的属性和方法（其他的修饰符测试过程一样，同样验证上面的作用范围是符合的）</p>
