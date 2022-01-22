@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>好文分享</title>
+      <link href="/2022/01/22/share/"/>
+      <url>/2022/01/22/share/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>本篇文章主要的目的是建立好文链接，将所遇见的好文章收录，方便知识集中</p></blockquote><ol><li><h3 id="那些年搞不懂的高深术语——依赖倒置•控制反转•依赖注入•面向接口编程"><a href="#那些年搞不懂的高深术语——依赖倒置•控制反转•依赖注入•面向接口编程" class="headerlink" title="那些年搞不懂的高深术语——依赖倒置•控制反转•依赖注入•面向接口编程 "></a><a href="https://www.cnblogs.com/aoyeyuyan/p/5495219.html">那些年搞不懂的高深术语——依赖倒置•控制反转•依赖注入•面向接口编程 </a></h3><ul><li>通俗易懂的语言解释抽象的高深术语，很值得去学习这种文章写法</li></ul></li><li></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> share </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> share </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Java 访问控制修饰符</title>
       <link href="/2022/01/22/javamodifiers/"/>
       <url>/2022/01/22/javamodifiers/</url>
