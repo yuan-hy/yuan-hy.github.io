@@ -4,8 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, Overdose">
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex">
+    <meta name="keywords" content="Java 访问控制修饰符, Overdose">
+    <meta name="description" content="
+顾名思义，访问控制修饰符就是在面向对象编程过程中，通过使用访问控制修饰符来限制对对象私有属性的访问，可防止对封装数据的未授权访问，有助于保证数据完整性，以达到封装的效果
+
+访问控制修饰符种类
+常见的访问控制修饰符 public、prote">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +21,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hello World | Overdose</title>
+    <title>Java 访问控制修饰符 | Overdose</title>
     <link rel="icon" type="image/png" href="/source/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -306,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hello World</h1>
+                    <h1 class="description center-align post-title">Java 访问控制修饰符</h1>
                 </div>
             </div>
         </div>
@@ -427,8 +431,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Hexo/">
-                                <span class="chip bg-color">Hexo</span>
+                            <a href="/tags/Java/">
+                                <span class="chip bg-color">Java</span>
                             </a>
                         
                     </div>
@@ -439,8 +443,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Hexo/" class="post-category">
-                                Hexo
+                            <a href="/categories/Java/" class="post-category">
+                                Java
                             </a>
                         
                     </div>
@@ -452,7 +456,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-01-11
+                    2022-01-22
                 </div>
                 
 
@@ -461,14 +465,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    73
+                    1.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    6 分
                 </div>
                 
 
@@ -493,19 +497,189 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class=" language-bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span>
+                <blockquote>
+<p>顾名思义，访问控制修饰符就是在面向对象编程过程中，通过使用访问控制修饰符来限制对对象私有属性的访问，可防止对封装数据的未授权访问，有助于保证数据完整性，以达到封装的效果</p>
+</blockquote>
+<h2 id="访问控制修饰符种类"><a href="#访问控制修饰符种类" class="headerlink" title="访问控制修饰符种类"></a>访问控制修饰符种类</h2><ul>
+<li>常见的访问控制修饰符 <strong><code>public</code><strong>、</strong><code>protected</code><strong>、</strong><code>default</code><strong>、</strong><code>private</code></strong></li>
+</ul>
+<h2 id="作用范围"><a href="#作用范围" class="headerlink" title="作用范围"></a>作用范围</h2><p>  了解各个修饰符的作用域有利于在实际编程中更好的根据具体场景给属性方法添加对应的修饰符，合理地使用访问控制符，可以通过降低类和类之间的耦合性（关联性）来降低整个项目的复杂度，也便于整个项目的开发和维护</p>
+<table>
+<thead>
+<tr>
+<th>访问范围</th>
+<th>private</th>
+<th>default(默认)</th>
+<th>protected</th>
+<th>public</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>同一个类</td>
+<td>可访问</td>
+<td>可访问</td>
+<td>可访问</td>
+<td>可访问</td>
+</tr>
+<tr>
+<td>同一包中的其他类</td>
+<td>不可访问</td>
+<td>可访问</td>
+<td>可访问</td>
+<td>可访问</td>
+</tr>
+<tr>
+<td>不同包中的子类</td>
+<td>不可访问</td>
+<td>不可访问</td>
+<td>可访问</td>
+<td>可访问</td>
+</tr>
+<tr>
+<td>不同包中的非子类</td>
+<td>不可访问</td>
+<td>不可访问</td>
+<td>不可访问</td>
+<td>可访问</td>
+</tr>
+</tbody></table>
+<h2 id="各个修饰符的说明"><a href="#各个修饰符的说明" class="headerlink" title="各个修饰符的说明"></a>各个修饰符的说明</h2><h4 id="1-private"><a href="#1-private" class="headerlink" title="1. private"></a>1. private</h4><p><strong>用 private 修饰的类成员，只能被该类自身的方法访问和修改，而不能被任何其他类（包括该类的子类，注意就算是子类也不能访问，在继承那里可以明显感受到这个特性）访问和引用</strong>。因此，private 修饰符具有最高的保护级别。例如，设 PhoneCard 是电话卡类，电话卡都有密码，因此该类有一个密码域，可以把该类的密码域声明为私有成员。</p>
+<h4 id="2-default（默认）"><a href="#2-default（默认）" class="headerlink" title="2. default（默认）"></a>2. default（默认）</h4><p>如果一个类没有访问控制符，说明它具有默认的访问控制特性。<strong>这种默认的访问控制权规定，该类只能被同一个包中的类访问和引用，而不能被其他包中的类使用，<code>即使其他包中有该类的子类</code>。这种访问特性又称为包访问性（package private）</strong>。</p>
+<p>同样，类内的成员如果没有访问控制符，也说明它们具有包访问性，或称为友元（friend）。定义在同一个文件夹中的所有类属于一个包，所以前面的程序要把用户自定义的类放在同一个文件夹中（Java 项目默认的包），以便不加修饰符也能运行。</p>
+<h4 id="3-protected"><a href="#3-protected" class="headerlink" title="3. protected"></a>3. protected</h4><p>用保护访问控制符 protected 修饰的类成员可以被三种类所访问：<strong>该类自身</strong>、<strong>与它在同一个包中的其他类</strong>以及<strong>在其他包中的该类的子类</strong>。使用 protected 修饰符的主要作用，是允许其他包中它的子类来访问父类的特定属性和方法，否则可以使用默认访问控制符。</p>
+<h4 id="4-public"><a href="#4-public" class="headerlink" title="4. public"></a>4. public</h4><p>当一个类被声明为 public 时，它就具有了被其他包中的类访问的可能性，只要包中的其他类在程序中使用 import 语句引入 public 类，就可以访问和引用这个类。</p>
+<p>类中被设定为 public 的方法是这个类对外的接口部分，避免了程序的其他部分直接去操作类内的数据，实际就是数据封装思想的体现。每个 Java 程序的主类都必须是 public 类，也是基于相同的原因。</p>
+<h2 id="修饰符在继承中的使用例子"><a href="#修饰符在继承中的使用例子" class="headerlink" title="修饰符在继承中的使用例子"></a>修饰符在继承中的使用例子</h2><ul>
+<li><p>测试 private 修饰的属性和方法（其他的修饰符测试过程一样，同样验证上面的作用范围是符合的）</p>
+<p>Father Class 如下：</p>
+<pre class=" language-jsp"><code class="language-jsp">public class FatherClass &#123;
+  private String name;
+
+    private void setName(String name)&#123;
+            this.name = name
+    &#125;
+&#125;
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class=" language-bash"><code class="language-bash">$ hexo server
+<p>Son Class 如下：</p>
+<pre class=" language-jsp"><code class="language-jsp">public class SonClass extends FatherClass&#123;
+
+&#125;
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class=" language-bash"><code class="language-bash">$ hexo generate
+<p>同个包下的测试类 MainTest 如下：</p>
+<pre class=" language-shell"><code class="language-shell">public class MainTest &#123;
+    public static void main(String[] args) &#123;
+    
+                FatherClass fatherClass = new FatherClass();
+                
+        SonClass sonClass = new SonClass();
+        
+                //fatherClass.
+                
+        //sonClass.
+    &#125;
+&#125;
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class=" language-bash"><code class="language-bash">$ hexo deploy
+<ul>
+<li><p>测试分析：</p>
+<p>​    在 MainTest 分别 FatherClass 和 SonClass 的对象，通过 fatherClass.或者 sonClass. (对象引用. ) 获取 name 属性和 setName 方法,都是不可用的</p>
+</li>
+<li><p>测试结果 ：</p>
+<p>​    用 private 修饰的类成员，只能被该类自身的方法访问和修改，而不能被任何其他类（包括该类的子类）访问和引用</p>
+</li>
+</ul>
+</li>
+<li><p>测试在继承关系中代码执行顺序</p>
+<ul>
+<li>目的：在面试中可能会被问到代码执行顺序</li>
+</ul>
+<p>Father Class 如下：</p>
+<pre class=" language-jsp"><code class="language-jsp">package com.example.springbootdemo.spec;
+
+public class FatherClass &#123;
+
+    //父类构造器
+    public FatherClass() &#123;
+        System.out.println("Father Construct");
+    &#125;
+    //父类静态代码块
+    static &#123;
+        System.out.println("Father static block");
+    &#125;
+    //父类成员代码块
+    &#123;
+        System.out.println("Father instance block");
+    &#125;
+
+&#125;
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p>Son Class 如下：</p>
+<pre class=" language-jsp"><code class="language-jsp">package com.example.springbootdemo.spec;
+
+public class SonClass extends FatherClass&#123;
+    //子类构造器
+    public SonClass() &#123;
+        System.out.println("Son Construct");
+    &#125;
+    
+    //子类静态代码块
+    static &#123;
+        System.out.println("Son static block");
+    &#125;
+    
+    //子类成员代码块
+    &#123;
+        System.out.println("Son instance block");
+    &#125;
+&#125;
+</code></pre>
+<p>同个包下的测试类 MainTest 如下：</p>
+<pre class=" language-jsp"><code class="language-jsp">package com.example.springbootdemo.spec;
+
+public class MainTest &#123;
+    public static void main(String[] args) &#123;
+        System.out.println("实例化子类");
+        SonClass sonClass = new SonClass();
+        System.out.println("实例化父类");
+        FatherClass fatherClass = new FatherClass();
+        System.out.println("实例化子类");
+        SonClass sonClass1 = new SonClass();
+    &#125;
+&#125;
+</code></pre>
+<p>测试输出结果：</p>
+<pre class=" language-shell"><code class="language-shell">Father static block
+Son static block
+Father instance block
+Father Construct
+Son instance block
+Son Construct
+实例化父类
+Father instance block
+Father Construct
+实例化子类
+Father instance block
+Father Construct
+Son instance block
+Son Construct
+</code></pre>
+<ul>
+<li><p>测试分析：</p>
+<p>​    分析前先说以下几个默认前提</p>
+<p>​        1、静态代码块：用 staitc 声明，jvm 加载类时执行，仅执行一次<br>​        2、构造代码块：类中直接用{}定义，<strong>每一次</strong>创建对象时执行。<br>​        3、执行顺序优先级：静态块,main(),构造代码块,构造方法。</p>
+<p>​        4、以上均为不带参数构造器，在调用子类构造器时，会默认使用 super 调用父类构造器</p>
+</li>
+</ul>
+<p>​                程序运行时，此时会因为继承关系会先加载 FatherClass 类，因此看到先输出父类静态代码块打印，接着是子类静态代码块。new SonClass() 分配内存，创建对象，因为会默认先调用父类创建对象，所以会看到先输出父类的构造代码块输出和构造器输出，接着就是子类的。第二次直接创建父类对象时，不会再看到静态代码部分输出，因为静态代码块仅执行一次。第三次创建子类对象时，子类的静态代码块也不执行。</p>
+<ul>
+<li><p>测试结果：</p>
+<p>​    创建子类对象时执行顺序：</p>
+<p>​        父类静态代码块 <strong>&gt;</strong> 子类静态代码块 <strong>&gt;</strong> 父类构造代码块 <strong>&gt;</strong> 父类构造器 <strong>&gt;</strong> 子类构造代码块 <strong>&gt;</strong> 子类构造器</p>
+</li>
+</ul>
+</li>
+<li><p>关于更多的代码执行顺序以及深层原因，可参考<a target="_blank" rel="noopener" href="https://www.1024sou.com/article/38293.html">【Java】各种代码块的执行顺序</a></p>
+</li>
+</ul>
 
                 
             </div>
@@ -532,7 +706,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yuan-hy.github.io/2022/01/11/hello-world/">https://yuan-hy.github.io/2022/01/11/hello-world/</a>
+                    <a href="https://yuan-hy.github.io/2022/01/22/javamodifiers/">https://yuan-hy.github.io/2022/01/22/javamodifiers/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -570,8 +744,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Hexo/">
-                                    <span class="chip bg-color">Hexo</span>
+                                <a href="/tags/Java/">
+                                    <span class="chip bg-color">Java</span>
                                 </a>
                             
                         </div>
@@ -745,9 +919,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/01/22/javamodifiers/">
                     <div class="card-image">
@@ -765,9 +940,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-22
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-22
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -780,6 +955,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -795,7 +971,7 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
                 <a href="/2022/01/11/hello-world/">
@@ -829,7 +1005,6 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
