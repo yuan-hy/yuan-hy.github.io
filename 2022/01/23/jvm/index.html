@@ -467,7 +467,7 @@ Java ">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    242
+                    380
                 </div>
                 
 
@@ -507,10 +507,11 @@ Java ">
 </li>
 <li><p>Java 虚拟机对 Java 编程语言一无所知，只知道一种特定的二进制格式，即<code>class</code>文件格式。<code>class</code>文件包含 Java 虚拟机指令（或<em>字节码</em>）和符号表，以及其他辅助信息。</p>
 </li>
-<li><p>为了安全起见，Java 虚拟机在 <code>class</code> 文件上的代码强加强大的句法和结构约束。但是，任何具有可以用有效<code>class</code>文件表示的功能的语言都可以由 Java 虚拟机托管(通俗来讲就是一门语言，如果编译后为 <code>class</code> 文件,都可以被 JVM 识别，在 JVM 上运行，例如 groovy 语言)</p>
+<li><p>为了安全起见，Java 虚拟机在 <code>class</code> 文件上的代码强加强大的句法和结构约束。但是，任何具有可以用有效<code>class</code>文件表示的功能的语言都可以由 Java 虚拟机托管(通俗来讲就是一门语言，如果编译后为有效的 <code>class</code> 文件,都可以被 JVM 识别，在 JVM 上运行，例如 groovy 语言)</p>
 </li>
 </ul>
-<h2 id="Java-虚拟机架构"><a href="#Java-虚拟机架构" class="headerlink" title="Java 虚拟机架构"></a>Java 虚拟机架构</h2>
+<h2 id="Java-虚拟机架构"><a href="#Java-虚拟机架构" class="headerlink" title="Java 虚拟机架构"></a>Java 虚拟机架构</h2><p>要正确实现 Java 虚拟机，您只需要能够读取<code>class</code>文件格式并正确执行其中指定的操作即可。不属于 Java 虚拟机规范的实现细节会不必要地限制实现者的创造力。例如，运行时数据区域(<code>run-time data areas</code>)的内存布局、使用的垃圾收集算法(<code>garbage-collection algorithm</code>)以及 Java 虚拟机指令的任何内部优化（例如，将它们转换为机器代码）都由实现者自行决定。</p>
+<h3 id="class-文件格式"><a href="#class-文件格式" class="headerlink" title="class 文件格式"></a>class 文件格式</h3>
                 
             </div>
             <hr/>
@@ -1028,7 +1029,7 @@ Java ">
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">2.5k</span>
+                        class="white-color">2.6k</span>
             
             
             
