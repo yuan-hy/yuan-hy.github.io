@@ -9,9 +9,9 @@
 关于阅读 Oracle 官方文档对 JVM 规范的知识积累
 
 JVM
-Java 虚拟机是 Java 平台的基石。它是该技术的组成部分，独立于硬件和操作系统、具有轻量编译代码以及保护用户免受恶意程序侵害的能力。
+Java 虚拟机(简称 JVM)是 Java 平台的基石。它是该技术的组成部分，独立于硬件和操作系统、具有轻量编译代码以及保护用户免受恶意程序侵害的能力。
 
-Java 虚拟机对 Jav">
+Java ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -467,7 +467,7 @@ Java 虚拟机对 Jav">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    135
+                    242
                 </div>
                 
 
@@ -503,12 +503,14 @@ Java 虚拟机对 Jav">
 <p>关于阅读 Oracle 官方文档对 JVM 规范的知识积累</p>
 </blockquote>
 <h2 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h2><ul>
-<li><p>Java 虚拟机是 Java 平台的基石。它是该技术的组成部分，独立于硬件和操作系统、具有轻量编译代码以及保护用户免受恶意程序侵害的能力。</p>
+<li><p>Java 虚拟机(简称 <strong>JVM</strong>)是 Java 平台的基石。它是该技术的组成部分，独立于硬件和操作系统、具有轻量编译代码以及保护用户免受恶意程序侵害的能力。</p>
 </li>
 <li><p>Java 虚拟机对 Java 编程语言一无所知，只知道一种特定的二进制格式，即<code>class</code>文件格式。<code>class</code>文件包含 Java 虚拟机指令（或<em>字节码</em>）和符号表，以及其他辅助信息。</p>
 </li>
+<li><p>为了安全起见，Java 虚拟机在 <code>class</code> 文件上的代码强加强大的句法和结构约束。但是，任何具有可以用有效<code>class</code>文件表示的功能的语言都可以由 Java 虚拟机托管(通俗来讲就是一门语言，如果编译后为 <code>class</code> 文件,都可以被 JVM 识别，在 JVM 上运行，例如 groovy 语言)</p>
+</li>
 </ul>
-
+<h2 id="Java-虚拟机架构"><a href="#Java-虚拟机架构" class="headerlink" title="Java 虚拟机架构"></a>Java 虚拟机架构</h2>
                 
             </div>
             <hr/>
@@ -1026,7 +1028,7 @@ Java 虚拟机对 Jav">
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">2.4k</span>
+                        class="white-color">2.5k</span>
             
             
             
