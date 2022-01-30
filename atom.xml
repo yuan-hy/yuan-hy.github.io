@@ -6,7 +6,7 @@
   <link href="https://yuan-hy.github.io/atom.xml" rel="self"/>
   
   <link href="https://yuan-hy.github.io/"/>
-  <updated>2022-01-23T05:43:16.450Z</updated>
+  <updated>2022-01-30T15:41:32.142Z</updated>
   <id>https://yuan-hy.github.io/</id>
   
   <author>
@@ -17,11 +17,28 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Linux 命令积累</title>
+    <link href="https://yuan-hy.github.io/2022/01/30/linuxcommand/"/>
+    <id>https://yuan-hy.github.io/2022/01/30/linuxcommand/</id>
+    <published>2022-01-30T15:37:43.000Z</published>
+    <updated>2022-01-30T15:41:32.142Z</updated>
+    
+    
+    
+    
+    <category term="Linux" scheme="https://yuan-hy.github.io/categories/Linux/"/>
+    
+    
+    <category term="Linux" scheme="https://yuan-hy.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
     <title>JVM 虚拟机小知识</title>
     <link href="https://yuan-hy.github.io/2022/01/23/jvm/"/>
     <id>https://yuan-hy.github.io/2022/01/23/jvm/</id>
     <published>2022-01-23T04:49:15.000Z</published>
-    <updated>2022-01-23T05:43:16.450Z</updated>
+    <updated>2022-01-23T05:55:44.685Z</updated>
     
     
       
