@@ -5,7 +5,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="Linux 命令积累, Overdose">
-    <meta name="description" content="">
+    <meta name="description" content="
+记录 linux 命令小知识
+
+alias 与 unalias背景 ：当命令很长的时候，可以通过自定义别名来减少输入，节省时间，也可以通过定制命令防止出现操作不当
+
+查看当前系统存在的别名
+overdose@OverdosedeMacBo">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -461,7 +467,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    171
                 </div>
                 
 
@@ -493,7 +499,35 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <blockquote>
+<p>记录 linux 命令小知识</p>
+</blockquote>
+<h3 id="alias-与-unalias"><a href="#alias-与-unalias" class="headerlink" title="alias 与 unalias"></a>alias 与 unalias</h3><p>背景 ：当命令很长的时候，可以通过自定义别名来减少输入，节省时间，也可以通过定制命令防止出现操作不当</p>
+<ul>
+<li><p>查看当前系统存在的别名</p>
+<pre class=" language-shell"><code class="language-shell">overdose@OverdosedeMacBook-Air ~ % alias
+run-help=man
+which-command=whence
+</code></pre>
+</li>
+<li><p>为 clear 设置 cl 别名,设置别名后，查看 alias ，可以看到已设置别名成功</p>
+<pre class=" language-shell"><code class="language-shell">overdose@OverdosedeMacBook-Air ~ % alias cl='clear'
+overdose@OverdosedeMacBook-Air ~ % alias
+cl=clear
+run-help=man
+which-command=whence
+</code></pre>
+</li>
+<li><p>取消设置别名 cl,执行取消设置别名后，查看 alias ，可以看到已取消设置别名成功</p>
+<pre class=" language-shell"><code class="language-shell">overdose@OverdosedeMacBook-Air ~ % unalias cl
+overdose@OverdosedeMacBook-Air ~ % alias
+run-help=man
+which-command=whence
+overdose@OverdosedeMacBook-Air ~ % 
+</code></pre>
+</li>
+</ul>
+
                 
             </div>
             <hr/>
@@ -732,18 +766,17 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/01/30/linuxcommand/">
+                <a href="/2022/02/24/shell/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Linux 命令积累">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="shell">
                         
-                        <span class="card-title">Linux 命令积累</span>
+                        <span class="card-title">shell</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -753,27 +786,26 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-30
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-24
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Linux/" class="post-category">
-                                    Linux
+                            <a href="/categories/Shell/" class="post-category">
+                                    Shell
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Linux/">
-                        <span class="chip bg-color">Linux</span>
+                    <a href="/tags/Shell/">
+                        <span class="chip bg-color">Shell</span>
                     </a>
                     
                 </div>
@@ -1011,7 +1043,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">2.7k</span>
+                        class="white-color">2.9k</span>
             
             
             

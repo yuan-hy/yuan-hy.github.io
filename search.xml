@@ -4,11 +4,36 @@
   
     
     <entry>
+      <title>shell</title>
+      <link href="/2022/02/24/shell/"/>
+      <url>/2022/02/24/shell/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>记录 shell 学习小知识</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> Shell </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Shell </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Linux 命令积累</title>
       <link href="/2022/01/30/linuxcommand/"/>
       <url>/2022/01/30/linuxcommand/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<blockquote><p>记录 linux 命令小知识</p></blockquote><h3 id="alias-与-unalias"><a href="#alias-与-unalias" class="headerlink" title="alias 与 unalias"></a>alias 与 unalias</h3><p>背景 ：当命令很长的时候，可以通过自定义别名来减少输入，节省时间，也可以通过定制命令防止出现操作不当</p><ul><li><p>查看当前系统存在的别名</p><pre class=" language-shell"><code class="language-shell">overdose@OverdosedeMacBook-Air ~ % aliasrun-help=manwhich-command=whence</code></pre></li><li><p>为 clear 设置 cl 别名,设置别名后，查看 alias ，可以看到已设置别名成功</p><pre class=" language-shell"><code class="language-shell">overdose@OverdosedeMacBook-Air ~ % alias cl='clear'overdose@OverdosedeMacBook-Air ~ % aliascl=clearrun-help=manwhich-command=whence</code></pre></li><li><p>取消设置别名 cl,执行取消设置别名后，查看 alias ，可以看到已取消设置别名成功</p><pre class=" language-shell"><code class="language-shell">overdose@OverdosedeMacBook-Air ~ % unalias cloverdose@OverdosedeMacBook-Air ~ % aliasrun-help=manwhich-command=whenceoverdose@OverdosedeMacBook-Air ~ % </code></pre></li></ul>]]></content>
       
       
       <categories>

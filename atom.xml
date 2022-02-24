@@ -6,7 +6,7 @@
   <link href="https://yuan-hy.github.io/atom.xml" rel="self"/>
   
   <link href="https://yuan-hy.github.io/"/>
-  <updated>2022-01-30T15:41:32.142Z</updated>
+  <updated>2022-02-24T12:35:02.753Z</updated>
   <id>https://yuan-hy.github.io/</id>
   
   <author>
@@ -17,12 +17,49 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>shell</title>
+    <link href="https://yuan-hy.github.io/2022/02/24/shell/"/>
+    <id>https://yuan-hy.github.io/2022/02/24/shell/</id>
+    <published>2022-02-24T12:32:53.000Z</published>
+    <updated>2022-02-24T12:35:02.753Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;记录 shell</summary>
+        
+      
+    
+    
+    
+    <category term="Shell" scheme="https://yuan-hy.github.io/categories/Shell/"/>
+    
+    
+    <category term="Shell" scheme="https://yuan-hy.github.io/tags/Shell/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Linux 命令积累</title>
     <link href="https://yuan-hy.github.io/2022/01/30/linuxcommand/"/>
     <id>https://yuan-hy.github.io/2022/01/30/linuxcommand/</id>
     <published>2022-01-30T15:37:43.000Z</published>
-    <updated>2022-01-30T15:41:32.142Z</updated>
+    <updated>2022-02-24T12:48:11.348Z</updated>
     
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;记录 linux 命令小知识&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;alias-与-unalias&quot;&gt;&lt;a href=&quot;#alias-与-unalias&quot; class=&quot;headerlink&quot; title=&quot;alias 与</summary>
+        
+      
     
     
     
