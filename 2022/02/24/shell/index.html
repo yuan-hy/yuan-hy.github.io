@@ -465,14 +465,14 @@ Shell 是一个程序，一般都是放在/bin或者/usr/bin目录下
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    606
+                    945
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    3 分
                 </div>
                 
 
@@ -574,9 +574,51 @@ echo $variable
 <li>直接指定解释器，这时 #! /bin/bash 指定的解释器无效 ，执行 ：/bin/bash test.sh</li>
 </ul>
 </li>
-<li>当前进程运行<ul>
-<li>source test.sh : source 命令强制读取 test.sh 中的命令一行一行执行</li>
-<li>. test.sh ：点 . 跟 test.sh 之间有个空格</li>
+<li>当前进程运行(./ 在 linux 中可有可无，在 macbook 得需要)<ul>
+<li>source ./test.sh : source 命令强制读取 test.sh 中的命令一行一行执行</li>
+<li>. ./test.sh ：点 . 跟 test.sh 之间有个空格</li>
+</ul>
+</li>
+</ul>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><ul>
+<li><p>定义变量</p>
+<ul>
+<li><p>不需要指定类型，只需要一个变量名，= 等号两边不能有空格</p>
+<pre class=" language-shell"><code class="language-shell">variable=value #     无引号（当值中含有空格，tab缩进时，必须使用引号定义变量）
+variable='value' # 单引号
+variable="value" # 双引号
+</code></pre>
+<p>在 /bin/bash 中默认是字符串，不管是 数字，或浮点数</p>
+</li>
+<li><p>命名规则</p>
+<ul>
+<li>变量名由数字、字母、下划线组成；</li>
+<li>必须以字母或者下划线开头；</li>
+<li>不能使用 Shell 里的关键字（通过 help 命令可以查看保留关键字）。</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">url=https://yuan-hy.github.io/
+echo $url
+name='yuan'
+echo $name
+author="yuan-hy"
+echo $author
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>使用变量</p>
+<ul>
+<li><p>使用一个定义过的变量，只要在变量名前面加美元符号<code>$</code>即可</p>
+<pre class=" language-shell"><code class="language-shell">author="yuan-hy"
+echo $author
+echo $&#123;author&#125;
+</code></pre>
+<p>变量名外面的花括号{} 是可选的，加花括号是为了帮助解释器识别变量的边界，比如下面这种情况：</p>
+<pre><code>skill=&quot;Java&quot;echo &quot;I am good at $&#123;skill&#125;Script&quot;
+</code></pre>
+<p>如果不给 skill 变量加花括号，写成<code>echo &quot;I am good at $skillScript&quot;</code>，解释器就会把 $skillScript 当成一个变量（其值为空），代码执行结果就不是我们期望的样子了。</p>
+<p><strong>推荐给所有变量加上花括号<code>&#123; &#125;</code>，这是个良好的编程习惯。</strong></p>
+</li>
 </ul>
 </li>
 </ul>
@@ -1098,7 +1140,7 @@ echo $variable
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">3.5k</span>
+                        class="white-color">3.9k</span>
             
             
             
