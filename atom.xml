@@ -6,7 +6,7 @@
   <link href="https://yuan-hy.github.io/atom.xml" rel="self"/>
   
   <link href="https://yuan-hy.github.io/"/>
-  <updated>2022-02-24T14:55:34.435Z</updated>
+  <updated>2022-02-28T13:46:58.363Z</updated>
   <id>https://yuan-hy.github.io/</id>
   
   <author>
@@ -17,11 +17,39 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>设计模式</title>
+    <link href="https://yuan-hy.github.io/2022/02/28/design-pattern/"/>
+    <id>https://yuan-hy.github.io/2022/02/28/design-pattern/</id>
+    <published>2022-02-28T13:44:16.000Z</published>
+    <updated>2022-02-28T13:46:58.363Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;设计模式的本质是面向对象设计原则的实际运用，是对类的封装性、继承性和多态性，以及类的关联关系和组合关系的充分理解。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;面向对象设计原则&quot;&gt;&lt;a href=&quot;#面向对象设计原则&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="DesignPattern" scheme="https://yuan-hy.github.io/categories/DesignPattern/"/>
+    
+    
+    <category term="DesignPattern" scheme="https://yuan-hy.github.io/tags/DesignPattern/"/>
+    
+  </entry>
+  
+  <entry>
     <title>shell</title>
     <link href="https://yuan-hy.github.io/2022/02/24/shell/"/>
     <id>https://yuan-hy.github.io/2022/02/24/shell/</id>
     <published>2022-02-24T12:32:53.000Z</published>
-    <updated>2022-02-24T14:55:34.435Z</updated>
+    <updated>2022-02-24T14:59:41.069Z</updated>
     
     
       
