@@ -5,23 +5,17 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="Redis, Overdose">
-    <meta name="description" content="什么是 redis
-官方定义
-
-
+    <meta name="description" content="什么是 redis官方定义
 数百万开发人员用作数据库、缓存、流引擎和消息代理的开源内存数据存储
 
-
 核心功能
-
-
 内存数据结构
 众所周知的“数据结构服务器”，支持字符串、哈希、列表、集合、排序集合、流等。
 具体查看
 
 
 可编程的
-使用">
+使用 Lua 的">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -509,16 +503,10 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="什么是-redis"><a href="#什么是-redis" class="headerlink" title="什么是 redis"></a>什么是 redis</h2><ol>
-<li><h3 id="官方定义"><a href="#官方定义" class="headerlink" title="官方定义"></a>官方定义</h3></li>
-</ol>
-<ul>
+                <h2 id="什么是-redis"><a href="#什么是-redis" class="headerlink" title="什么是 redis"></a>什么是 redis</h2><h3 id="官方定义"><a href="#官方定义" class="headerlink" title="官方定义"></a>官方定义</h3><ul>
 <li>数百万开发人员用作<code>数据库</code>、<code>缓存</code>、<code>流引擎</code>和<code>消息代理</code>的开源<code>内存数据存储</code></li>
 </ul>
-<ol start="2">
-<li><h3 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h3></li>
-</ol>
-<ul>
+<h3 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h3><ul>
 <li>内存数据结构<ul>
 <li>众所周知的“数据结构服务器”，支持字符串、哈希、列表、集合、排序集合、流等。</li>
 <li><a target="_blank" rel="noopener" href="https://redis.io/docs/data-types/">具体查看</a></li>
@@ -550,10 +538,7 @@
 </ul>
 </li>
 </ul>
-<ol start="3">
-<li><h3 id="官方推荐使用场景"><a href="#官方推荐使用场景" class="headerlink" title="官方推荐使用场景"></a>官方推荐使用场景</h3></li>
-</ol>
-<ul>
+<h3 id="官方推荐使用场景"><a href="#官方推荐使用场景" class="headerlink" title="官方推荐使用场景"></a>官方推荐使用场景</h3><ul>
 <li>实时数据存储(Real-time data store)<ul>
 <li>Redis 的<code>多功能内存数据结构</code>能够为需要<code>低延迟</code>和<code>高吞吐量</code>的实时应用程序构建数据基础架构。</li>
 </ul>
@@ -607,10 +592,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><ol>
-<li><h3 id="安装启动-Redis-Server"><a href="#安装启动-Redis-Server" class="headerlink" title="安装启动 Redis Server"></a>安装启动 <code>Redis Server</code></h3></li>
-</ol>
-<ul>
+<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><h3 id="安装启动-Redis-Server"><a href="#安装启动-Redis-Server" class="headerlink" title="安装启动 Redis Server"></a>安装启动 <code>Redis Server</code></h3><ul>
 <li><p>在 <a target="_blank" rel="noopener" href="https://redis.io/docs/getting-started/installation/install-redis-on-linux/">Linux</a> 上安装</p>
 </li>
 <li><p>在 <a target="_blank" rel="noopener" href="https://redis.io/docs/getting-started/installation/install-redis-on-mac-os/">macOS</a> 上安装</p>
@@ -701,10 +683,7 @@ OK
 <li><p>在 <a target="_blank" rel="noopener" href="https://redis.io/docs/getting-started/installation/install-redis-on-windows/">Windows</a> 上安装</p>
 </li>
 </ul>
-<h2 id="Redis-CLI"><a href="#Redis-CLI" class="headerlink" title="Redis CLI"></a>Redis CLI</h2><ol>
-<li><h3 id="redis-cli"><a href="#redis-cli" class="headerlink" title="redis-cli"></a>redis-cli</h3></li>
-</ol>
-<ul>
+<h2 id="Redis-CLI"><a href="#Redis-CLI" class="headerlink" title="Redis CLI"></a>Redis CLI</h2><h3 id="redis-cli"><a href="#redis-cli" class="headerlink" title="redis-cli"></a>redis-cli</h3><ul>
 <li>redis command line interface(redis-cli) 意思是 redis 命令行界面</li>
 <li>用于向 Redis 服务器发送命令和读取来自 Redis 服务器的回复</li>
 <li>有以下两种模式<ul>
@@ -738,31 +717,21 @@ $ redis-cli INCR mycounter
 </ul>
 </li>
 </ul>
-<ol start="2">
-<li><h3 id="命令行用法"><a href="#命令行用法" class="headerlink" title="命令行用法"></a>命令行用法</h3><ol>
-<li><h4 id="命令的返回值和类型"><a href="#命令的返回值和类型" class="headerlink" title="命令的返回值和类型"></a>命令的返回值和类型</h4></li>
-</ol>
-<pre class=" language-bash"><code class="language-bash">$ redis-cli INCR mycounter
-<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 4
+<h3 id="命令行用法"><a href="#命令行用法" class="headerlink" title="命令行用法"></a>命令行用法</h3><h4 id="命令的返回值和类型"><a href="#命令的返回值和类型" class="headerlink" title="命令的返回值和类型"></a>命令的返回值和类型</h4><pre class=" language-bash"><code class="language-bash">  $ redis-cli INCR mycounter
+  <span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 4
 </code></pre>
-<p>   回复值为 4 ，类型是括号里的 integer, redis 是类型化的，包括 strings, arrays, integers, nil, errors 等等</p>
-<ol start="2">
-<li><h4 id="重定向输出到文件中"><a href="#重定向输出到文件中" class="headerlink" title="重定向输出到文件中"></a>重定向输出到文件中</h4></li>
-</ol>
-<p>   redis-cli仅在检测到标准输出是 tty 或终端时才显示附加信息以供人类阅读。对于所有其他输出，它将自动启用原始输出模式，如下例所示</p>
-<pre class=" language-bash"><code class="language-bash">$ redis-cli INCR mycounter <span class="token operator">></span> /Users/overdose/IdeaProjects/springboot-demo/redis/redis-result.txt
-$ <span class="token function">cat</span> redis/redis-result.txt
-5
+<p>回复值为 4 ，类型是括号里的 integer, redis 是类型化的，包括 strings, arrays, integers, nil, errors 等等</p>
+<h4 id="重定向输出到文件中"><a href="#重定向输出到文件中" class="headerlink" title="重定向输出到文件中"></a>重定向输出到文件中</h4><p>redis-cli仅在检测到标准输出是 tty 或终端时才显示附加信息以供人类阅读。对于所有其他输出，它将自动启用原始输出模式，如下例所示</p>
+<pre class=" language-bash"><code class="language-bash">  $ redis-cli INCR mycounter <span class="token operator">></span> /Users/overdose/IdeaProjects/springboot-demo/redis/redis-result.txt
+  $ <span class="token function">cat</span> redis/redis-result.txt
+  5
 </code></pre>
-<p>   强制不使用原始输出模式可以加 –no-raw ,否则也可以使用显示原始输出 –raw</p>
-<pre class=" language-bash"><code class="language-bash">$ redis-cli --no-raw INCR mycounter <span class="token operator">></span> /Users/overdose/IdeaProjects/springboot-demo/redis/redis-result.txt
-$ <span class="token function">cat</span> redis/redis-result.txt
-<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 6
+<p>强制不使用原始输出模式可以加 –no-raw ,否则也可以使用显示原始输出 –raw</p>
+<pre class=" language-bash"><code class="language-bash">  $ redis-cli --no-raw INCR mycounter <span class="token operator">></span> /Users/overdose/IdeaProjects/springboot-demo/redis/redis-result.txt
+  $ <span class="token function">cat</span> redis/redis-result.txt
+  <span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 6
 </code></pre>
-<ol start="3">
-<li><h4 id="字符串引用和转义"><a href="#字符串引用和转义" class="headerlink" title="字符串引用和转义"></a>字符串引用和转义</h4></li>
-</ol>
-<ul>
+<h4 id="字符串引用和转义"><a href="#字符串引用和转义" class="headerlink" title="字符串引用和转义"></a>字符串引用和转义</h4><ul>
 <li>空格字符会自动分隔参数,字符串使用 “” ,支持转义字符</li>
 </ul>
 <pre class=" language-bash"><code class="language-bash">\<span class="token string">"- 双引号
@@ -775,7 +744,7 @@ $ <span class="token function">cat</span> redis/redis-result.txt
 \xhh- 任何由十六进制数 ( hh )表示的 ASCII 字符
 
 单引号假定字符串是文字，并且只允许以下转义序列：
- 
+
 \'- 单引号
 \\- 反斜杠
 
@@ -786,57 +755,55 @@ Hello
 World
 
 例如，当您输入包含单引号或双引号的字符串时，例如在密码中可能会转义字符串，如下所示：
- 
+
 127.0.0.1:6379> AUTH some_admin_user "</span><span class="token operator">></span>^8T<span class="token operator">></span>6Na<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;u|jp>+v\"55\@_;OU(OR]7mbAYGqsfyu48(j'%hQH7;v*f1H$&amp;#123;*gD(Se'"</span>
 </code></pre>
-<ol start="4">
-<li><h4 id="主机、端口、密码和数据库"><a href="#主机、端口、密码和数据库" class="headerlink" title="主机、端口、密码和数据库"></a>主机、端口、密码和数据库</h4></li>
-</ol>
-<ul>
+<h4 id="主机、端口、密码和数据库"><a href="#主机、端口、密码和数据库" class="headerlink" title="主机、端口、密码和数据库"></a>主机、端口、密码和数据库</h4><ul>
 <li>默认通过 ip = 127.0.0.1 ,port = 6379 连接 redis server 实例,甚至可以通过 -h 指定 ip,-p 指定端口连接</li>
 </ul>
-<pre class=" language-bash"><code class="language-bash">$ redis-cli -h 127.0.0.1 -p 6379 PING
-PONG
+<pre class=" language-bash"><code class="language-bash">  $ redis-cli -h 127.0.0.1 -p 6379 PING
+  PONG
 </code></pre>
-<p>   如果实例受密码保护，该-a <password>选项将执行身份验证，无需显式使用以下AUTH命令</p>
-<pre class=" language-bash"><code class="language-bash">$ redis-cli -a myUnguessablePazzzzzword123 PING
-PONG
+<p>如果实例受密码保护，该-a <password>选项将执行身份验证，无需显式使用以下AUTH命令</p>
+<pre class=" language-bash"><code class="language-bash">  $ redis-cli -a myUnguessablePazzzzzword123 PING
+  PONG
 </code></pre>
-<p>   出于安全考虑，建议使用 REDISCLI_AUTH 配置认证</p>
-<p>   如果不清楚可以查看一下流程步骤查看以及配置密码</p>
+<p>出于安全考虑，建议使用 REDISCLI_AUTH 配置认证</p>
+<p>如果不清楚可以查看一下流程步骤查看以及配置密码</p>
 <ul>
 <li>查看是否配置密码</li>
 </ul>
-<pre class=" language-bash"><code class="language-bash">$ redis-cli config get requirepass
+<pre class=" language-bash"><code class="language-bash">  $ redis-cli config get requirepass
 
-1<span class="token punctuation">)</span> <span class="token string">"requirepass"</span>
-2<span class="token punctuation">)</span> <span class="token string">""</span>
+  1<span class="token punctuation">)</span> <span class="token string">"requirepass"</span>
+  2<span class="token punctuation">)</span> <span class="token string">""</span>
 </code></pre>
-<p>   以上结果表示还没设置密码，如果设置了密码会出现如下结果</p>
-<pre class=" language-bash"><code class="language-bash">$ redis-cli config get requirepass       
-<span class="token punctuation">(</span>error<span class="token punctuation">)</span> NOAUTH Authentication required.
+<p>以上结果表示还没设置密码，如果设置了密码会出现如下结果</p>
+<pre class=" language-bash"><code class="language-bash">  $ redis-cli config get requirepass       
+  <span class="token punctuation">(</span>error<span class="token punctuation">)</span> NOAUTH Authentication required.
 </code></pre>
 <ul>
 <li><p>设置密码</p>
 <ul>
-<li><p>临时性设置(命令配置)， redis 重启后失效</p>
-<pre class=" language-bash"><code class="language-bash">$ redis-cli config <span class="token keyword">set</span> requirepass 123456
-OK
+<li>临时性设置(命令配置)， redis 重启后失效</li>
+</ul>
+<pre class=" language-bash"><code class="language-bash">    $ redis-cli config <span class="token keyword">set</span> requirepass 123456
+    OK
 </code></pre>
-<p>  123456 表示你要设置的密码</p>
-</li>
-<li><p>永久性设置(redis.conf 文件配置), redis 重启后不失效</p>
+<pre><code>123456 表示你要设置的密码
+  
+</code></pre>
+<ul>
+<li>永久性设置(redis.conf 文件配置), redis 重启后不失效</li>
+</ul>
 <p>在 redis.conf 配置文件中找到 requirepass 这个参数，如下配置：</p>
 <p>修改redis.conf配置文件</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># requirepass foobared</span>
 requirepass 123456   <span class="token comment" spellcheck="true"># 指定密码123456</span>
 </code></pre>
 <p>保存后重启 redis 就可以了</p>
-</li>
-</ul>
-</li>
-<li><p>连接验证</p>
 <ul>
+<li>连接验证<ul>
 <li>通过命令 <code>auth password</code> 验证<ul>
 <li>验证前</li>
 </ul>
@@ -845,12 +812,11 @@ requirepass 123456   <span class="token comment" spellcheck="true"># 指定密�
 <span class="token punctuation">(</span>error<span class="token punctuation">)</span> NOAUTH Authentication required.
 </code></pre>
 <ul>
-<li>验证后<ul>
-<li>不建议直接通过 <code>-a password</code> 在命令行上输入明文密码，会有如下提示</li>
+<li>验证后</li>
 </ul>
-<pre class=" language-bash"><code class="language-bash">$ redis-cli -a 123456 get key
-Warning: Using a password with <span class="token string">'-a'</span> or <span class="token string">'-u'</span> option on the <span class="token function">command</span> line interface may not be safe.
-<span class="token punctuation">(</span>nil<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 因为 key 没有 value 值，返回类型 nil</span>
+不建议直接通过 <code>-a password</code> 在命令行上输入明文密码，会有如下提示<pre class=" language-bash"><code class="language-bash">  $ redis-cli -a 123456 get key
+  Warning: Using a password with <span class="token string">'-a'</span> or <span class="token string">'-u'</span> option on the <span class="token function">command</span> line interface may not be safe.
+  <span class="token punctuation">(</span>nil<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 因为 key 没有 value 值，返回类型 nil</span>
 </code></pre>
 <ul>
 <li>建议先登录，再通过 <code>auth password</code></li>
@@ -957,14 +923,9 @@ OK
 <span class="token punctuation">(</span>nil<span class="token punctuation">)</span>
 127.0.0.1:6379<span class="token punctuation">[</span>2<span class="token punctuation">]</span><span class="token operator">></span>
 </code></pre>
-</li>
+<h4 id="SSL-TLS-连接"><a href="#SSL-TLS-连接" class="headerlink" title="SSL/TLS 连接"></a>SSL/TLS 连接</h4></li>
 </ul>
 </li>
-</ul>
-<ol start="5">
-<li><h4 id="SSL-TLS-连接"><a href="#SSL-TLS-连接" class="headerlink" title="SSL/TLS 连接"></a>SSL/TLS 连接</h4></li>
-</ol>
-<ul>
 <li><p><a target="_blank" rel="noopener" href="https://redis.io/docs/manual/security/encryption/">TLS 官方参考</a></p>
 </li>
 <li><p>默认情况下，redis-cli 使用明文 TCP 连接 redis server，可以通过 –tls 启动安全的 redis server, 通过 –cacert or –cacertdir 配置信任根证书，如果目标 redis server 要求客户端认证，需要在客户端通过参数 –cert 和 –key 配置证书和配对的私钥连接启动 tls 的 redis server </p>
@@ -1049,11 +1010,10 @@ redis.key
 server.crt
 server.key
 </code></pre>
-</li>
-<li><p>启动 TLS redis server</p>
 <ul>
-<li>当前所在的目录 redis/  redis 有一个子目录为 tests    </li>
-</ul>
+<li><p>启动 TLS redis server</p>
+</li>
+<li><p>当前所在的目录 redis/  redis 有一个子目录为 tests    </p>
 </li>
 </ul>
 <pre class=" language-bash"><code class="language-bash">$ redis-server --tls-port 6379 --port 0 \                              
@@ -1061,27 +1021,29 @@ server.key
 --tls-key-file ./tests/tls/redis.key \
 --tls-ca-cert-file ./tests/tls/ca.crt
 </code></pre>
-<p>   参数解析</p>
-<pre class=" language-bash"><code class="language-bash">  --tls-port 6379 <span class="token comment" spellcheck="true"># 表示在指定的端口如 6379 上允许接受 SSL/TLS 连接</span>
-  --port 0 <span class="token comment" spellcheck="true"># 允许同时接受非 SSL 和 SSL 端口，当 port 参数值为 0 时禁止非 SSL 端口连接</span>
-  --tls-cert-file ./tests/tls/redis.crt <span class="token comment" spellcheck="true"># redis server 启动 TLS 的 x.509 格式证书</span>
-  --tls-key-file ./tests/tls/redis.key <span class="token comment" spellcheck="true"># redis server 启动 TLS 的私钥</span>
-  --tls-ca-cert-file ./tests/tls/ca.crt <span class="token comment" spellcheck="true"># redis server 启动 TLS 的根证书 ca</span>
-  <span class="token comment" spellcheck="true"># 要支持基于 DH 的密码，还可以配置 DH 参数文件。</span>
-  --tls-dh-params-file ./tests/tls/redis.dh
+<p>参数解析</p>
+<pre class=" language-bash"><code class="language-bash">--tls-port 6379 <span class="token comment" spellcheck="true"># 表示在指定的端口如 6379 上允许接受 SSL/TLS 连接</span>
+--port 0 <span class="token comment" spellcheck="true"># 允许同时接受非 SSL 和 SSL 端口，当 port 参数值为 0 时禁止非 SSL 端口连接</span>
+--tls-cert-file ./tests/tls/redis.crt <span class="token comment" spellcheck="true"># redis server 启动 TLS 的 x.509 格式证书</span>
+--tls-key-file ./tests/tls/redis.key <span class="token comment" spellcheck="true"># redis server 启动 TLS 的私钥</span>
+--tls-ca-cert-file ./tests/tls/ca.crt <span class="token comment" spellcheck="true"># redis server 启动 TLS 的根证书 ca</span>
+<span class="token comment" spellcheck="true"># 要支持基于 DH 的密码，还可以配置 DH 参数文件。</span>
+--tls-dh-params-file ./tests/tls/redis.dh
 </code></pre>
 <ul>
-<li>客户端验证连接  默认是双向验证连接的，即客户端连接时也需要配置证书</li>
+<li><p>客户端验证连接</p>
+<p>默认是双向验证连接的，即客户端连接时也需要配置证书</p>
+</li>
 </ul>
 <pre class=" language-bash"><code class="language-bash">$ redis-cli --tls \
 --cert ./tests/tls/redis.crt \ 
 --key ./tests/tls/redis.key \ 
 --cacert ./tests/tls/ca.crt
 </code></pre>
-<pre class=" language-bash"><code class="language-bash">  --tls <span class="token comment" spellcheck="true"># 表示在使用 SSL/TLS 连接</span>
-  --cert ./tests/tls/redis.crt <span class="token comment" spellcheck="true"># redis client 连接 redis tls server 的 x.509 格式证书</span>
-  --key ./tests/tls/redis.key <span class="token comment" spellcheck="true"># redis 连接 redis tls server 的私钥</span>
-  --cacert ./tests/tls/ca.crt <span class="token comment" spellcheck="true"># redis 连接 redis tls server 的根证书 ca</span>
+<pre class=" language-bash"><code class="language-bash">--tls <span class="token comment" spellcheck="true"># 表示在使用 SSL/TLS 连接</span>
+--cert ./tests/tls/redis.crt <span class="token comment" spellcheck="true"># redis client 连接 redis tls server 的 x.509 格式证书</span>
+--key ./tests/tls/redis.key <span class="token comment" spellcheck="true"># redis 连接 redis tls server 的私钥</span>
+--cacert ./tests/tls/ca.crt <span class="token comment" spellcheck="true"># redis 连接 redis tls server 的根证书 ca</span>
 </code></pre>
 <ul>
 <li>如果不使用证书时，会提示 <code>Error: Connection reset by peer</code></li>
@@ -1091,8 +1053,10 @@ server.key
 Error: Connection reset by peer
 </code></pre>
 <ul>
-<li>配置禁用客户端身份验证连接 redis 服务(ca 证书必须配置)<ul>
-<li>首先需要在 redis 服务启动时使用配置参数 <code>--tls-auth-clients no</code> 禁用认证客户端</li>
+<li><p>配置禁用客户端身份验证连接 redis 服务(ca 证书必须配置)</p>
+</li>
+<li><p>首先需要在 redis 服务启动时使用配置参数 <code>--tls-auth-clients no</code> 禁用认证客户端</p>
+</li>
 </ul>
 <pre class=" language-bash"><code class="language-bash">$ redis-server --tls-port 6379 --port 0 \
 --tls-cert-file ./tests/tls/redis.crt \
@@ -1115,41 +1079,34 @@ Error: Connection reset by peer
 $ redis-cli --tls \
 --cacert ./tests/tls/ca.crt
 </code></pre>
+<h4 id="从其他程序输入"><a href="#从其他程序输入" class="headerlink" title="从其他程序输入"></a>从其他程序输入</h4></li>
+<li><p>使用 -x 选项接受有效负载的最后一个参数值</p>
 </li>
 </ul>
-<ol start="6">
-<li><h4 id="从其他程序输入"><a href="#从其他程序输入" class="headerlink" title="从其他程序输入"></a>从其他程序输入</h4></li>
-</ol>
-<ul>
-<li>使用 -x 选项接受有效负载的最后一个参数值</li>
-</ul>
-<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 给 `net_services` key 设置来自本地文件系统 `/etc/services` 的值,</span>
-<span class="token comment" spellcheck="true"># -x 将文件重定向到 CLI 的标准输入作为满足 `SET net_services` 命令的值</span>
-$ redis-cli -x SET net_services <span class="token operator">&lt;</span> /etc/services
-OK
-$ redis-cli GETRANGE net_services 0 50
-<span class="token string">"#\n# Network services, Internet style\n#\n# Note that "</span>
+<pre class=" language-bash"><code class="language-bash">  <span class="token comment" spellcheck="true"># 给 `net_services` key 设置来自本地文件系统 `/etc/services` 的值,</span>
+  <span class="token comment" spellcheck="true"># -x 将文件重定向到 CLI 的标准输入作为满足 `SET net_services` 命令的值</span>
+  $ redis-cli -x SET net_services <span class="token operator">&lt;</span> /etc/services
+  OK
+  $ redis-cli GETRANGE net_services 0 50
+  <span class="token string">"#\n# Network services, Internet style\n#\n# Note that "</span>
 </code></pre>
 <ul>
 <li>给 redis-cli 喂养一系列写在文本文件中的命令脚本</li>
 </ul>
-<pre class=" language-bash"><code class="language-bash">$ <span class="token function">cat</span> /tmp/commands.txt
-SET item:3374 100
-INCR item:3374
-APPEND item:3374 xxx
-GET item:3374
-$ <span class="token function">cat</span> /tmp/commands.txt <span class="token operator">|</span> redis-cli
-OK
-<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 101
-<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 6
-<span class="token string">"101xxx"</span>
- 
-<span class="token comment" spellcheck="true"># commands.txt 中的所有命令都会被连续执行</span>
+<pre class=" language-bash"><code class="language-bash">  $ <span class="token function">cat</span> /tmp/commands.txt
+  SET item:3374 100
+  INCR item:3374
+  APPEND item:3374 xxx
+  GET item:3374
+  $ <span class="token function">cat</span> /tmp/commands.txt <span class="token operator">|</span> redis-cli
+  OK
+  <span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 101
+  <span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 6
+  <span class="token string">"101xxx"</span>
+
+  <span class="token comment" spellcheck="true"># commands.txt 中的所有命令都会被连续执行</span>
 </code></pre>
-<ol start="8">
-<li><h4 id="连续运行相同的命令"><a href="#连续运行相同的命令" class="headerlink" title="连续运行相同的命令"></a>连续运行相同的命令</h4></li>
-</ol>
-<ul>
+<h4 id="连续运行相同的命令"><a href="#连续运行相同的命令" class="headerlink" title="连续运行相同的命令"></a>连续运行相同的命令</h4><ul>
 <li>选项 -r : -r &lt;count&gt; ,设置命令的运行次数</li>
 </ul>
 <pre class=" language-bash"><code class="language-bash">$ redis-cli -r 5 INCR counter_value
@@ -1189,10 +1146,7 @@ used_memory_rss_human:2.73M
 used_memory_rss_human:2.73M
 used_memory_rss_human:2.73M
 </code></pre>
-<ol start="9">
-<li><h4 id="批量插入"><a href="#批量插入" class="headerlink" title="批量插入"></a>批量插入</h4></li>
-</ol>
-<ul>
+<h4 id="批量插入"><a href="#批量插入" class="headerlink" title="批量插入"></a>批量插入</h4><ul>
 <li><p>官方表示这部分内容很重要，单独一页面介绍：<a target="_blank" rel="noopener" href="https://redis.io/docs/reference/patterns/bulk-loading/">https://redis.io/docs/reference/patterns/bulk-loading/</a></p>
 </li>
 <li><p>批量加载：批量加载是使用大量预先存在的数据加载到 Redis 的过程。</p>
@@ -1264,22 +1218,16 @@ value<span class="token operator">&lt;</span>cr<span class="token operator">></s
 </ul>
 </li>
 </ul>
-<ol start="10">
-<li><h4 id="CSV-格式输出"><a href="#CSV-格式输出" class="headerlink" title="CSV 格式输出"></a>CSV 格式输出</h4></li>
-</ol>
-<ul>
-<li>CSV ： Comma Separated Values ，逗号分隔值</li>
-</ul>
+<h4 id="CSV-格式输出"><a href="#CSV-格式输出" class="headerlink" title="CSV 格式输出"></a>CSV 格式输出</h4><ul>
+<li><p>CSV ： Comma Separated Values ，逗号分隔值</p>
 <pre class=" language-bash"><code class="language-bash">$ redis-cli LPUSH mylist a b c d
 <span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 4
 $ redis-cli --csv LRANGE mylist 0 -1
 <span class="token string">"d"</span>,<span class="token string">"c"</span>,<span class="token string">"b"</span>,<span class="token string">"a"</span>
 </code></pre>
-<ol start="11">
-<li><h4 id="还可以运行-Lua-脚本"><a href="#还可以运行-Lua-脚本" class="headerlink" title="还可以运行 Lua 脚本"></a>还可以运行 Lua 脚本</h4></li>
-<li><h4 id="交互模式"><a href="#交互模式" class="headerlink" title="交互模式"></a>交互模式</h4></li>
-</ol>
-<ul>
+<h4 id="还可以运行-Lua-脚本"><a href="#还可以运行-Lua-脚本" class="headerlink" title="还可以运行 Lua 脚本"></a>还可以运行 Lua 脚本</h4></li>
+</ul>
+<h4 id="交互模式"><a href="#交互模式" class="headerlink" title="交互模式"></a>交互模式</h4><ul>
 <li>在交互模式下，用户在提示符下键入 Redis 命令。该命令被发送到服务器，进行处理，然后将回复解析并呈现为更简单的形式以供阅读。</li>
 <li>在交互模式下运行不需要什么特别的redis-cli- 只需在没有任何参数的情况下执行它</li>
 </ul>
@@ -1287,8 +1235,8 @@ $ redis-cli --csv LRANGE mylist 0 -1
 127.0.0.1:6379<span class="token operator">></span> PING
 PONG
 </code></pre>
-<p>   字符串127.0.0.1:6379&gt;是提示符。它显示连接的 Redis 服务器实例的主机名和端口。</p>
-<p>   当连接的服务器更改或在与数据库编号为零的数据库不同的数据库上操作时，提示会更新：</p>
+<p>  字符串127.0.0.1:6379&gt;是提示符。它显示连接的 Redis 服务器实例的主机名和端口。</p>
+<p>  当连接的服务器更改或在与数据库编号为零的数据库不同的数据库上操作时，提示会更新：</p>
 <pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> SELECT 2
 OK
 127.0.0.1:6379<span class="token punctuation">[</span>2<span class="token punctuation">]</span><span class="token operator">></span> DBSIZE
@@ -1298,10 +1246,7 @@ OK
 127.0.0.1:6379<span class="token operator">></span> DBSIZE
 <span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 503
 </code></pre>
-<ol start="13">
-<li><h4 id="处理连接和重连"><a href="#处理连接和重连" class="headerlink" title="处理连接和重连"></a>处理连接和重连</h4></li>
-</ol>
-<ul>
+<h4 id="处理连接和重连"><a href="#处理连接和重连" class="headerlink" title="处理连接和重连"></a>处理连接和重连</h4><ul>
 <li>使用 CONNECT 命令在交互模式下连接不同的实例</li>
 </ul>
 <pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 启动另外一个实例，端口为 6380，在 6379 端口的实例交互模式下连接 6380</span>
@@ -1312,10 +1257,9 @@ overdose@OverdosedeMacBook-Air redis % redis-cli
 localhost:6380<span class="token operator">></span>
 </code></pre>
 <ul>
-<li><p>断开重连</p>
-<p>一般检测到断线后，redis-cli总是尝试透明重连；如果尝试失败，则显示错误并进入断开连接状态。以下是断开和重新连接的示例：</p>
-</li>
+<li>断开重连</li>
 </ul>
+<p>  一般检测到断线后，redis-cli总是尝试透明重连；如果尝试失败，则显示错误并进入断开连接状态。以下是断开和重新连接的示例：</p>
 <pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> INFO SERVER
 Could not connect to Redis at 127.0.0.1:6379: Connection refused
 not connected<span class="token operator">></span> PING
@@ -1323,10 +1267,7 @@ PONG
 127.0.0.1:6379<span class="token operator">></span>
 <span class="token punctuation">(</span>now we are connected again<span class="token punctuation">)</span>
 </code></pre>
-<ol start="14">
-<li><h4 id="redis-cli-命令提示"><a href="#redis-cli-命令提示" class="headerlink" title="redis-cli 命令提示"></a>redis-cli 命令提示</h4></li>
-</ol>
-<ul>
+<h4 id="redis-cli-命令提示"><a href="#redis-cli-命令提示" class="headerlink" title="redis-cli 命令提示"></a>redis-cli 命令提示</h4><ul>
 <li>历史记录都存在一个 <code>.rediscli_history</code> 文件</li>
 <li>输入命令后按 TAB 键，可以看到命令的使用提示</li>
 </ul>
@@ -1334,16 +1275,10 @@ PONG
 127.0.0.1:6379<span class="token operator">></span> ZADD<span class="token operator">&lt;</span>TAB<span class="token operator">></span>
 127.0.0.1:6379<span class="token operator">></span> ZCARD<span class="token operator">&lt;</span>TAB<span class="token operator">></span>
 </code></pre>
-<ol start="15">
-<li><h4 id="命令帮助"><a href="#命令帮助" class="headerlink" title="命令帮助"></a>命令帮助</h4></li>
-</ol>
-<ul>
-<li><p>场景：对于某个命令的使用不清楚可以参考查看</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://redis.io/commands/">在线命令帮助</a></p>
-</li>
-<li><p>help 帮助命令</p>
-<ul>
+<h4 id="命令帮助"><a href="#命令帮助" class="headerlink" title="命令帮助"></a>命令帮助</h4><ul>
+<li>场景：对于某个命令的使用不清楚可以参考查看</li>
+<li><a target="_blank" rel="noopener" href="https://redis.io/commands/">在线命令帮助</a></li>
+<li>help 帮助命令</li>
 <li>首先，通过对类别查看，可以获取该类别下的所有命令及大致用法</li>
 </ul>
 <pre class=" language-bash"><code class="language-bash"><span class="token function">help</span> @<span class="token operator">&lt;</span>category<span class="token operator">></span> <span class="token comment" spellcheck="true"># @&lt;category> 包含以下的类别</span>
@@ -1389,21 +1324,13 @@ summary: Get the value of a key
 since: 1.0.0
 group: string
 </code></pre>
-</li>
-</ul>
-<ol start="16">
-<li><h4 id="清理屏幕"><a href="#清理屏幕" class="headerlink" title="清理屏幕"></a>清理屏幕</h4></li>
-</ol>
-<ul>
+<h4 id="清理屏幕"><a href="#清理屏幕" class="headerlink" title="清理屏幕"></a>清理屏幕</h4><ul>
 <li>跟 shell 终端使用 <code>clear</code> 命令清除屏幕一样的效果,即隐藏之前记录，变为首行的效果</li>
 </ul>
 <pre class=" language-bash"><code class="language-bash">127.0.0.1:6380<span class="token operator">></span> <span class="token function">clear</span>
 127.0.0.1:6380<span class="token operator">></span>
 </code></pre>
-<ol start="17">
-<li><h4 id="特殊的操作模式"><a href="#特殊的操作模式" class="headerlink" title="特殊的操作模式"></a>特殊的操作模式</h4></li>
-</ol>
-<ul>
+<h4 id="特殊的操作模式"><a href="#特殊的操作模式" class="headerlink" title="特殊的操作模式"></a>特殊的操作模式</h4><ul>
 <li>用于显示有关 Redis 服务器的连续统计信息的监控工具,使用命令参数 <code>--stat</code></li>
 </ul>
 <pre class=" language-bash"><code class="language-bash">$ redis-cli --stat
@@ -1431,17 +1358,17 @@ $
 <span class="token comment" spellcheck="true"># Scanning the entire keyspace to find biggest keys as well as</span>
 <span class="token comment" spellcheck="true"># average sizes per key type.  You can use -i 0.1 to sleep 0.1 sec</span>
 <span class="token comment" spellcheck="true"># per 100 SCAN commands (not usually needed).</span>
- 
+
 <span class="token punctuation">[</span>00.00%<span class="token punctuation">]</span> Biggest string found so far <span class="token string">'"counter_value"'</span> with 2 bytes
 <span class="token punctuation">[</span>00.00%<span class="token punctuation">]</span> Biggest string found so far <span class="token string">'"net_services"'</span> with 677972 bytes
- 
+
 -------- summary -------
- 
+
 Sampled 2 keys <span class="token keyword">in</span> the keyspace<span class="token operator">!</span>
 Total key length <span class="token keyword">in</span> bytes is 25 <span class="token punctuation">(</span>avg len 12.50<span class="token punctuation">)</span>
- 
+
 Biggest string found <span class="token string">'"net_services"'</span> has 677972 bytes
- 
+
 0 lists with 0 items <span class="token punctuation">(</span>00.00% of keys, avg size 0.00<span class="token punctuation">)</span>
 0 hashs with 0 fields <span class="token punctuation">(</span>00.00% of keys, avg size 0.00<span class="token punctuation">)</span>
 2 strings with 677974 bytes <span class="token punctuation">(</span>100.00% of keys, avg size 338987.00<span class="token punctuation">)</span>
@@ -1458,7 +1385,7 @@ Biggest string found <span class="token string">'"net_services"'</span> has 6779
 <pre class=" language-bash"><code class="language-bash">$ redis-cli --scan <span class="token operator">|</span> <span class="token function">head</span> -10
 counter_value
 net_services
- 
+
 <span class="token comment" spellcheck="true"># 还可以通过 --pattern 匹配</span>
 $ redis-cli --scan --pattern <span class="token string">'*-11*'</span>
 key-114
@@ -1474,8 +1401,7 @@ key-110
 key-116
 </code></pre>
 <ul>
-<li><p>发布/订阅模式</p>
-<ul>
+<li>发布/订阅模式</li>
 <li>CLI 可以在 Redis 发布/订阅 channel 通道使用 <code>PUBLISH</code> 命令发布消息。订阅 channel 通道是为了接收消息，因此在终端会被阻塞等待。</li>
 <li>不像其他特殊模式有其他命令参数，发布/订阅只有命令 <code>PSUBSCRIBE</code>(发布) 和 <code>SUBSCRIBE</code>(订阅)</li>
 <li>查看<code>PSUBSCRIBE</code> 和 <code>SUBSCRIBE</code> 命令使用</li>
@@ -1541,8 +1467,7 @@ Reading messages<span class="token punctuation">..</span>. <span class="token pu
 <span class="token comment" spellcheck="true"># CTRL-C 退出 发布/订阅模式</span>
 </code></pre>
 <ul>
-<li><p>监控 Redis 中执行的命令</p>
-<ul>
+<li>监控 Redis 中执行的命令<ul>
 <li>跟上面的发布/订阅模式有点像，一旦使用 <code>MONITOR</code> 命令，就会自动进入监控模式。活动 Redis 实例接收到的所有命令都将打印到标准输出：</li>
 <li>客户端 A 进入监控模式</li>
 </ul>
@@ -1595,10 +1520,6 @@ sending REPLCONF ACK 0
 </code></pre>
 </li>
 </ul>
-</li>
-</ul>
-</li>
-</ol>
 
                 
             </div>
