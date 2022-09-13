@@ -942,9 +942,9 @@ Son Construct
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="好文分享">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="Share">
                         
-                        <span class="card-title">好文分享</span>
+                        <span class="card-title">Share</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1079,7 +1079,7 @@ Son Construct
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h1,h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -1091,7 +1091,7 @@ Son Construct
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1,h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -1211,7 +1211,7 @@ Son Construct
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">4.7k</span>
+                        class="white-color">11.3k</span>
             
             
             
