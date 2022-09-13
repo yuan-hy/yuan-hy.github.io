@@ -3109,6 +3109,10 @@ DSA 数字签名算法验签 <span class="token operator">:</span> 成功
 <ul>
 <li>PKCS 常用标准</li>
 </ul>
+</li>
+</ul>
+</li>
+</ul>
 <table>
 <thead>
 <tr>
@@ -3133,13 +3137,13 @@ DSA 数字签名算法验签 <span class="token operator">:</span> 成功
 <td>.p12、.pfx</td>
 </tr>
 </tbody></table>
-<p>PKCS#10 文件用于证书签发申请，一般证书申请请求看到 .csr后缀</p>
-<p>PKCS#12 文件可作为 Java 种的密钥库或信任库直接使用</p>
-<p>通常使用 Base64 编码格式作为数字证书文件存储格式</p>
-</li>
-</ul>
-</li>
-</ul>
+<pre><code>PKCS#10 文件用于证书签发申请，一般证书申请请求看到 .csr后缀
+
+PKCS#12 文件可作为 Java 种的密钥库或信任库直接使用
+
+通常使用 Base64 编码格式作为数字证书文件存储格式
+  
+</code></pre>
 <h4 id="9-1、模型分析"><a href="#9-1、模型分析" class="headerlink" title="9.1、模型分析"></a>9.1、模型分析</h4><ul>
 <li>实际运用，很多数字签名属于自签名，即证书申请者为自己的证书签名（证书签发模型）</li>
 </ul>
@@ -3266,12 +3270,13 @@ JKS 密钥库使用专用格式。建议使用 "keytool -importkeystore -srckeys
 </li>
 <li><p>导出证书</p>
 <ul>
-<li><p>将数字证书导出进行加密交互</p>
+<li>将数字证书导出进行加密交互</li>
+</ul>
 <pre class=" language-shell"><code class="language-shell">C:\Program Files\Java\jdk1.8.0_181\bin>keytool -help
 密钥和证书管理工具
-
+    
 命令:
-
+    
  -certreq            生成证书请求
  -changealias        更改条目的别名
  -delete             删除条目
@@ -3288,16 +3293,16 @@ JKS 密钥库使用专用格式。建议使用 "keytool -importkeystore -srckeys
  -printcertreq       打印证书请求的内容
  -printcrl           打印 CRL 文件的内容
  -storepasswd        更改密钥库的存储口令
-
+    
 使用 "keytool -command_name -help" 获取 command_name 的用法
-
+    
 C:\Program Files\Java\jdk1.8.0_181\bin>keytool -exportcert -help
 keytool -exportcert [OPTION]...
-
+    
 导出证书
-
+    
 选项:
-
+    
  -rfc                            以 RFC 样式输出 (Base64)
  -alias <alias>                  要处理的条目的别名
  -file <filename>                输出文件名
@@ -3310,16 +3315,16 @@ keytool -exportcert [OPTION]...
  -providerpath <pathlist>        提供方类路径
  -v                              详细输出
  -protected                      通过受保护的机制的口令
-
+    
 使用 "keytool -help" 获取所有可用命令
-
-
+    
+    
 C:\Program Files\Java\jdk1.8.0_181\bin>keytool -exportcert -alias www.zlex.org -keystore zlex.keystore -file zlex.cer -rfc -storepass 123456
 存储在文件 <zlex.cer> 中的证书
-
+    
 Warning:
 JKS 密钥库使用专用格式。建议使用 "keytool -importkeystore -srckeystore zlex.keystore -destkeystore zlex.keystore -deststoretype pkcs12" 迁移到行业标准格式 PKCS12。
-
+    
 ##############################################
 打印数字证书信息
 C:\Program Files\Java\jdk1.8.0_181\bin>keytool -printcert -v -file zlex.cer
@@ -3334,9 +3339,9 @@ C:\Program Files\Java\jdk1.8.0_181\bin>keytool -printcert -v -file zlex.cer
 签名算法名称: SHA1withRSA
 主体公共密钥算法: 2048 位 RSA 密钥
 版本: 3
-
+    
 扩展:
-
+    
 #1: ObjectId: 2.5.29.14 Criticality=false
 SubjectKeyIdentifier [
 KeyIdentifier [
@@ -3348,27 +3353,26 @@ KeyIdentifier [
 </code></pre>
 </li>
 </ul>
-</li>
-</ul>
 <h5 id="9-2-2、构建-CA-数字证书"><a href="#9-2-2、构建-CA-数字证书" class="headerlink" title="9.2.2、构建 CA 数字证书"></a>9.2.2、构建 CA 数字证书</h5><ul>
 <li><p>如果要获得 CA 机构认证的数字证书，需要将数字证书签发申请（CSR）导出，经由 CA 机构认证并颁发，同时将认证后的数字证书导入本地密钥库和信任库</p>
 <ul>
-<li><p>从已存在的 keystore 文件导出数字证书签发申请</p>
+<li>从已存在的 keystore 文件导出数字证书签发申请</li>
+</ul>
 <pre class=" language-shell"><code class="language-shell">C:\Program Files\Java\jdk1.8.0_181\bin>keytool -certreq -alias www.zlex.org -keystore zlex.keystore -file zlex.csr -v
 输入密钥库口令:
 存储在文件 <zlex.csr> 中的认证请求
 将此提交给您的 CA
-
+    
 Warning:
 JKS 密钥库使用专用格式。建议使用 "keytool -importkeystore -srckeystore zlex.keystore -destkeystore zlex.keystore -deststoretype pkcs12" 迁移到行业标准格式 PKCS12。
-
+    
 C:\Program Files\Java\jdk1.8.0_181\bin>keytool -certreq -help
 keytool -certreq [OPTION]...
-
+    
 生成证书请求
-
+    
 选项:
-
+    
  -alias <alias>                  要处理的条目的别名
  -sigalg <sigalg>                签名算法名称
  -file <filename>                输出文件名
@@ -3383,21 +3387,21 @@ keytool -certreq [OPTION]...
  -providerpath <pathlist>        提供方类路径
  -v                              详细输出
  -protected                      通过受保护的机制的口令
-
+    
 从已存在的 zlex.keystore 导出证书签发申请
 使用 "keytool -help" 获取所有可用命令
-
+    
 ##############################################
 获得数字证书签发申请文件 zlex.csr 后，到 http://www.cacert.org/ 签发数字证书
 ##############################################
-
+    
 获得 CA 签发的证书后，将其导入信任库，假设 获得的 CA 证书为 cazlex.cer
 keytool -importcert [OPTION]...
-
+    
 导入证书或证书链
-
+    
 选项:
-
+    
  -noprompt                       不提示
  -trustcacerts                   信任来自 cacerts 的证书
  -protected                      通过受保护的机制的口令
@@ -3412,16 +3416,14 @@ keytool -importcert [OPTION]...
  -providerarg <arg>              提供方参数
  -providerpath <pathlist>        提供方类路径
  -v                              详细输出
- 
- 
+     
+     
 keytool -importcert -trustcacerts -alias www.zlex.org -file cazlex.cer -keystore zlex.keystore 
 ##############################################
 导入数字证书后，查看数字证书
 keytool -list -alias www.zlex.org -keystore zlex.keystore
 </code></pre>
 <h4 id="9-3、OpenSSL-证书管理"><a href="#9-3、OpenSSL-证书管理" class="headerlink" title="9.3、OpenSSL 证书管理"></a>9.3、OpenSSL 证书管理</h4></li>
-</ul>
-</li>
 <li><p>Open SSL （<a target="_blank" rel="noopener" href="http://www.openssl.org/%EF%BC%89%E5%BC%80%E6%94%BE%E6%BA%90%E7%A0%81%E8%BD%AF%E4%BB%B6%E5%8C%85%EF%BC%8C%E5%AE%9E%E7%8E%B0%E4%BA%86">http://www.openssl.org/）开放源码软件包，实现了</a> SSL 及相关加密技术</p>
 </li>
 <li><p>比 Keytool 强大，可用于根证书、服务器证书和客户端证书管理，可参考：<a target="_blank" rel="noopener" href="http://www.openssl.org/docs/apps/openssl.html">http://www.openssl.org/docs/apps/openssl.html</a></p>
@@ -3429,52 +3431,52 @@ keytool -list -alias www.zlex.org -keystore zlex.keystore
 </ul>
 <h5 id="9-3-1、构建根证书"><a href="#9-3-1、构建根证书" class="headerlink" title="9.3.1、构建根证书"></a>9.3.1、构建根证书</h5><ul>
 <li><p>OpenSSL 命令</p>
-<pre class=" language-shell"><code class="language-shell">   # OpenSSL 命令
-   
-   Standard commands
-   asn1parse         ca                ciphers           cms
-   crl               crl2pkcs7         dgst              dhparam
-   dsa               dsaparam          ec                ecparam
-   enc               engine            errstr            gendsa
-   genpkey           genrsa            help              list
-   nseq              ocsp              passwd            pkcs12
-   pkcs7             pkcs8             pkey              pkeyparam
-   pkeyutl           prime             rand              rehash
-   req               rsa               rsautl            s_client
-   s_server          s_time            sess_id           smime
-   speed             spkac             srp               storeutl
-   ts                verify            version           x509
-   
-   Message Digest commands (see the `dgst' command for more details)
-   blake2b512        blake2s256        gost              md4
-   md5               mdc2              rmd160            sha1
-   sha224            sha256            sha3-224          sha3-256
-   sha3-384          sha3-512          sha384            sha512
-   sha512-224        sha512-256        shake128          shake256
-   sm3
-   
-   Cipher commands (see the `enc' command for more details)
-   aes-128-cbc       aes-128-ecb       aes-192-cbc       aes-192-ecb
-   aes-256-cbc       aes-256-ecb       aria-128-cbc      aria-128-cfb
-   aria-128-cfb1     aria-128-cfb8     aria-128-ctr      aria-128-ecb
-   aria-128-ofb      aria-192-cbc      aria-192-cfb      aria-192-cfb1
-   aria-192-cfb8     aria-192-ctr      aria-192-ecb      aria-192-ofb
-   aria-256-cbc      aria-256-cfb      aria-256-cfb1     aria-256-cfb8
-   aria-256-ctr      aria-256-ecb      aria-256-ofb      base64
-   bf                bf-cbc            bf-cfb            bf-ecb
-   bf-ofb            camellia-128-cbc  camellia-128-ecb  camellia-192-cbc
-   camellia-192-ecb  camellia-256-cbc  camellia-256-ecb  cast
-   cast-cbc          cast5-cbc         cast5-cfb         cast5-ecb
-   cast5-ofb         des               des-cbc           des-cfb
-   des-ecb           des-ede           des-ede-cbc       des-ede-cfb
-   des-ede-ofb       des-ede3          des-ede3-cbc      des-ede3-cfb
-   des-ede3-ofb      des-ofb           des3              desx
-   idea              idea-cbc          idea-cfb          idea-ecb
-   idea-ofb          rc2               rc2-40-cbc        rc2-64-cbc
-   rc2-cbc           rc2-cfb           rc2-ecb           rc2-ofb
-   rc4               rc4-40            seed              seed-cbc
-   seed-cfb          seed-ecb          seed-ofb          sm4-cbc
-   sm4-cfb           sm4-ctr           sm4-ecb           sm4-ofb
+<pre class=" language-shell"><code class="language-shell">    # OpenSSL 命令
+    
+    Standard commands
+    asn1parse         ca                ciphers           cms
+    crl               crl2pkcs7         dgst              dhparam
+    dsa               dsaparam          ec                ecparam
+    enc               engine            errstr            gendsa
+    genpkey           genrsa            help              list
+    nseq              ocsp              passwd            pkcs12
+    pkcs7             pkcs8             pkey              pkeyparam
+    pkeyutl           prime             rand              rehash
+    req               rsa               rsautl            s_client
+    s_server          s_time            sess_id           smime
+    speed             spkac             srp               storeutl
+    ts                verify            version           x509
+    
+    Message Digest commands (see the `dgst' command for more details)
+    blake2b512        blake2s256        gost              md4
+    md5               mdc2              rmd160            sha1
+    sha224            sha256            sha3-224          sha3-256
+    sha3-384          sha3-512          sha384            sha512
+    sha512-224        sha512-256        shake128          shake256
+    sm3
+    
+    Cipher commands (see the `enc' command for more details)
+    aes-128-cbc       aes-128-ecb       aes-192-cbc       aes-192-ecb
+    aes-256-cbc       aes-256-ecb       aria-128-cbc      aria-128-cfb
+    aria-128-cfb1     aria-128-cfb8     aria-128-ctr      aria-128-ecb
+    aria-128-ofb      aria-192-cbc      aria-192-cfb      aria-192-cfb1
+    aria-192-cfb8     aria-192-ctr      aria-192-ecb      aria-192-ofb
+    aria-256-cbc      aria-256-cfb      aria-256-cfb1     aria-256-cfb8
+    aria-256-ctr      aria-256-ecb      aria-256-ofb      base64
+    bf                bf-cbc            bf-cfb            bf-ecb
+    bf-ofb            camellia-128-cbc  camellia-128-ecb  camellia-192-cbc
+    camellia-192-ecb  camellia-256-cbc  camellia-256-ecb  cast
+    cast-cbc          cast5-cbc         cast5-cfb         cast5-ecb
+    cast5-ofb         des               des-cbc           des-cfb
+    des-ecb           des-ede           des-ede-cbc       des-ede-cfb
+    des-ede-ofb       des-ede3          des-ede3-cbc      des-ede3-cfb
+    des-ede3-ofb      des-ofb           des3              desx
+    idea              idea-cbc          idea-cfb          idea-ecb
+    idea-ofb          rc2               rc2-40-cbc        rc2-64-cbc
+    rc2-cbc           rc2-cfb           rc2-ecb           rc2-ofb
+    rc4               rc4-40            seed              seed-cbc
+    seed-cfb          seed-ecb          seed-ofb          sm4-cbc
+    sm4-cfb           sm4-ctr           sm4-ecb           sm4-ofb
 </code></pre>
 </li>
 <li><p>构建根证书之前，需要构建随机数文件</p>
@@ -3706,37 +3708,38 @@ Verifying - Enter Export Password: 123456
 这样就可以实现单向认证
 </code></pre>
 <h5 id="9-3-3、使用根证书签发客户端证书"><a href="#9-3-3、使用根证书签发客户端证书" class="headerlink" title="9.3.3、使用根证书签发客户端证书"></a>9.3.3、使用根证书签发客户端证书</h5></li>
-<li><pre class=" language-shell"><code class="language-shell">################ 构建私钥
-genrsa -aes256 -out E:\CA\private\client.key.pem 2048
-
-################ 生成客户端证书签发申请
-OpenSSL> req -new -key E:\CA\private\client.key.pem -out E:\CA\private\client.csr
-Enter pass phrase for E:\CA\private\client.key.pem:
-Can't load ./.rnd into RNG
-6704:error:2406F079:random number generator:RAND_load_file:Cannot open file:crypto\rand\randfile.c:88:Filename=./.rnd
-You are about to be asked to enter information that will be incorporated
-into your certificate request.
-What you are about to enter is what is called a Distinguished Name or a DN.
-There are quite a few fields but you can leave some blank
-For some fields there will be a default value,
-If you enter '.', the field will be left blank.
------
-Country Name (2 letter code) [AU]:CN
-State or Province Name (full name) [Some-State]:GD
-Locality Name (eg, city) []:GZ
-Organization Name (eg, company) [Internet Widgits Pty Ltd]:KY
-Organizational Unit Name (eg, section) []:KY
-Common Name (e.g. server FQDN or YOUR name) []:www.zlex.org
-Email Address []:
-
-Please enter the following 'extra' attributes
-to be sent with your certificate request
-A challenge password []:
-An optional company name []:
-
-################ 签发客户端证书
+</ul>
+<pre class=" language-shell"><code class="language-shell">  ################ 构建私钥
+  genrsa -aes256 -out E:\CA\private\client.key.pem 2048
+  
+  ################ 生成客户端证书签发申请
+  OpenSSL> req -new -key E:\CA\private\client.key.pem -out E:\CA\private\client.csr
+  Enter pass phrase for E:\CA\private\client.key.pem:
+  Can't load ./.rnd into RNG
+  6704:error:2406F079:random number generator:RAND_load_file:Cannot open file:crypto\rand\randfile.c:88:Filename=./.rnd
+  You are about to be asked to enter information that will be incorporated
+  into your certificate request.
+  What you are about to enter is what is called a Distinguished Name or a DN.
+  There are quite a few fields but you can leave some blank
+  For some fields there will be a default value,
+  If you enter '.', the field will be left blank.
+  -----
+  Country Name (2 letter code) [AU]:CN
+  State or Province Name (full name) [Some-State]:GD
+  Locality Name (eg, city) []:GZ
+  Organization Name (eg, company) [Internet Widgits Pty Ltd]:KY
+  Organizational Unit Name (eg, section) []:KY
+  Common Name (e.g. server FQDN or YOUR name) []:www.zlex.org
+  Email Address []:
+  
+  Please enter the following 'extra' attributes
+  to be sent with your certificate request
+  A challenge password []:
+  An optional company name []:
+  
+  ################ 签发客户端证书
 </code></pre>
-<h4 id="9-4、证书的使用"><a href="#9-4、证书的使用" class="headerlink" title="9.4、证书的使用"></a>9.4、证书的使用</h4></li>
+<h4 id="9-4、证书的使用"><a href="#9-4、证书的使用" class="headerlink" title="9.4、证书的使用"></a>9.4、证书的使用</h4><ul>
 <li><p>Java 6 提供了完善的数字证书管理实现，我们几乎无需关注相关的具体算法，仅通过操作密钥库和数字证书就可完成相应的加密/解密和签名/验签操作。密钥库管理私钥，数字证书管理公钥，私钥和密钥分属消息传递两方，进行消息加密传递</p>
 </li>
 <li><p>依据上面，密钥库看作私钥的相关操作入口，数字证书看作公钥的相关操作入口</p>
@@ -4049,19 +4052,20 @@ An optional company name []:
 </ul>
 <h4 id="10-1、模型分析"><a href="#10-1、模型分析" class="headerlink" title="10.1、模型分析"></a>10.1、模型分析</h4><ul>
 <li><p>协商算法 ： 服务器和客户端进行握手协议的第一阶段主要是协商算法</p>
-<pre class=" language-mermaid"><code class="language-mermaid">    sequenceDiagram
+<pre class=" language-mermaid"><code class="language-mermaid">sequenceDiagram
 
   客户端 --> 客户端 :  1、产生随机数 RNC
   客户端 ->> 服务器端 :  2、发送 SSL/TLS 信息、算法信息、随机数
   服务器端 ->> 服务器端 :  3、产生随机数 RNC
   服务器端 -->> 客户端 :  4、回复 SSL/TLS 信息、算法信息、随机数、其他信息
 </code></pre>
-<p>```shell</p>
-<h1 id="1、客户端产生随机数RNC（Random-Number-Client）-这个随机数为后面构建密钥做准备"><a href="#1、客户端产生随机数RNC（Random-Number-Client）-这个随机数为后面构建密钥做准备" class="headerlink" title="1、客户端产生随机数RNC（Random Number Client）,这个随机数为后面构建密钥做准备"></a>1、客户端产生随机数RNC（Random Number Client）,这个随机数为后面构建密钥做准备</h1><h1 id="2、"><a href="#2、" class="headerlink" title="2、"></a>2、</h1></li>
-</ul>
-<pre><code>
-- 后期更新单向认证和双向认证
+<pre class=" language-shell"><code class="language-shell"># 1、客户端产生随机数RNC（Random Number Client）,这个随机数为后面构建密钥做准备
+# 2、
 </code></pre>
+</li>
+<li><p>后期更新单向认证和双向认证</p>
+</li>
+</ul>
 
                 
             </div>
