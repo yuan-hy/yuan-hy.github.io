@@ -1211,7 +1211,7 @@ d362da18bcfac6bbc4894890b0129eff
 <li><p>生成的散列值在传输或存储之前计算出来并附加在数据后面</p>
 </li>
 <li><p>32 位二进制数，以 8位16进制数表示</p>
-<pre><code>文件名称：C:\Users\Administrator\Desktop\K033-K999.zip
+<pre class=" language-bash"><code class="language-bash">文件名称：C:\Users\Administrator\Desktop\K033-K999.zip
 文件大小：512050 字节
 修改时间：2020年3月16日 09:30:26
 MD5     ：E606FA147681797918A2487CB319FF8B
@@ -2612,19 +2612,19 @@ ElGamal 私钥解密明文 <span class="token operator">:</span> ElGamal 算法
 <li><p>数字签名算法主要包括 ：RSA 、DSA、ECDSA，例如基于 RSA 算法密钥，结合摘要算法可形成对应的签名算法，例如结合消息摘要算法MD5，可形成 MD5WithRSA 签名算法</p>
 </li>
 <li><p>基于数字签名算法的消息传递模型</p>
-</li>
-</ul>
-<pre class=" language-mermaid"><code class="language-mermaid">    sequenceDiagram
+<pre class=" language-mermaid"><code class="language-mermaid"> sequenceDiagram
 
-    甲方(发送方) ->> 甲方(发送方) :  1、甲方构建非对称密钥对
-    甲方(发送方) ->> 乙方(接收方) :  2、甲方向乙方公布公钥
-    甲方(发送方) ->> 甲方(发送方) :  3、甲方使用私钥对数据签名
-    甲方(发送方) ->> 乙方(接收方) :  4、甲方向乙方发送签名和数据
-    乙方(接收方) ->> 乙方(接收方) :  5、乙方使用公钥、签名验证数据
+  甲方(发送方) ->> 甲方(发送方) :  1、甲方构建非对称密钥对
+  甲方(发送方) ->> 乙方(接收方) :  2、甲方向乙方公布公钥
+  甲方(发送方) ->> 甲方(发送方) :  3、甲方使用私钥对数据签名
+  甲方(发送方) ->> 乙方(接收方) :  4、甲方向乙方发送签名和数据
+  乙方(接收方) ->> 乙方(接收方) :  5、乙方使用公钥、签名验证数据
 </code></pre>
 <pre class=" language-shell"><code class="language-shell"># 第 4 步 签名和数据（签名前的数据）一般作为一个整体发送给乙方
 # 私钥仅仅签名，公钥仅仅验签
 </code></pre>
+</li>
+</ul>
 <h4 id="8-1、RSA-数字签名算法"><a href="#8-1、RSA-数字签名算法" class="headerlink" title="8.1、RSA 数字签名算法"></a>8.1、RSA 数字签名算法</h4><ul>
 <li><p>实现</p>
 <ul>
@@ -2638,22 +2638,42 @@ ElGamal 私钥解密明文 <span class="token operator">:</span> ElGamal 算法
 <li>SHA系列 ：SHA1withRSA、SHA224withRSA、SHA256withRSA、SHA384withRSA、SHA512WithRSA</li>
 <li>SHA224withRSA、SHA256withRSA、SHA384withRSA、SHA512withRSA 由 BC 库支持</li>
 </ul>
-</li>
-<li><p>| 算法                                                         | 密钥长度                                | 密钥长度默认值 | 签名长度       | 备注              |</p>
-<pre><code>| ------------------------------------------------------------ | --------------------------------------- | -------------- | -------------- | ----------------- |
-</code></pre>
-<p>| MD2withRSA 、MD5withRSA、SHA1withRSA                         | 512<del>65536位（密钥长度必须是 64 的倍数） | 1024           | 跟密钥长度相同 | Java 6 实现       |<br>| MD2withRSA 、MD5withRSA、SHA1withRSA、SHA224withRSA、SHA256withRSA、SHA384withRSA、SHA512withRSA、RIPEMD128withRSA、RIPEMD160withRSA | 512</del>65536位（密钥长度必须是 64 的倍数） | 2048           | 跟密钥长度相同 | Bouncy Castle实现 |</p>
+<table>
+<thead>
+<tr>
+<th>算法</th>
+<th>密钥长度</th>
+<th>密钥长度默认值</th>
+<th>签名长度</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MD2withRSA 、MD5withRSA、SHA1withRSA</td>
+<td>512~65536位（密钥长度必须是 64 的倍数）</td>
+<td>1024</td>
+<td>跟密钥长度相同</td>
+<td>Java 6 实现</td>
+</tr>
+<tr>
+<td>MD2withRSA 、MD5withRSA、SHA1withRSA、SHA224withRSA、SHA256withRSA、SHA384withRSA、SHA512withRSA、RIPEMD128withRSA、RIPEMD160withRSA</td>
+<td>512~65536位（密钥长度必须是 64 的倍数）</td>
+<td>2048</td>
+<td>跟密钥长度相同</td>
+<td>Bouncy Castle实现</td>
+</tr>
+</tbody></table>
 </li>
 <li><p>RSA 算法签名  ————  签名</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//实例化 Signature</span>
 Signature signature <span class="token operator">=</span> Signature<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token string">"MD5withRSA"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
+  
 <span class="token comment" spellcheck="true">//初始化 Signature(因为是使用私钥签名，所以用私钥初始化)</span>
 signature<span class="token punctuation">.</span><span class="token function">initSign</span><span class="token punctuation">(</span>privateKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
+  
 <span class="token comment" spellcheck="true">//更新，data 是待签名数据</span>
 signature<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
+  
 <span class="token comment" spellcheck="true">//签名,sign 就是签名后的签名值</span>
 <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> sign <span class="token operator">=</span> signature<span class="token punctuation">.</span><span class="token function">sign</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
@@ -2661,42 +2681,42 @@ signature<span class="token punctuation">.</span><span class="token function">up
 <li><p>RSA 算法签名  ————  验签</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//实例化 Signature</span>
 Signature signature <span class="token operator">=</span> Signature<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token string">"MD5withRSA"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
+  
 <span class="token comment" spellcheck="true">//初始化 Signature(因为是使用公钥验签，所以用公钥初始化)</span>
 signature<span class="token punctuation">.</span><span class="token function">initVerify</span><span class="token punctuation">(</span>publicKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
+  
 <span class="token comment" spellcheck="true">//更新，data 是待验签数据</span>
 signature<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
+  
 <span class="token comment" spellcheck="true">//验签,sign 就是签名后的签名值</span>
 <span class="token keyword">boolean</span> status <span class="token operator">=</span> signature<span class="token punctuation">.</span><span class="token function">verify</span><span class="token punctuation">(</span>sign<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 </li>
 <li><p>RSA 签名算法默认长度 ：1024</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> bc<span class="token punctuation">;</span>
-
-
+  
+  
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>security<span class="token punctuation">.</span>*<span class="token punctuation">;</span>
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>security<span class="token punctuation">.</span>spec<span class="token punctuation">.</span>InvalidKeySpecException<span class="token punctuation">;</span>
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>security<span class="token punctuation">.</span>spec<span class="token punctuation">.</span>PKCS8EncodedKeySpec<span class="token punctuation">;</span>
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>security<span class="token punctuation">.</span>spec<span class="token punctuation">.</span>X509EncodedKeySpec<span class="token punctuation">;</span>
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>HashMap<span class="token punctuation">;</span>
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Map<span class="token punctuation">;</span>
-
+  
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RSASignatureCoder</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-
+  
     <span class="token comment" spellcheck="true">//密钥算法，用于构建签名验签中使用的密钥</span>
     <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String KEY_ALGORITHM <span class="token operator">=</span> <span class="token string">"RSA"</span><span class="token punctuation">;</span>
-
+  
     <span class="token comment" spellcheck="true">//签名算法</span>
     <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String SIGNATURE_ALGORITHM <span class="token operator">=</span> <span class="token string">"MD5withRSA"</span><span class="token punctuation">;</span>
-
+  
     <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String PUBLIC_KEY <span class="token operator">=</span> <span class="token string">"RSAPublicKey"</span><span class="token punctuation">;</span>
-
+  
     <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String PRIVATE_KEY <span class="token operator">=</span> <span class="token string">"RSAPrivateKey"</span><span class="token punctuation">;</span>
-
+  
     <span class="token keyword">private</span> <span class="token keyword">static</span> Provider provider<span class="token punctuation">;</span>
-
+  
     <span class="token comment" spellcheck="true">/**
      * 构建签名验签密钥
      *
@@ -2715,17 +2735,17 @@ signature<span class="token punctuation">.</span><span class="token function">up
         keyMap<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>PRIVATE_KEY<span class="token punctuation">,</span> keyPair<span class="token punctuation">.</span><span class="token function">getPrivate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> keyMap<span class="token punctuation">;</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-
+  
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">getPublicKey</span><span class="token punctuation">(</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span> keyMap<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         Key key <span class="token operator">=</span> <span class="token punctuation">(</span>Key<span class="token punctuation">)</span> keyMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>PUBLIC_KEY<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> key<span class="token punctuation">.</span><span class="token function">getEncoded</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-
+  
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">getPrivateKey</span><span class="token punctuation">(</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span> keyMap<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         Key key <span class="token operator">=</span> <span class="token punctuation">(</span>Key<span class="token punctuation">)</span> keyMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>PRIVATE_KEY<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> key<span class="token punctuation">.</span><span class="token function">getEncoded</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-
+  
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">sign</span><span class="token punctuation">(</span><span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> messages<span class="token punctuation">,</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> keys<span class="token punctuation">)</span> <span class="token keyword">throws</span> NoSuchAlgorithmException<span class="token punctuation">,</span> InvalidKeySpecException<span class="token punctuation">,</span> InvalidKeyException<span class="token punctuation">,</span> SignatureException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         <span class="token comment" spellcheck="true">//私钥转换使用 PKCS8EncodedKeySpec 密钥材料</span>
         PKCS8EncodedKeySpec pkcs8EncodedKeySpec <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PKCS8EncodedKeySpec</span><span class="token punctuation">(</span>keys<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -2738,7 +2758,7 @@ signature<span class="token punctuation">.</span><span class="token function">up
         signature<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span>messages<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> signature<span class="token punctuation">.</span><span class="token function">sign</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-
+  
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">boolean</span> <span class="token function">verify</span><span class="token punctuation">(</span><span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> messages<span class="token punctuation">,</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> sign<span class="token punctuation">,</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> keys<span class="token punctuation">)</span> <span class="token keyword">throws</span> NoSuchAlgorithmException<span class="token punctuation">,</span> InvalidKeySpecException<span class="token punctuation">,</span> InvalidKeyException<span class="token punctuation">,</span> SignatureException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         <span class="token comment" spellcheck="true">//公钥转换使用 X509EncodedKeySpec 密钥材料</span>
         X509EncodedKeySpec x509EncodedKeySpec <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">X509EncodedKeySpec</span><span class="token punctuation">(</span>keys<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -2752,27 +2772,27 @@ signature<span class="token punctuation">.</span><span class="token function">up
         <span class="token keyword">return</span> signature<span class="token punctuation">.</span><span class="token function">verify</span><span class="token punctuation">(</span>sign<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-
+  
 <span class="token comment" spellcheck="true">//测试代码</span>
 <span class="token keyword">package</span> bc<span class="token punctuation">;</span>
-
+  
 <span class="token keyword">import</span> org<span class="token punctuation">.</span>bouncycastle<span class="token punctuation">.</span>jce<span class="token punctuation">.</span>provider<span class="token punctuation">.</span>BouncyCastleProvider<span class="token punctuation">;</span>
 <span class="token keyword">import</span> org<span class="token punctuation">.</span>bouncycastle<span class="token punctuation">.</span>util<span class="token punctuation">.</span>encoders<span class="token punctuation">.</span>Base64<span class="token punctuation">;</span>
 <span class="token keyword">import</span> org<span class="token punctuation">.</span>bouncycastle<span class="token punctuation">.</span>util<span class="token punctuation">.</span>encoders<span class="token punctuation">.</span>Hex<span class="token punctuation">;</span>
-
+  
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>security<span class="token punctuation">.</span>InvalidKeyException<span class="token punctuation">;</span>
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>security<span class="token punctuation">.</span>NoSuchAlgorithmException<span class="token punctuation">;</span>
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>security<span class="token punctuation">.</span>Provider<span class="token punctuation">;</span>
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>security<span class="token punctuation">.</span>SignatureException<span class="token punctuation">;</span>
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>security<span class="token punctuation">.</span>spec<span class="token punctuation">.</span>InvalidKeySpecException<span class="token punctuation">;</span>
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Map<span class="token punctuation">;</span>
-
+  
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RSASignatureCoderTest</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-
+  
     <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> Provider PROVIDER <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BouncyCastleProvider</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
+  
     <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">int</span> KEY_SIZE <span class="token operator">=</span> <span class="token number">1024</span><span class="token punctuation">;</span>
-
+  
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> NoSuchAlgorithmException<span class="token punctuation">,</span> InvalidKeySpecException<span class="token punctuation">,</span> InvalidKeyException<span class="token punctuation">,</span> SignatureException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span> keyMap <span class="token operator">=</span> RSASignatureCoder<span class="token punctuation">.</span><span class="token function">initKey</span><span class="token punctuation">(</span>KEY_SIZE<span class="token punctuation">,</span> PROVIDER<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> pubKey <span class="token operator">=</span> RSASignatureCoder<span class="token punctuation">.</span><span class="token function">getPublicKey</span><span class="token punctuation">(</span>keyMap<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -2788,8 +2808,8 @@ signature<span class="token punctuation">.</span><span class="token function">up
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"RSA 数字签名算法验签 : "</span> <span class="token operator">+</span> <span class="token punctuation">(</span>status <span class="token operator">?</span> <span class="token string">"成功"</span> <span class="token operator">:</span> <span class="token string">"失败"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-
-
+  
+  
 <span class="token comment" spellcheck="true">//测试结果</span>
 RSA 签名算法公钥 <span class="token operator">:</span> MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDxxMr9bTteETx6hwOsmQE34es2Jw<span class="token operator">+</span>QEWS46HLaRrnDAF0M<span class="token operator">/</span>oxAvvwT4<span class="token operator">/</span>Fqqo4Z<span class="token operator">/</span>ljTyVoderNlxM3nNazFrWuKoE9RtdaMz5gtUlT<span class="token operator">/</span>YFeWU8DwB3Kr0c1n5YADUYkpd9SF3HzrGhz4XwmJ4zBo3sxQT9JfRCNWTNcssbaRQchMHwIDAQAB
 RSA 签名算法私钥 <span class="token operator">:</span> MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAPHEyv1tO14RPHqHA6yZATfh6zYnD5ARZLjoctpGucMAXQz<span class="token operator">+</span>jEC<span class="token operator">+</span><span class="token operator">/</span>BPj8Wqqjhn<span class="token operator">+</span>WNPJWh16s2XEzec1rMWta4qgT1G11ozPmC1SVP9gV5ZTwPAHcqvRzWflgANRiSl31IXcfOsaHPhfCYnjMGjezFBP0l9EI1ZM1yyxtpFByEwfAgMBAAECgYAnkPKSJvOK9tHUUOQ5CuaNeVuVBoTK1GM3dP3W2wbrnX5HnMuMjQo<span class="token operator">+</span>ob87RaOb0r7sFLe6u1SWAxnvYh60UH1DZn0vznTGvXINAkok6bB1sgwna<span class="token operator">+</span>7AzagFuifNEdO6bufqfZ7H<span class="token operator">+</span>VdlKr0ojG1iPJzNA5RXu8g9SXXp5E5uRc<span class="token operator">/</span>1gQJBAP0lNy3wHMHAiR0e7C5FJ7AwDHKoNY2nT9OMkqsFy5WjbZh2tvMRHQHNR7Zo6x6xG8XCXiK34M<span class="token operator">+</span>2LNubByqizZ0CQQD0frwtqZd2yD5DrhL6DyMXHC8BGltdRVQ7ILawrZedZM8QPxm8ISbNVL<span class="token operator">+</span>351kao7IMQgSQjZ0J2JzvXnAFHLHrAkEAgXHOTYdCrTCu7F0rmF10dfub4eVxvQWZJCv1s8461EHFgPjzhEdz9b<span class="token operator">/</span>qs7Pixsb51J4XVNmB87TMK1<span class="token operator">+</span>SwpKNYQJAQHRMrYkA6gp<span class="token operator">+</span>B5<span class="token operator">+</span>TVyK4cHY4mgTVwy<span class="token operator">/</span>sta25G7iXuKGDyNeptCPVM9o8tIGjxtcSsBKTW3xJwve834m45FAdQwJAJeyMHy5eCl6E6p2p5jXAFOLk65CHC6<span class="token operator">+</span>M50swl6mlAVzR2<span class="token operator">+</span>JhxTtwHaZRU<span class="token operator">+</span>A4<span class="token operator">+</span>5kvUviGocZ1r2bekmRAsLgVfw<span class="token operator">==</span>
@@ -2797,12 +2817,14 @@ RSA 签名算法私钥 <span class="token operator">:</span> MIICdgIBADANBgkqhki
 签名值长度 <span class="token operator">:</span> <span class="token number">128</span>
 RSA 数字签名算法签名值 <span class="token operator">:</span> cc91cc57f73d447f288b10328561b2e80101d8aeeeb716c13aa6710d064cd7c0dde63ae5f1f7eeb445581769a3a6d2d2675a5f8a7549741ba4c0fae883c928432927e60dd937a3b9f9d3a7a3c089a9132e0f5961603b7a570997d5091f2a579001373e74a5f05f69c1785aa238fd9857d39d324070ff79034bedea4cc558325c
 RSA 数字签名算法验签 <span class="token operator">:</span> 成功
-
+  
 <span class="token comment" spellcheck="true">//注意 ： 这里的签名值字节长度 128 ，跟 1024位 RSA 密钥的字节长度相同，前面已经提及</span>
 </code></pre>
-<h4 id="8-2、DSA-数字签名算法"><a href="#8-2、DSA-数字签名算法" class="headerlink" title="8.2、DSA 数字签名算法"></a>8.2、DSA 数字签名算法</h4></li>
+</li>
 </ul>
 </li>
+</ul>
+<h4 id="8-2、DSA-数字签名算法"><a href="#8-2、DSA-数字签名算法" class="headerlink" title="8.2、DSA 数字签名算法"></a>8.2、DSA 数字签名算法</h4><ul>
 <li><p>由 RSA 数字签名算法逐一转成标准数字签名算法 DSA 算法</p>
 </li>
 <li><p>DSS (Digital Signature Standard) 数字签名标准</p>
@@ -2813,11 +2835,26 @@ RSA 数字签名算法验签 <span class="token operator">:</span> 成功
 </li>
 <li><p>仅包含 SHA 系列消息摘要算法, Java 6 仅支持  SHA1withDSA</p>
 </li>
-<li><p>| 算法                                                         | 密钥长度                               | 密钥长度默认值 | 签名长度                   | 备注              |</p>
-<pre><code>| ------------------------------------------------------------ | -------------------------------------- | -------------- | -------------------------- | ----------------- |
-</code></pre>
-<p>| SHA1withDSA、SHA224withDSA、SHA256withDSA、SHA384withDSA、SHA512withDSA、 | 512~1024位（密钥长度必须是 64 的倍数） | 1024           | 长度不唯一，与密钥长度无关 | Bouncy Castle实现 |</p>
-</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>算法</th>
+<th>密钥长度</th>
+<th>密钥长度默认值</th>
+<th>签名长度</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SHA1withDSA、SHA224withDSA、SHA256withDSA、SHA384withDSA、SHA512withDSA、</td>
+<td>512~1024位（密钥长度必须是 64 的倍数）</td>
+<td>1024</td>
+<td>长度不唯一，与密钥长度无关</td>
+<td>Bouncy Castle实现</td>
+</tr>
+</tbody></table>
+<ul>
 <li><p>实现</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> bc<span class="token punctuation">;</span>
 
@@ -2960,7 +2997,8 @@ DSA 数字签名算法验签 <span class="token operator">:</span> 成功
 </li>
 <li><p>支持的算法：NONEwithECDSA、RIPEMD160withECDSA、SHA1withECDSA、SHA224withECDSA、SHA256withECDSA、SHA384withECDSA、SHA512withECDSA</p>
 </li>
-<li><table>
+</ul>
+<table>
 <thead>
 <tr>
 <th>算法</th>
@@ -3026,11 +3064,9 @@ DSA 数字签名算法验签 <span class="token operator">:</span> 成功
 <li><p>ECDSA 算法密钥生成仅能通过<code>算法材料</code>的方式产生</p>
 </li>
 <li><p>ECDSA 算法密钥生成示例</p>
-<pre class=" language-java"><code class="language-java">
-</code></pre>
-<h3 id="9、数字证书"><a href="#9、数字证书" class="headerlink" title="9、数字证书"></a>9、数字证书</h3></li>
-</ul>
 </li>
+</ul>
+<h3 id="9、数字证书"><a href="#9、数字证书" class="headerlink" title="9、数字证书"></a>9、数字证书</h3><ul>
 <li><p>数字证书集合了多种密码学算法：</p>
 <ul>
 <li>自身带有公钥信息，可完成相应的加密/解密操作。</li>
@@ -3071,11 +3107,32 @@ DSA 数字签名算法验签 <span class="token operator">:</span> 成功
 </li>
 <li><p>PKCS(Public-Key Cryptography Standards,公钥加密标准)，常用主要有：PKCS#7、PKCS#10、PKCS#12</p>
 <ul>
-<li><p>PKCS 常用标准</p>
-<p>| 公钥加密标准 | 描述信息             | 文件名后缀 |</p>
-<pre><code>  | ------------ | -------------------- | ---------- |
-</code></pre>
-<p>| PKCS#7       | 密码消息语法标准     | .p7b、.p7c |<br>| PKCS#10      | 证书请求语法标准     | .p10、.csr |<br>| PKCS#12      | 个人信息交换语法标准 | .p12、.pfx |</p>
+<li>PKCS 常用标准</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>公钥加密标准</th>
+<th>描述信息</th>
+<th>文件名后缀</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PKCS#7</td>
+<td>密码消息语法标准</td>
+<td>.p7b、.p7c</td>
+</tr>
+<tr>
+<td>PKCS#10</td>
+<td>证书请求语法标准</td>
+<td>.p10、.csr</td>
+</tr>
+<tr>
+<td>PKCS#12</td>
+<td>个人信息交换语法标准</td>
+<td>.p12、.pfx</td>
+</tr>
+</tbody></table>
 <p>PKCS#10 文件用于证书签发申请，一般证书申请请求看到 .csr后缀</p>
 <p>PKCS#12 文件可作为 Java 种的密钥库或信任库直接使用</p>
 <p>通常使用 Base64 编码格式作为数字证书文件存储格式</p>
@@ -3083,39 +3140,40 @@ DSA 数字签名算法验签 <span class="token operator">:</span> 成功
 </ul>
 </li>
 </ul>
-</li>
-</ul>
 <h4 id="9-1、模型分析"><a href="#9-1、模型分析" class="headerlink" title="9.1、模型分析"></a>9.1、模型分析</h4><ul>
-<li><p>实际运用，很多数字签名属于自签名，即证书申请者为自己的证书签名（证书签发模型）</p>
-</li>
-<li><pre class=" language-mermaid"><code class="language-mermaid">  sequenceDiagram
-  
-  证书申请者 ->> 证书申请者 :  1、构建密钥对
-  证书申请者 ->> 认证机构 :  2、发送算法、公钥和申请者部分信息
-  认证机构 ->> 认证机构 :  3、核实用户身份
-  认证机构 ->> 证书申请者 :  4、颁发数字证书
-  
+<li>实际运用，很多数字签名属于自签名，即证书申请者为自己的证书签名（证书签发模型）</li>
+</ul>
+<pre class=" language-mermaid"><code class="language-mermaid">sequenceDiagram
+    证书申请者 ->> 证书申请者 :  1、构建密钥对
+    证书申请者 ->> 认证机构 :  2、发送算法、公钥和申请者部分信息
+    认证机构 ->> 认证机构 :  3、核实用户身份
+    认证机构 ->> 证书申请者 :  4、颁发数字证书
 </code></pre>
-</li>
+<ul>
 <li><p>如果认证机构是证书申请者自身，该数字证书是自签发证书</p>
 </li>
 <li><p>加密交互模型</p>
 <ul>
 <li>客户端获得服务器下发的数字证书后，即可使用数字证书进行加密交互</li>
-<li>客户端请求服务器端模型<br>```mermaid<br>sequenceDiagram</li>
+<li>客户端请求服务器端模型</li>
 </ul>
-<p>  客户端 –&gt; 服务器端 :  客户端请求服务器端模型<br>  客户端 -&gt;&gt; 客户端 :  1、使用公钥加密数据<br>  客户端 -&gt;&gt; 服务器端 :  2、发送加密数据<br>  服务器端 -&gt;&gt; 服务器端 :  3、使用私钥对加密数据解密</p>
 </li>
 </ul>
-<pre><code>```mermaid
-      sequenceDiagram
+<pre class=" language-mermaid"><code class="language-mermaid">sequenceDiagram
 
-    客户端 --&gt; 服务器端 :  服务器端响应客户端模型
-    服务器端 -&gt;&gt; 服务器端 :  1、使用私钥对带加密数据签名
-    服务器端 -&gt;&gt; 服务器端 :  2、使用私钥对数据加密
-    服务器端 --&gt;&gt; 客户端 :  3、回应加密数据、数字签名
-    客户端 -&gt;&gt; 客户端 : 4、使用公钥对数据解密
-    客户端 -&gt;&gt; 客户端 : 4、使用公钥和解密数据验证签名
+    客户端 --> 服务器端 :  客户端请求服务器端模型
+    客户端 ->> 客户端 :  1、使用公钥加密数据
+    客户端 ->> 服务器端 :  2、发送加密数据
+    服务器端 ->> 服务器端 :  3、使用私钥对加密数据解密
+</code></pre>
+<pre class=" language-mermaid"><code class="language-mermaid">sequenceDiagram
+
+    客户端 --> 服务器端 :  服务器端响应客户端模型
+    服务器端 ->> 服务器端 :  1、使用私钥对带加密数据签名
+    服务器端 ->> 服务器端 :  2、使用私钥对数据加密
+    服务器端 -->> 客户端 :  3、回应加密数据、数字签名
+    客户端 ->> 客户端 : 4、使用公钥对数据解密
+    客户端 ->> 客户端 : 4、使用公钥和解密数据验证签名
 </code></pre>
 <h4 id="9-2、KeyTool-证书管理"><a href="#9-2、KeyTool-证书管理" class="headerlink" title="9.2、KeyTool 证书管理"></a>9.2、KeyTool 证书管理</h4><ul>
 <li><p>数字证书管理工具 ：</p>
@@ -3124,9 +3182,9 @@ DSA 数字签名算法验签 <span class="token operator">:</span> 成功
 <li>jdk 自带的，用于数字证书的<code>申请</code>、<code>导入</code>、<code>导出</code>和<code>撤销</code>等操作</li>
 <li>keytool 与本地密钥库相关联，将私钥存于密钥库，公钥则以数字证书输出</li>
 <li>keytool 位于 %JAVA_HOME%\bin 目录下</li>
+<li>opnessl</li>
 </ul>
 </li>
-<li>opnessl</li>
 </ul>
 </li>
 <li><p>流程：使用数字证书管理工具构建 CSR (Certificate Signing Request,数字证书签发请求)，交由 CA 机构签发，形成最终的数字证书</p>
@@ -3428,27 +3486,150 @@ rand 生成随机数命令
 </li>
 <li><p>根证书</p>
 <ul>
-<li>OpenSSL 通常使用 PEM（Privacy Enbanced Mail 隐私增强邮件）编码格式保存私钥<br>```shell<br>################ 构建根证书私钥<br>OpenSSL&gt; genrsa -aes256 -out E:\CA\private\ca.key.pem 2048<br>Generating RSA private key, 2048 bit long modulus (2 primes)<br>……………………………………………………..+++++<br>…………………+++++<br>e is 65537 (0x010001)<br>Enter pass phrase for E:\CA\private\ca.key.pem:<br>Verifying - Enter pass phrase for E:\CA\private\ca.key.pem:</li>
+<li>OpenSSL 通常使用 PEM（Privacy Enbanced Mail 隐私增强邮件）编码格式保存私钥</li>
 </ul>
-<h1 id="密码是-123456"><a href="#密码是-123456" class="headerlink" title="密码是 123456"></a>密码是 123456</h1><h1 id="genrsa-产生-RSA-密钥的命令"><a href="#genrsa-产生-RSA-密钥的命令" class="headerlink" title="genrsa 产生 RSA 密钥的命令"></a>genrsa 产生 RSA 密钥的命令</h1><h1 id="aes256-使用-AES-算法对产生的私钥加密，可选算法包括-DES、DESede、IDEA、AES等对称密钥算法"><a href="#aes256-使用-AES-算法对产生的私钥加密，可选算法包括-DES、DESede、IDEA、AES等对称密钥算法" class="headerlink" title="-aes256 使用 AES 算法对产生的私钥加密，可选算法包括 DES、DESede、IDEA、AES等对称密钥算法"></a>-aes256 使用 AES 算法对产生的私钥加密，可选算法包括 DES、DESede、IDEA、AES等对称密钥算法</h1><h1 id="2048-指生成的-RSA-密钥长度，默认-512"><a href="#2048-指生成的-RSA-密钥长度，默认-512" class="headerlink" title="2048 指生成的 RSA 密钥长度，默认 512"></a>2048 指生成的 RSA 密钥长度，默认 512</h1><p> ################ 生成根证书签发申请<br> OpenSSL&gt; req -new -key E:\CA\private\ca.key.pem -rand E:\CA\private.rand -out E:\CA\private\ca.csr<br> Enter pass phrase for E:\CA\private\ca.key.pem:<br> Can’t load ./.rnd into RNG<br> 4124:error:2406F079:random number generator:RAND_load_file:Cannot open file:crypto\rand\randfile.c:88:Filename=./.rnd<br> You are about to be asked to enter information that will be incorporated<br> into your certificate request.<br> What you are about to enter is what is called a Distinguished Name or a DN.<br> There are quite a few fields but you can leave some blank<br> For some fields there will be a default value,</p>
-<h2 id="If-you-enter-‘-’-the-field-will-be-left-blank"><a href="#If-you-enter-‘-’-the-field-will-be-left-blank" class="headerlink" title=" If you enter ‘.’, the field will be left blank."></a> If you enter ‘.’, the field will be left blank.</h2><p> Country Name (2 letter code) [AU]:CN<br> State or Province Name (full name) [Some-State]:GD<br> Locality Name (eg, city) []:GZ<br> Organization Name (eg, company) [Internet Widgits Pty Ltd]:KY<br> Organizational Unit Name (eg, section) []:KY<br> Common Name (e.g. server FQDN or YOUR name) []:<a target="_blank" rel="noopener" href="http://www.zlex.org/">www.zlex.org</a><br> Email Address []:</p>
-<p> Please enter the following ‘extra’ attributes<br> to be sent with your certificate request<br> A challenge password []:<br> An optional company name []:</p>
-<h1 id="结果，生成-ca-csr-文件"><a href="#结果，生成-ca-csr-文件" class="headerlink" title="结果，生成 ca.csr 文件"></a>结果，生成 ca.csr 文件</h1><h1 id="req-产生证书签发申请命令"><a href="#req-产生证书签发申请命令" class="headerlink" title="req 产生证书签发申请命令"></a>req 产生证书签发申请命令</h1><h1 id="new-表示新请求"><a href="#new-表示新请求" class="headerlink" title="-new 表示新请求"></a>-new 表示新请求</h1><h1 id="key-表示私钥-这里是-ca-key-pem"><a href="#key-表示私钥-这里是-ca-key-pem" class="headerlink" title="-key 表示私钥 这里是 ca.key.pem"></a>-key 表示私钥 这里是 ca.key.pem</h1><h1 id="out-表示文件输出路径"><a href="#out-表示文件输出路径" class="headerlink" title="-out 表示文件输出路径"></a>-out 表示文件输出路径</h1><p> —–BEGIN CERTIFICATE REQUEST—–<br> MIICnTCCAYUCAQAwWDELMAkGA1UEBhMCQ04xCzAJBgNVBAgMAkdEMQswCQYDVQQH<br> DAJHWjELMAkGA1UECgwCS1kxCzAJBgNVBAsMAktZMRUwEwYDVQQDDAx3d3cuemxl<br> eC5vcmcwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDgGdcVL4lk+5/Q<br> xOSdL/zQK2yv9WsAchm9ELShgI9X2pTLvWJJ4YvsKq6JC4R6Fuy58dgb9t7A3kIP<br> 8yS5LXKJ6SQILx5jHZcmWcaUsF7mCUBQ22RoQyCrr+5eMNj7cHrM66jnHJ+mY29B<br> MEFSU/C9BEa4OHWjGu13+7kKTXGLYkHZzv/lzhEITuBCirGgtFrlXDbRg/PBZMwV<br> h3JxWmmatlJOeMos25Mwuj5rgmnrC8lCZIfDBbJbegjo1gPD6byAinpcDBw7sH+Y<br> CBgnH8I15L5C3sNouePjxxCg7naaQcZFZM3YWfN+iq4Vwf8xBekeDOKfc69XHg2r<br> biojN4B3AgMBAAGgADANBgkqhkiG9w0BAQsFAAOCAQEABoRmgwGvKM8WsCAKeL/k<br> yU3MPgnZcrCWUubdIohabma359NbklvJFfPXIF0Cmabz8XqmrnE8Cv26qmyM97UV<br> AA8RZ8VxWDsR+mPJbfQBhJUxBIL2mHIuNHZE5LX1vdc5yQZtKzrNNLji0OG+aD4i<br> 6hH34xEN8pS7UII3rVuzNQHciD323HCrqSI5/clE/bBQGMg5razA/a/FYGLsnj5e<br> 0iWa9e3YMSsx1mbXsnNKdkODi0JIrOxB85jOiQ/Aiw9F6RI4Awm2NXhghCkDvjre<br> fOD64Ziq2xopR/f4/CuXzTDdx9Orton3qr9KZ9M0n2rAGpYSCNGym5hpYpH5SLuU<br> 7g==<br> —–END CERTIFICATE REQUEST—–</p>
-<p> ################ 签发根证书<br> OpenSSL&gt; x509 -req -days 1000 -sha1 -extensions v3_ca -signkey E:\CA\private\ca.key.pem -in E:\CA\private\ca.csr -out E:\CA\private\ca.cer<br> Signature ok<br> subject=C = CN, ST = GD, L = GZ, O = KY, OU = KY, CN = <a target="_blank" rel="noopener" href="http://www.zlex.org/">www.zlex.org</a><br> Getting Private key<br> Enter pass phrase for E:\CA\private\ca.key.pem:</p>
-<h1 id="结果，生成-ca-cer-文件"><a href="#结果，生成-ca-cer-文件" class="headerlink" title="结果，生成 ca.cer 文件"></a>结果，生成 ca.cer 文件</h1><h1 id="x509-表示签发-X-509-格式证书的命令"><a href="#x509-表示签发-X-509-格式证书的命令" class="headerlink" title="x509 表示签发 X.509 格式证书的命令"></a>x509 表示签发 X.509 格式证书的命令</h1><h1 id="req-表示证书输入请求"><a href="#req-表示证书输入请求" class="headerlink" title="-req 表示证书输入请求"></a>-req 表示证书输入请求</h1><h1 id="days-表示有效天数"><a href="#days-表示有效天数" class="headerlink" title="-days 表示有效天数"></a>-days 表示有效天数</h1><h1 id="sha1-表示摘要算法"><a href="#sha1-表示摘要算法" class="headerlink" title="-sha1 表示摘要算法"></a>-sha1 表示摘要算法</h1><h1 id="extensions-表示按-OpenSSL-配置文件-v3-ca-项添加扩展"><a href="#extensions-表示按-OpenSSL-配置文件-v3-ca-项添加扩展" class="headerlink" title="-extensions 表示按 OpenSSL 配置文件 v3_ca 项添加扩展"></a>-extensions 表示按 OpenSSL 配置文件 v3_ca 项添加扩展</h1><h1 id="signkey-表示自签名密钥"><a href="#signkey-表示自签名密钥" class="headerlink" title="-signkey 表示自签名密钥"></a>-signkey 表示自签名密钥</h1><h1 id="in-表示输入文件，这里指证书签发申请文件"><a href="#in-表示输入文件，这里指证书签发申请文件" class="headerlink" title="-in 表示输入文件，这里指证书签发申请文件"></a>-in 表示输入文件，这里指证书签发申请文件</h1><h1 id="out-表示输出文件，这里指签发的证书"><a href="#out-表示输出文件，这里指签发的证书" class="headerlink" title="-out 表示输出文件，这里指签发的证书"></a>-out 表示输出文件，这里指签发的证书</h1><p> —–BEGIN CERTIFICATE—–<br> MIIDNzCCAh8CFG9We9ZE4lOozFvvXN+LyTBVU6SEMA0GCSqGSIb3DQEBBQUAMFgx<br> CzAJBgNVBAYTAkNOMQswCQYDVQQIDAJHRDELMAkGA1UEBwwCR1oxCzAJBgNVBAoM<br> AktZMQswCQYDVQQLDAJLWTEVMBMGA1UEAwwMd3d3LnpsZXgub3JnMB4XDTIwMDkx<br> NjA4NTc1NFoXDTIzMDYxMzA4NTc1NFowWDELMAkGA1UEBhMCQ04xCzAJBgNVBAgM<br> AkdEMQswCQYDVQQHDAJHWjELMAkGA1UECgwCS1kxCzAJBgNVBAsMAktZMRUwEwYD<br> VQQDDAx3d3cuemxleC5vcmcwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIB<br> AQDgGdcVL4lk+5/QxOSdL/zQK2yv9WsAchm9ELShgI9X2pTLvWJJ4YvsKq6JC4R6<br> Fuy58dgb9t7A3kIP8yS5LXKJ6SQILx5jHZcmWcaUsF7mCUBQ22RoQyCrr+5eMNj7<br> cHrM66jnHJ+mY29BMEFSU/C9BEa4OHWjGu13+7kKTXGLYkHZzv/lzhEITuBCirGg<br> tFrlXDbRg/PBZMwVh3JxWmmatlJOeMos25Mwuj5rgmnrC8lCZIfDBbJbegjo1gPD<br> 6byAinpcDBw7sH+YCBgnH8I15L5C3sNouePjxxCg7naaQcZFZM3YWfN+iq4Vwf8x<br> BekeDOKfc69XHg2rbiojN4B3AgMBAAEwDQYJKoZIhvcNAQEFBQADggEBAFTU8MBE<br> X/LFrdC/Dpe51Ll5AkXeG+/kpLmaHvK6sGTSz5+FjDzl9I53gQlVrQKh+5lAoAG2<br> th4GNbq2L+Wpobc6jlOEBEka+m3nJrCcfOb5zjJHn4n8Pga0vFyNMbejNBEwkJG8<br> H8z02VzIzWyKnVXPWNwQaNrbBzj7oGS8wCSN7PbyPQUCh9bJONwGLnK/xHA6g94f<br> kj6QGcVNG7JdgyMTmg71VTlwBMnRZZNQxB2//XsSEPBccf7B2h7CZRPYUAglzPFs<br> SHGN5/vPkBh4j2BWy2RTK99FNK1nlTrhuW8l8FwAyA+/N1ZzMj2MwGDqWt0L28Xr<br> jo6RVKw8UZvnyWE=<br> —–END CERTIFICATE—–</p>
-<p> ################ 证书格式转换<br> OpenSSL 产生的数字证书不能在 Java 中直接使用，需要转换成 PKCS#12 编码格式</p>
-<p> OpenSSL&gt; pkcs12 -export -cacerts -inkey E:\CA\private\ca.key.pem -in E:\CA\private\ca.cer -out  E:\CA\private\ca.p12<br> Enter pass phrase for E:\CA\private\ca.key.pem:<br> Enter Export Password:<br> Verifying - Enter Export Password: 123456</p>
-<h1 id="pkcs12-PKCS-12编码格式证书命令"><a href="#pkcs12-PKCS-12编码格式证书命令" class="headerlink" title="pkcs12  PKCS#12编码格式证书命令"></a>pkcs12  PKCS#12编码格式证书命令</h1><h1 id="export-导出证书"><a href="#export-导出证书" class="headerlink" title="-export  导出证书"></a>-export  导出证书</h1><h1 id="cacerts-表示仅导出-CA-证书"><a href="#cacerts-表示仅导出-CA-证书" class="headerlink" title="-cacerts 表示仅导出 CA 证书"></a>-cacerts 表示仅导出 CA 证书</h1><h1 id="inkey-表示输入密钥"><a href="#inkey-表示输入密钥" class="headerlink" title="-inkey 表示输入密钥"></a>-inkey 表示输入密钥</h1><h1 id="in-表示输入文件，这里指根证书的-cer-格式"><a href="#in-表示输入文件，这里指根证书的-cer-格式" class="headerlink" title="-in 表示输入文件，这里指根证书的 cer 格式"></a>-in 表示输入文件，这里指根证书的 cer 格式</h1><h1 id="out-表示输出文件，这里指根证书的-PKCS-7-格式"><a href="#out-表示输出文件，这里指根证书的-PKCS-7-格式" class="headerlink" title="-out 表示输出文件，这里指根证书的 PKCS#7 格式"></a>-out 表示输出文件，这里指根证书的 PKCS#7 格式</h1><p> ################ 使用 keytool 查看 ca.p12<br> C:\Program Files\Java\jdk1.8.0_181\bin&gt;keytool -list -keystore E:\CA\private\ca.p12 -storetype pkcs12 -v -storepass 123456<br> 密钥库类型: PKCS12<br> 密钥库提供方: SunJSSE</p>
-<p> 您的密钥库包含 1 个条目</p>
-<p> 别名: 1<br> 创建日期: 2020-9-16<br> 条目类型: PrivateKeyEntry<br> 证书链长度: 1<br> 证书[1]:<br> 所有者: CN=<a target="_blank" rel="noopener" href="http://www.zlex.org/">www.zlex.org</a>, OU=KY, O=KY, L=GZ, ST=GD, C=CN<br> 发布者: CN=<a target="_blank" rel="noopener" href="http://www.zlex.org/">www.zlex.org</a>, OU=KY, O=KY, L=GZ, ST=GD, C=CN<br> 序列号: 6f567bd644e253a8cc5bef5cdf8bc9305553a484<br> 有效期为 Wed Sep 16 16:57:54 CST 2020 至 Tue Jun 13 16:57:54 CST 2023<br> 证书指纹:</p>
-<pre><code>      MD5:  25:AB:E4:BE:2A:0C:D3:3D:3F:A4:DA:37:26:36:BF:34
-      SHA1: 9A:F1:AE:2A:85:50:23:79:7E:8A:95:89:BD:A6:E1:65:AE:EE:AE:48
-      SHA256: E0:B9:5B:23:2F:26:85:B7:D8:0E:68:AD:46:09:81:4E:0B:DF:18:6D:37:FE:B0:DC:0B:CE:6F:6B:A4:0C:1B:79
+<pre class=" language-shell"><code class="language-shell"> ################ 构建根证书私钥
+ OpenSSL> genrsa -aes256 -out E:\CA\private\ca.key.pem 2048
+ Generating RSA private key, 2048 bit long modulus (2 primes)
+ ..............................................................+++++
+ .....................+++++
+ e is 65537 (0x010001)
+ Enter pass phrase for E:\CA\private\ca.key.pem:
+ Verifying - Enter pass phrase for E:\CA\private\ca.key.pem:
+ 
+ # 密码是 123456
+ # genrsa 产生 RSA 密钥的命令
+ # -aes256 使用 AES 算法对产生的私钥加密，可选算法包括 DES、DESede、IDEA、AES等对称密钥算法
+ # 2048 指生成的 RSA 密钥长度，默认 512
+ 
+ ################ 生成根证书签发申请
+ OpenSSL> req -new -key E:\CA\private\ca.key.pem -rand E:\CA\private\.rand -out E:\CA\private\ca.csr
+ Enter pass phrase for E:\CA\private\ca.key.pem:
+ Can't load ./.rnd into RNG
+ 4124:error:2406F079:random number generator:RAND_load_file:Cannot open file:crypto\rand\randfile.c:88:Filename=./.rnd
+ You are about to be asked to enter information that will be incorporated
+ into your certificate request.
+ What you are about to enter is what is called a Distinguished Name or a DN.
+ There are quite a few fields but you can leave some blank
+ For some fields there will be a default value,
+ If you enter '.', the field will be left blank.
+ -----
+ Country Name (2 letter code) [AU]:CN
+ State or Province Name (full name) [Some-State]:GD
+ Locality Name (eg, city) []:GZ
+ Organization Name (eg, company) [Internet Widgits Pty Ltd]:KY
+ Organizational Unit Name (eg, section) []:KY
+ Common Name (e.g. server FQDN or YOUR name) []:www.zlex.org
+ Email Address []:
+ 
+ Please enter the following 'extra' attributes
+ to be sent with your certificate request
+ A challenge password []:
+ An optional company name []:
+ # 结果，生成 ca.csr 文件
+ # req 产生证书签发申请命令
+ # -new 表示新请求
+ # -key 表示私钥 这里是 ca.key.pem
+ # -out 表示文件输出路径
+ -----BEGIN CERTIFICATE REQUEST-----
+ MIICnTCCAYUCAQAwWDELMAkGA1UEBhMCQ04xCzAJBgNVBAgMAkdEMQswCQYDVQQH
+ DAJHWjELMAkGA1UECgwCS1kxCzAJBgNVBAsMAktZMRUwEwYDVQQDDAx3d3cuemxl
+ eC5vcmcwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDgGdcVL4lk+5/Q
+ xOSdL/zQK2yv9WsAchm9ELShgI9X2pTLvWJJ4YvsKq6JC4R6Fuy58dgb9t7A3kIP
+ 8yS5LXKJ6SQILx5jHZcmWcaUsF7mCUBQ22RoQyCrr+5eMNj7cHrM66jnHJ+mY29B
+ MEFSU/C9BEa4OHWjGu13+7kKTXGLYkHZzv/lzhEITuBCirGgtFrlXDbRg/PBZMwV
+ h3JxWmmatlJOeMos25Mwuj5rgmnrC8lCZIfDBbJbegjo1gPD6byAinpcDBw7sH+Y
+ CBgnH8I15L5C3sNouePjxxCg7naaQcZFZM3YWfN+iq4Vwf8xBekeDOKfc69XHg2r
+ biojN4B3AgMBAAGgADANBgkqhkiG9w0BAQsFAAOCAQEABoRmgwGvKM8WsCAKeL/k
+ yU3MPgnZcrCWUubdIohabma359NbklvJFfPXIF0Cmabz8XqmrnE8Cv26qmyM97UV
+ AA8RZ8VxWDsR+mPJbfQBhJUxBIL2mHIuNHZE5LX1vdc5yQZtKzrNNLji0OG+aD4i
+ 6hH34xEN8pS7UII3rVuzNQHciD323HCrqSI5/clE/bBQGMg5razA/a/FYGLsnj5e
+ 0iWa9e3YMSsx1mbXsnNKdkODi0JIrOxB85jOiQ/Aiw9F6RI4Awm2NXhghCkDvjre
+ fOD64Ziq2xopR/f4/CuXzTDdx9Orton3qr9KZ9M0n2rAGpYSCNGym5hpYpH5SLuU
+ 7g==
+ -----END CERTIFICATE REQUEST-----
+ 
+ ################ 签发根证书
+ OpenSSL> x509 -req -days 1000 -sha1 -extensions v3_ca -signkey E:\CA\private\ca.key.pem -in E:\CA\private\ca.csr -out E:\CA\private\ca.cer
+ Signature ok
+ subject=C = CN, ST = GD, L = GZ, O = KY, OU = KY, CN = www.zlex.org
+ Getting Private key
+ Enter pass phrase for E:\CA\private\ca.key.pem:
+ 
+ # 结果，生成 ca.cer 文件
+ # x509 表示签发 X.509 格式证书的命令
+ # -req 表示证书输入请求
+ # -days 表示有效天数
+ # -sha1 表示摘要算法
+ # -extensions 表示按 OpenSSL 配置文件 v3_ca 项添加扩展
+ # -signkey 表示自签名密钥
+ # -in 表示输入文件，这里指证书签发申请文件
+ # -out 表示输出文件，这里指签发的证书
+ -----BEGIN CERTIFICATE-----
+ MIIDNzCCAh8CFG9We9ZE4lOozFvvXN+LyTBVU6SEMA0GCSqGSIb3DQEBBQUAMFgx
+ CzAJBgNVBAYTAkNOMQswCQYDVQQIDAJHRDELMAkGA1UEBwwCR1oxCzAJBgNVBAoM
+ AktZMQswCQYDVQQLDAJLWTEVMBMGA1UEAwwMd3d3LnpsZXgub3JnMB4XDTIwMDkx
+ NjA4NTc1NFoXDTIzMDYxMzA4NTc1NFowWDELMAkGA1UEBhMCQ04xCzAJBgNVBAgM
+ AkdEMQswCQYDVQQHDAJHWjELMAkGA1UECgwCS1kxCzAJBgNVBAsMAktZMRUwEwYD
+ VQQDDAx3d3cuemxleC5vcmcwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIB
+ AQDgGdcVL4lk+5/QxOSdL/zQK2yv9WsAchm9ELShgI9X2pTLvWJJ4YvsKq6JC4R6
+ Fuy58dgb9t7A3kIP8yS5LXKJ6SQILx5jHZcmWcaUsF7mCUBQ22RoQyCrr+5eMNj7
+ cHrM66jnHJ+mY29BMEFSU/C9BEa4OHWjGu13+7kKTXGLYkHZzv/lzhEITuBCirGg
+ tFrlXDbRg/PBZMwVh3JxWmmatlJOeMos25Mwuj5rgmnrC8lCZIfDBbJbegjo1gPD
+ 6byAinpcDBw7sH+YCBgnH8I15L5C3sNouePjxxCg7naaQcZFZM3YWfN+iq4Vwf8x
+ BekeDOKfc69XHg2rbiojN4B3AgMBAAEwDQYJKoZIhvcNAQEFBQADggEBAFTU8MBE
+ X/LFrdC/Dpe51Ll5AkXeG+/kpLmaHvK6sGTSz5+FjDzl9I53gQlVrQKh+5lAoAG2
+ th4GNbq2L+Wpobc6jlOEBEka+m3nJrCcfOb5zjJHn4n8Pga0vFyNMbejNBEwkJG8
+ H8z02VzIzWyKnVXPWNwQaNrbBzj7oGS8wCSN7PbyPQUCh9bJONwGLnK/xHA6g94f
+ kj6QGcVNG7JdgyMTmg71VTlwBMnRZZNQxB2//XsSEPBccf7B2h7CZRPYUAglzPFs
+ SHGN5/vPkBh4j2BWy2RTK99FNK1nlTrhuW8l8FwAyA+/N1ZzMj2MwGDqWt0L28Xr
+ jo6RVKw8UZvnyWE=
+ -----END CERTIFICATE-----
+ 
+ ################ 证书格式转换
+ OpenSSL 产生的数字证书不能在 Java 中直接使用，需要转换成 PKCS#12 编码格式
+ 
+ OpenSSL> pkcs12 -export -cacerts -inkey E:\CA\private\ca.key.pem -in E:\CA\private\ca.cer -out  E:\CA\private\ca.p12
+ Enter pass phrase for E:\CA\private\ca.key.pem:
+ Enter Export Password:
+ Verifying - Enter Export Password: 123456
+ 
+ # pkcs12  PKCS#12编码格式证书命令
+ # -export  导出证书
+ # -cacerts 表示仅导出 CA 证书
+ # -inkey 表示输入密钥
+ # -in 表示输入文件，这里指根证书的 cer 格式
+ # -out 表示输出文件，这里指根证书的 PKCS#7 格式
+ 
+ 
+ ################ 使用 keytool 查看 ca.p12
+ C:\Program Files\Java\jdk1.8.0_181\bin>keytool -list -keystore E:\CA\private\ca.p12 -storetype pkcs12 -v -storepass 123456
+ 密钥库类型: PKCS12
+ 密钥库提供方: SunJSSE
+ 
+ 您的密钥库包含 1 个条目
+ 
+ 别名: 1
+ 创建日期: 2020-9-16
+ 条目类型: PrivateKeyEntry
+ 证书链长度: 1
+ 证书[1]:
+ 所有者: CN=www.zlex.org, OU=KY, O=KY, L=GZ, ST=GD, C=CN
+ 发布者: CN=www.zlex.org, OU=KY, O=KY, L=GZ, ST=GD, C=CN
+ 序列号: 6f567bd644e253a8cc5bef5cdf8bc9305553a484
+ 有效期为 Wed Sep 16 16:57:54 CST 2020 至 Tue Jun 13 16:57:54 CST 2023
+ 证书指纹:
+        MD5:  25:AB:E4:BE:2A:0C:D3:3D:3F:A4:DA:37:26:36:BF:34
+        SHA1: 9A:F1:AE:2A:85:50:23:79:7E:8A:95:89:BD:A6:E1:65:AE:EE:AE:48
+        SHA256: E0:B9:5B:23:2F:26:85:B7:D8:0E:68:AD:46:09:81:4E:0B:DF:18:6D:37:FE:B0:DC:0B:CE:6F:6B:A4:0C:1B:79
+ 签名算法名称: SHA1withRSA
+ 主体公共密钥算法: 2048 位 RSA 密钥
+ 版本: 1
+ 
+ 
+ *******************************************
+ *******************************************
 </code></pre>
-<p> 签名算法名称: SHA1withRSA<br> 主体公共密钥算法: 2048 位 RSA 密钥<br> 版本: 1</p>
-<hr>
-<hr>
-<p> ```</p>
 </li>
 </ul>
 <h5 id="9-3-2、使用根证书签发服务器证书"><a href="#9-3-2、使用根证书签发服务器证书" class="headerlink" title="9.3.2、使用根证书签发服务器证书"></a>9.3.2、使用根证书签发服务器证书</h5><ul>
