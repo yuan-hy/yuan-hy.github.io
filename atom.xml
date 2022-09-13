@@ -6,7 +6,7 @@
   <link href="https://yuan-hy.github.io/atom.xml" rel="self"/>
   
   <link href="https://yuan-hy.github.io/"/>
-  <updated>2022-09-13T06:07:42.873Z</updated>
+  <updated>2022-09-13T06:47:44.157Z</updated>
   <id>https://yuan-hy.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>crypto</title>
+    <link href="https://yuan-hy.github.io/2022/09/13/crypto/"/>
+    <id>https://yuan-hy.github.io/2022/09/13/crypto/</id>
+    <published>2022-09-13T06:11:50.000Z</published>
+    <updated>2022-09-13T06:47:44.157Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;他山之石，可以攻玉&quot;&gt;&lt;a href=&quot;#他山之石，可以攻玉&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="crypto" scheme="https://yuan-hy.github.io/categories/crypto/"/>
+    
+    
+    <category term="crypto" scheme="https://yuan-hy.github.io/tags/crypto/"/>
+    
+  </entry>
   
   <entry>
     <title>Redis</title>
