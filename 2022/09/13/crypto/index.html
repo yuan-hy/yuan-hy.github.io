@@ -3137,17 +3137,13 @@ DSA 数字签名算法验签 <span class="token operator">:</span> 成功
 <td>.p12、.pfx</td>
 </tr>
 </tbody></table>
-<pre><code>PKCS#10 文件用于证书签发申请，一般证书申请请求看到 .csr后缀
-
-PKCS#12 文件可作为 Java 种的密钥库或信任库直接使用
-
-通常使用 Base64 编码格式作为数字证书文件存储格式
-  
-</code></pre>
+<p>PKCS#10 文件用于证书签发申请，一般证书申请请求看到 .csr后缀</p>
+<p>PKCS#12 文件可作为 Java 种的密钥库或信任库直接使用</p>
+<p>通常使用 Base64 编码格式作为数字证书文件存储格式</p>
 <h4 id="9-1、模型分析"><a href="#9-1、模型分析" class="headerlink" title="9.1、模型分析"></a>9.1、模型分析</h4><ul>
 <li>实际运用，很多数字签名属于自签名，即证书申请者为自己的证书签名（证书签发模型）</li>
 </ul>
-<pre class=" language-mermaid"><code class="language-mermaid">sequenceDiagram
+<pre class=" language-shell"><code class="language-shell">
     证书申请者 ->> 证书申请者 :  1、构建密钥对
     证书申请者 ->> 认证机构 :  2、发送算法、公钥和申请者部分信息
     认证机构 ->> 认证机构 :  3、核实用户身份
