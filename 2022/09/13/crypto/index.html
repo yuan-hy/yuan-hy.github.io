@@ -1933,17 +1933,14 @@ CRC32   ：1B881965
         Cipher cipher <span class="token operator">=</span> Cipher<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span>ALGORITHM<span class="token punctuation">,</span>PROVIDER<span class="token punctuation">)</span><span class="token punctuation">;</span>
         cipher<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span>Cipher<span class="token punctuation">.</span>DECRYPT_MODE<span class="token punctuation">,</span>key<span class="token punctuation">,</span>pbeParameterSpec<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<h3 id="7、非对称加密算法"><a href="#7、非对称加密算法" class="headerlink" title="7、非对称加密算法"></a>7、非对称加密算法</h3></li>
-<li><p>非对称加密算法的速度远慢于对称加密算法，但是安全性比对称加密算法高</p>
 </li>
-<li><p>与对称加密算法不同的是，非对称加密算法的加密和解密使用的密钥不是同一个，一个公开，称为公钥，一个保密，称为私钥。因此非对称密码算法也被称为双钥或公钥加密算法</p>
-</li>
-<li><p>公钥通过非安全通道发放，私钥则由发放方保存。公钥与私钥相对应，成对出现。公钥加密的数据，只可用对应的私钥才能解密。反之，私钥加密的数据只可用对应的公钥才能解密</p>
-</li>
-<li><p>非对称加密算法源于 DH 算法（密钥交换算法）</p>
-</li>
-<li><p>分为两类：</p>
-<ul>
+</ul>
+<h3 id="7、非对称加密算法"><a href="#7、非对称加密算法" class="headerlink" title="7、非对称加密算法"></a>7、非对称加密算法</h3><ul>
+<li>非对称加密算法的速度远慢于对称加密算法，但是安全性比对称加密算法高</li>
+<li>与对称加密算法不同的是，非对称加密算法的加密和解密使用的密钥不是同一个，一个公开，称为公钥，一个保密，称为私钥。因此非对称密码算法也被称为双钥或公钥加密算法</li>
+<li>公钥通过非安全通道发放，私钥则由发放方保存。公钥与私钥相对应，成对出现。公钥加密的数据，只可用对应的私钥才能解密。反之，私钥加密的数据只可用对应的公钥才能解密</li>
+<li>非对称加密算法源于 DH 算法（密钥交换算法）</li>
+<li>分为两类：<ul>
 <li>基于因子分解难题 ：RSA 算法是是最经典的非对称加密算法，既能用于数据加密也能用于数字签名</li>
 <li>基于离散对数难题 ：<ul>
 <li>ElGamal 算法：即可用于加解密，也可用于数字签名（DSA 演变基础）</li>
@@ -2226,9 +2223,9 @@ Exception in thread <span class="token string">"main"</span> java<span class="to
     甲方(发送方) ->> 甲方(发送方) :  8、甲方使用私钥解密数据
 </code></pre>
 <ul>
-<li><p>实际上，仅遵循 “ 私钥加密，公钥解密 “ 更安全</p>
-</li>
-<li><table>
+<li>实际上，仅遵循 “ 私钥加密，公钥解密 “ 更安全</li>
+</ul>
+<table>
 <thead>
 <tr>
 <th>算法</th>
@@ -2256,7 +2253,7 @@ Exception in thread <span class="token string">"main"</span> java<span class="to
 <td>Bouncy Castle 实现</td>
 </tr>
 </tbody></table>
-</li>
+<ul>
 <li><p>实现</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> bc<span class="token punctuation">;</span>
 
@@ -2421,7 +2418,7 @@ RSA 公钥解密明文 <span class="token operator">:</span> RSA 算法
 <li><p>EIGamal 算法模型图</p>
 </li>
 </ul>
-<pre class=" language-mermaid"><code class="language-mermaid">    sequenceDiagram
+<pre class=" language-mermaid"><code class="language-mermaid">sequenceDiagram
 
     甲方(发送方) --> 乙方(接收方) :  
     乙方(接收方) ->> 乙方(接收方) :  1、乙方构建乙方密钥对（非对称密钥）
@@ -2430,8 +2427,7 @@ RSA 公钥解密明文 <span class="token operator">:</span> RSA 算法
     甲方(发送方) ->> 乙方(接收方) :  4、甲方向乙方发送加密后的数据
     乙方(接收方) ->> 乙方(接收方) :  5、乙方使用私钥解密数据
 </code></pre>
-<ul>
-<li><table>
+<table>
 <thead>
 <tr>
 <th>算法</th>
@@ -2451,7 +2447,7 @@ RSA 公钥解密明文 <span class="token operator">:</span> RSA 算法
 <td>Bouncy Castle 实现</td>
 </tr>
 </tbody></table>
-</li>
+<ul>
 <li><p>实现</p>
 <ul>
 <li>实现方式跟 RSA 差不多，差别在于初始化密钥对</li>
@@ -2474,83 +2470,83 @@ RSA 公钥解密明文 <span class="token operator">:</span> RSA 算法
 
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">EIgamalCoder</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String ELGAMAL_ALGORITHM <span class="token operator">=</span> <span class="token string">"ElGamal"</span><span class="token punctuation">;</span>
+  <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String ELGAMAL_ALGORITHM <span class="token operator">=</span> <span class="token string">"ElGamal"</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String PUBLIC_KEY <span class="token operator">=</span> <span class="token string">"ElGamalPublicKey"</span><span class="token punctuation">;</span>
+  <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String PUBLIC_KEY <span class="token operator">=</span> <span class="token string">"ElGamalPublicKey"</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String PRIVATE_KEY <span class="token operator">=</span> <span class="token string">"ElGamalPrivateKey"</span><span class="token punctuation">;</span>
+  <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String PRIVATE_KEY <span class="token operator">=</span> <span class="token string">"ElGamalPrivateKey"</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">private</span> <span class="token keyword">static</span> Provider provider<span class="token punctuation">;</span>
+  <span class="token keyword">private</span> <span class="token keyword">static</span> Provider provider<span class="token punctuation">;</span>
 
-    <span class="token comment" spellcheck="true">/**
-     * 构建 EIGamal 密钥对
-     * @param keySize 密钥长度
-     * @param provider 提供者
-     * @return Map 密钥对
-     * @throws NoSuchAlgorithmException
-     * @throws NoSuchProviderException
-     */</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span>Object<span class="token operator">></span> <span class="token function">initKey</span><span class="token punctuation">(</span><span class="token keyword">int</span> keySize<span class="token punctuation">,</span>Provider provider<span class="token punctuation">)</span> <span class="token keyword">throws</span> NoSuchAlgorithmException<span class="token punctuation">,</span> InvalidParameterSpecException<span class="token punctuation">,</span> InvalidAlgorithmParameterException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        EIgamalCoder<span class="token punctuation">.</span>provider <span class="token operator">=</span> provider<span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//实例化算法参数生成器</span>
-        AlgorithmParameterGenerator algorithmParameterGenerator <span class="token operator">=</span> AlgorithmParameterGenerator<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span>ELGAMAL_ALGORITHM<span class="token punctuation">,</span>provider<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//初始化算法参数生成器</span>
-        algorithmParameterGenerator<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span>keySize<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//生成算法参数</span>
-        AlgorithmParameters algorithmParameters <span class="token operator">=</span> algorithmParameterGenerator<span class="token punctuation">.</span><span class="token function">generateParameters</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//构建参数材料</span>
-        DHParameterSpec dhParameterSpec <span class="token operator">=</span> algorithmParameters<span class="token punctuation">.</span><span class="token function">getParameterSpec</span><span class="token punctuation">(</span>DHParameterSpec<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">/**
+   * 构建 EIGamal 密钥对
+   * @param keySize 密钥长度
+   * @param provider 提供者
+   * @return Map 密钥对
+   * @throws NoSuchAlgorithmException
+   * @throws NoSuchProviderException
+   */</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span>Object<span class="token operator">></span> <span class="token function">initKey</span><span class="token punctuation">(</span><span class="token keyword">int</span> keySize<span class="token punctuation">,</span>Provider provider<span class="token punctuation">)</span> <span class="token keyword">throws</span> NoSuchAlgorithmException<span class="token punctuation">,</span> InvalidParameterSpecException<span class="token punctuation">,</span> InvalidAlgorithmParameterException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      EIgamalCoder<span class="token punctuation">.</span>provider <span class="token operator">=</span> provider<span class="token punctuation">;</span>
+      <span class="token comment" spellcheck="true">//实例化算法参数生成器</span>
+      AlgorithmParameterGenerator algorithmParameterGenerator <span class="token operator">=</span> AlgorithmParameterGenerator<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span>ELGAMAL_ALGORITHM<span class="token punctuation">,</span>provider<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment" spellcheck="true">//初始化算法参数生成器</span>
+      algorithmParameterGenerator<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span>keySize<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment" spellcheck="true">//生成算法参数</span>
+      AlgorithmParameters algorithmParameters <span class="token operator">=</span> algorithmParameterGenerator<span class="token punctuation">.</span><span class="token function">generateParameters</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment" spellcheck="true">//构建参数材料</span>
+      DHParameterSpec dhParameterSpec <span class="token operator">=</span> algorithmParameters<span class="token punctuation">.</span><span class="token function">getParameterSpec</span><span class="token punctuation">(</span>DHParameterSpec<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        KeyPairGenerator keyPairGenerator <span class="token operator">=</span> KeyPairGenerator<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span>ELGAMAL_ALGORITHM<span class="token punctuation">,</span>provider<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        keyPairGenerator<span class="token punctuation">.</span><span class="token function">initialize</span><span class="token punctuation">(</span>dhParameterSpec<span class="token punctuation">,</span><span class="token keyword">new</span> <span class="token class-name">SecureRandom</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        KeyPair keyPair <span class="token operator">=</span> keyPairGenerator<span class="token punctuation">.</span><span class="token function">genKeyPair</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        PublicKey publicKey <span class="token operator">=</span> keyPair<span class="token punctuation">.</span><span class="token function">getPublic</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        PrivateKey privateKey <span class="token operator">=</span> keyPair<span class="token punctuation">.</span><span class="token function">getPrivate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span>Object<span class="token operator">></span> keyMap <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        keyMap<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>PUBLIC_KEY<span class="token punctuation">,</span>publicKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        keyMap<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>PRIVATE_KEY<span class="token punctuation">,</span>privateKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> keyMap<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+      KeyPairGenerator keyPairGenerator <span class="token operator">=</span> KeyPairGenerator<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span>ELGAMAL_ALGORITHM<span class="token punctuation">,</span>provider<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      keyPairGenerator<span class="token punctuation">.</span><span class="token function">initialize</span><span class="token punctuation">(</span>dhParameterSpec<span class="token punctuation">,</span><span class="token keyword">new</span> <span class="token class-name">SecureRandom</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      KeyPair keyPair <span class="token operator">=</span> keyPairGenerator<span class="token punctuation">.</span><span class="token function">genKeyPair</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      PublicKey publicKey <span class="token operator">=</span> keyPair<span class="token punctuation">.</span><span class="token function">getPublic</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      PrivateKey privateKey <span class="token operator">=</span> keyPair<span class="token punctuation">.</span><span class="token function">getPrivate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span>Object<span class="token operator">></span> keyMap <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      keyMap<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>PUBLIC_KEY<span class="token punctuation">,</span>publicKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      keyMap<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>PRIVATE_KEY<span class="token punctuation">,</span>privateKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> keyMap<span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
-    <span class="token comment" spellcheck="true">/**
-     * 获取公钥
-     * @param keyMap 密钥对
-     * @return byte[] 公钥字节数组
-     */</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">getPublicKey</span><span class="token punctuation">(</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span>Object<span class="token operator">></span> keyMap<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        Key key <span class="token operator">=</span> <span class="token punctuation">(</span>Key<span class="token punctuation">)</span> keyMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>PUBLIC_KEY<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> key<span class="token punctuation">.</span><span class="token function">getEncoded</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-
-
-    <span class="token comment" spellcheck="true">/**
-     * 获取私钥
-     * @param keyMap 密钥对
-     * @return byte[] 私钥字节数组
-     */</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">getPrivateKey</span><span class="token punctuation">(</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span>Object<span class="token operator">></span> keyMap<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        Key key <span class="token operator">=</span> <span class="token punctuation">(</span>Key<span class="token punctuation">)</span> keyMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>PRIVATE_KEY<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> key<span class="token punctuation">.</span><span class="token function">getEncoded</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">decryptByPrivateKey</span><span class="token punctuation">(</span><span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> cipherText<span class="token punctuation">,</span><span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> key<span class="token punctuation">)</span> <span class="token keyword">throws</span> NoSuchAlgorithmException<span class="token punctuation">,</span> InvalidKeySpecException<span class="token punctuation">,</span> NoSuchPaddingException<span class="token punctuation">,</span> InvalidKeyException<span class="token punctuation">,</span> BadPaddingException<span class="token punctuation">,</span> IllegalBlockSizeException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        PKCS8EncodedKeySpec pkcs8EncodedKeySpec <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PKCS8EncodedKeySpec</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        KeyFactory keyFactory <span class="token operator">=</span> KeyFactory<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span>ELGAMAL_ALGORITHM<span class="token punctuation">,</span> EIgamalCoder<span class="token punctuation">.</span>provider<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        PrivateKey privateKey <span class="token operator">=</span> keyFactory<span class="token punctuation">.</span><span class="token function">generatePrivate</span><span class="token punctuation">(</span>pkcs8EncodedKeySpec<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Cipher cipher <span class="token operator">=</span> Cipher<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span>keyFactory<span class="token punctuation">.</span><span class="token function">getAlgorithm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> EIgamalCoder<span class="token punctuation">.</span>provider<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        cipher<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span>Cipher<span class="token punctuation">.</span>DECRYPT_MODE<span class="token punctuation">,</span>privateKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> cipher<span class="token punctuation">.</span><span class="token function">doFinal</span><span class="token punctuation">(</span>cipherText<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">/**
+   * 获取公钥
+   * @param keyMap 密钥对
+   * @return byte[] 公钥字节数组
+   */</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">getPublicKey</span><span class="token punctuation">(</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span>Object<span class="token operator">></span> keyMap<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      Key key <span class="token operator">=</span> <span class="token punctuation">(</span>Key<span class="token punctuation">)</span> keyMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>PUBLIC_KEY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> key<span class="token punctuation">.</span><span class="token function">getEncoded</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
 
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">encryptByPublicKey</span><span class="token punctuation">(</span><span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> messages<span class="token punctuation">,</span><span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> key<span class="token punctuation">)</span> <span class="token keyword">throws</span> NoSuchAlgorithmException<span class="token punctuation">,</span> InvalidKeySpecException<span class="token punctuation">,</span> NoSuchPaddingException<span class="token punctuation">,</span> InvalidKeyException<span class="token punctuation">,</span> BadPaddingException<span class="token punctuation">,</span> IllegalBlockSizeException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        X509EncodedKeySpec x509EncodedKeySpec <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">X509EncodedKeySpec</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        KeyFactory keyFactory <span class="token operator">=</span> KeyFactory<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span>ELGAMAL_ALGORITHM<span class="token punctuation">,</span> EIgamalCoder<span class="token punctuation">.</span>provider<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        PublicKey publicKey <span class="token operator">=</span> keyFactory<span class="token punctuation">.</span><span class="token function">generatePublic</span><span class="token punctuation">(</span>x509EncodedKeySpec<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Cipher cipher <span class="token operator">=</span> Cipher<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span>keyFactory<span class="token punctuation">.</span><span class="token function">getAlgorithm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> EIgamalCoder<span class="token punctuation">.</span>provider<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        cipher<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span>Cipher<span class="token punctuation">.</span>ENCRYPT_MODE<span class="token punctuation">,</span>publicKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> cipher<span class="token punctuation">.</span><span class="token function">doFinal</span><span class="token punctuation">(</span>messages<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">/**
+   * 获取私钥
+   * @param keyMap 密钥对
+   * @return byte[] 私钥字节数组
+   */</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">getPrivateKey</span><span class="token punctuation">(</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span>Object<span class="token operator">></span> keyMap<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      Key key <span class="token operator">=</span> <span class="token punctuation">(</span>Key<span class="token punctuation">)</span> keyMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>PRIVATE_KEY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> key<span class="token punctuation">.</span><span class="token function">getEncoded</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">decryptByPrivateKey</span><span class="token punctuation">(</span><span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> cipherText<span class="token punctuation">,</span><span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> key<span class="token punctuation">)</span> <span class="token keyword">throws</span> NoSuchAlgorithmException<span class="token punctuation">,</span> InvalidKeySpecException<span class="token punctuation">,</span> NoSuchPaddingException<span class="token punctuation">,</span> InvalidKeyException<span class="token punctuation">,</span> BadPaddingException<span class="token punctuation">,</span> IllegalBlockSizeException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      PKCS8EncodedKeySpec pkcs8EncodedKeySpec <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PKCS8EncodedKeySpec</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      KeyFactory keyFactory <span class="token operator">=</span> KeyFactory<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span>ELGAMAL_ALGORITHM<span class="token punctuation">,</span> EIgamalCoder<span class="token punctuation">.</span>provider<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      PrivateKey privateKey <span class="token operator">=</span> keyFactory<span class="token punctuation">.</span><span class="token function">generatePrivate</span><span class="token punctuation">(</span>pkcs8EncodedKeySpec<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      Cipher cipher <span class="token operator">=</span> Cipher<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span>keyFactory<span class="token punctuation">.</span><span class="token function">getAlgorithm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> EIgamalCoder<span class="token punctuation">.</span>provider<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      cipher<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span>Cipher<span class="token punctuation">.</span>DECRYPT_MODE<span class="token punctuation">,</span>privateKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> cipher<span class="token punctuation">.</span><span class="token function">doFinal</span><span class="token punctuation">(</span>cipherText<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">encryptByPublicKey</span><span class="token punctuation">(</span><span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> messages<span class="token punctuation">,</span><span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> key<span class="token punctuation">)</span> <span class="token keyword">throws</span> NoSuchAlgorithmException<span class="token punctuation">,</span> InvalidKeySpecException<span class="token punctuation">,</span> NoSuchPaddingException<span class="token punctuation">,</span> InvalidKeyException<span class="token punctuation">,</span> BadPaddingException<span class="token punctuation">,</span> IllegalBlockSizeException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      X509EncodedKeySpec x509EncodedKeySpec <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">X509EncodedKeySpec</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      KeyFactory keyFactory <span class="token operator">=</span> KeyFactory<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span>ELGAMAL_ALGORITHM<span class="token punctuation">,</span> EIgamalCoder<span class="token punctuation">.</span>provider<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      PublicKey publicKey <span class="token operator">=</span> keyFactory<span class="token punctuation">.</span><span class="token function">generatePublic</span><span class="token punctuation">(</span>x509EncodedKeySpec<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      Cipher cipher <span class="token operator">=</span> Cipher<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span>keyFactory<span class="token punctuation">.</span><span class="token function">getAlgorithm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> EIgamalCoder<span class="token punctuation">.</span>provider<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      cipher<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span>Cipher<span class="token punctuation">.</span>ENCRYPT_MODE<span class="token punctuation">,</span>publicKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> cipher<span class="token punctuation">.</span><span class="token function">doFinal</span><span class="token punctuation">(</span>messages<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
@@ -2570,21 +2566,21 @@ RSA 公钥解密明文 <span class="token operator">:</span> RSA 算法
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Map<span class="token punctuation">;</span>
 
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">EIGamalCoderTest</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token keyword">private</span> <span class="token keyword">static</span> Provider provider <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BouncyCastleProvider</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> NoSuchAlgorithmException<span class="token punctuation">,</span> IllegalBlockSizeException<span class="token punctuation">,</span> InvalidKeyException<span class="token punctuation">,</span> BadPaddingException<span class="token punctuation">,</span> InvalidKeySpecException<span class="token punctuation">,</span> NoSuchPaddingException<span class="token punctuation">,</span> InvalidParameterSpecException<span class="token punctuation">,</span> InvalidAlgorithmParameterException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span>Object<span class="token operator">></span> keyMap <span class="token operator">=</span> EIgamalCoder<span class="token punctuation">.</span><span class="token function">initKey</span><span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">,</span>provider<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> publicKey <span class="token operator">=</span> EIgamalCoder<span class="token punctuation">.</span><span class="token function">getPublicKey</span><span class="token punctuation">(</span>keyMap<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> privateKey <span class="token operator">=</span> EIgamalCoder<span class="token punctuation">.</span><span class="token function">getPrivateKey</span><span class="token punctuation">(</span>keyMap<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        String input <span class="token operator">=</span> <span class="token string">"ElGamal 算法"</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"原文 : "</span><span class="token operator">+</span>input<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> cipherText <span class="token operator">=</span> EIgamalCoder<span class="token punctuation">.</span><span class="token function">encryptByPublicKey</span><span class="token punctuation">(</span>input<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>publicKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"ElGamal 公钥加密密文 : "</span><span class="token operator">+</span> Base64<span class="token punctuation">.</span><span class="token function">toBase64String</span><span class="token punctuation">(</span>cipherText<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> plainText <span class="token operator">=</span> EIgamalCoder<span class="token punctuation">.</span><span class="token function">decryptByPrivateKey</span><span class="token punctuation">(</span>cipherText<span class="token punctuation">,</span>privateKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"ElGamal 私钥解密明文 : "</span><span class="token operator">+</span><span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span>plainText<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">private</span> <span class="token keyword">static</span> Provider provider <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BouncyCastleProvider</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> NoSuchAlgorithmException<span class="token punctuation">,</span> IllegalBlockSizeException<span class="token punctuation">,</span> InvalidKeyException<span class="token punctuation">,</span> BadPaddingException<span class="token punctuation">,</span> InvalidKeySpecException<span class="token punctuation">,</span> NoSuchPaddingException<span class="token punctuation">,</span> InvalidParameterSpecException<span class="token punctuation">,</span> InvalidAlgorithmParameterException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span>Object<span class="token operator">></span> keyMap <span class="token operator">=</span> EIgamalCoder<span class="token punctuation">.</span><span class="token function">initKey</span><span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">,</span>provider<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> publicKey <span class="token operator">=</span> EIgamalCoder<span class="token punctuation">.</span><span class="token function">getPublicKey</span><span class="token punctuation">(</span>keyMap<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> privateKey <span class="token operator">=</span> EIgamalCoder<span class="token punctuation">.</span><span class="token function">getPrivateKey</span><span class="token punctuation">(</span>keyMap<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      String input <span class="token operator">=</span> <span class="token string">"ElGamal 算法"</span><span class="token punctuation">;</span>
+      System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"原文 : "</span><span class="token operator">+</span>input<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> cipherText <span class="token operator">=</span> EIgamalCoder<span class="token punctuation">.</span><span class="token function">encryptByPublicKey</span><span class="token punctuation">(</span>input<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>publicKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"ElGamal 公钥加密密文 : "</span><span class="token operator">+</span> Base64<span class="token punctuation">.</span><span class="token function">toBase64String</span><span class="token punctuation">(</span>cipherText<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> plainText <span class="token operator">=</span> EIgamalCoder<span class="token punctuation">.</span><span class="token function">decryptByPrivateKey</span><span class="token punctuation">(</span>cipherText<span class="token punctuation">,</span>privateKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"ElGamal 私钥解密明文 : "</span><span class="token operator">+</span><span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span>plainText<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 
 
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
 <span class="token comment" spellcheck="true">//结果：</span>
@@ -2638,6 +2634,10 @@ ElGamal 私钥解密明文 <span class="token operator">:</span> ElGamal 算法
 <li>SHA系列 ：SHA1withRSA、SHA224withRSA、SHA256withRSA、SHA384withRSA、SHA512WithRSA</li>
 <li>SHA224withRSA、SHA256withRSA、SHA384withRSA、SHA512withRSA 由 BC 库支持</li>
 </ul>
+</li>
+</ul>
+</li>
+</ul>
 <table>
 <thead>
 <tr>
@@ -2663,7 +2663,7 @@ ElGamal 私钥解密明文 <span class="token operator">:</span> ElGamal 算法
 <td>Bouncy Castle实现</td>
 </tr>
 </tbody></table>
-</li>
+<ul>
 <li><p>RSA 算法签名  ————  签名</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//实例化 Signature</span>
 Signature signature <span class="token operator">=</span> Signature<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token string">"MD5withRSA"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -2820,8 +2820,6 @@ RSA 数字签名算法验签 <span class="token operator">:</span> 成功
   
 <span class="token comment" spellcheck="true">//注意 ： 这里的签名值字节长度 128 ，跟 1024位 RSA 密钥的字节长度相同，前面已经提及</span>
 </code></pre>
-</li>
-</ul>
 </li>
 </ul>
 <h4 id="8-2、DSA-数字签名算法"><a href="#8-2、DSA-数字签名算法" class="headerlink" title="8.2、DSA 数字签名算法"></a>8.2、DSA 数字签名算法</h4><ul>
