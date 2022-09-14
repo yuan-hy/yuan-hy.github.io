@@ -4,14 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Linux 命令积累, 袁胡悦">
-    <meta name="description" content="
-记录 linux 命令小知识
-
-alias 与 unalias背景 ：当命令很长的时候，可以通过自定义别名来减少输入，节省时间，也可以通过定制命令防止出现操作不当
-
-查看当前系统存在的别名
-overdose@OverdosedeMacBo">
+    <meta name="keywords" content="Redis strings 类型教程, 袁胡悦">
+    <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -23,7 +17,7 @@ overdose@OverdosedeMacBo">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Linux 命令积累 | 袁胡悦</title>
+    <title>Redis strings 类型教程 | 袁胡悦</title>
     <link rel="icon" type="image/png" href="/source/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -312,12 +306,12 @@ overdose@OverdosedeMacBo">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Linux 命令积累</h1>
+                    <h1 class="description center-align post-title">Redis strings 类型教程</h1>
                 </div>
             </div>
         </div>
@@ -433,8 +427,8 @@ overdose@OverdosedeMacBo">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Linux/">
-                                <span class="chip bg-color">Linux</span>
+                            <a href="/tags/Redis/">
+                                <span class="chip bg-color">Redis</span>
                             </a>
                         
                     </div>
@@ -445,8 +439,8 @@ overdose@OverdosedeMacBo">
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Linux/" class="post-category">
-                                Linux
+                            <a href="/categories/Redis/" class="post-category">
+                                Redis
                             </a>
                         
                     </div>
@@ -458,7 +452,7 @@ overdose@OverdosedeMacBo">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-01-30
+                    2022-09-14
                 </div>
                 
 
@@ -467,7 +461,7 @@ overdose@OverdosedeMacBo">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    171
+                    0
                 </div>
                 
 
@@ -499,35 +493,7 @@ overdose@OverdosedeMacBo">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <blockquote>
-<p>记录 linux 命令小知识</p>
-</blockquote>
-<h3 id="alias-与-unalias"><a href="#alias-与-unalias" class="headerlink" title="alias 与 unalias"></a>alias 与 unalias</h3><p>背景 ：当命令很长的时候，可以通过自定义别名来减少输入，节省时间，也可以通过定制命令防止出现操作不当</p>
-<ul>
-<li><p>查看当前系统存在的别名</p>
-<pre class=" language-shell"><code class="language-shell">overdose@OverdosedeMacBook-Air ~ % alias
-run-help=man
-which-command=whence
-</code></pre>
-</li>
-<li><p>为 clear 设置 cl 别名,设置别名后，查看 alias ，可以看到已设置别名成功</p>
-<pre class=" language-shell"><code class="language-shell">overdose@OverdosedeMacBook-Air ~ % alias cl='clear'
-overdose@OverdosedeMacBook-Air ~ % alias
-cl=clear
-run-help=man
-which-command=whence
-</code></pre>
-</li>
-<li><p>取消设置别名 cl,执行取消设置别名后，查看 alias ，可以看到已取消设置别名成功</p>
-<pre class=" language-shell"><code class="language-shell">overdose@OverdosedeMacBook-Air ~ % unalias cl
-overdose@OverdosedeMacBook-Air ~ % alias
-run-help=man
-which-command=whence
-overdose@OverdosedeMacBook-Air ~ % 
-</code></pre>
-</li>
-</ul>
-
+                
                 
             </div>
             <hr/>
@@ -553,7 +519,7 @@ overdose@OverdosedeMacBook-Air ~ %
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yuan-hy.github.io/2022/01/30/linuxcommand/">https://yuan-hy.github.io/2022/01/30/linuxcommand/</a>
+                    <a href="https://yuan-hy.github.io/2022/09/14/redis-strings/">https://yuan-hy.github.io/2022/09/14/redis-strings/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -591,8 +557,8 @@ overdose@OverdosedeMacBook-Air ~ %
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Linux/">
-                                    <span class="chip bg-color">Linux</span>
+                                <a href="/tags/Redis/">
+                                    <span class="chip bg-color">Redis</span>
                                 </a>
                             
                         </div>
@@ -766,17 +732,18 @@ overdose@OverdosedeMacBook-Air ~ %
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/02/24/shell/">
+                <a href="/2022/09/14/redis-strings/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="shell">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="Redis strings 类型教程">
                         
-                        <span class="card-title">shell</span>
+                        <span class="card-title">Redis strings 类型教程</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -786,26 +753,27 @@ overdose@OverdosedeMacBook-Air ~ %
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-24
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-09-14
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Shell/" class="post-category">
-                                    Shell
+                            <a href="/categories/Redis/" class="post-category">
+                                    Redis
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Shell/">
-                        <span class="chip bg-color">Shell</span>
+                    <a href="/tags/Redis/">
+                        <span class="chip bg-color">Redis</span>
                     </a>
                     
                 </div>
@@ -819,13 +787,13 @@ overdose@OverdosedeMacBook-Air ~ %
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/01/23/jvm/">
+                <a href="/2022/09/13/crypto/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="JVM 虚拟机小知识">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="crypto">
                         
-                        <span class="card-title">JVM 虚拟机小知识</span>
+                        <span class="card-title">crypto</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -836,14 +804,14 @@ overdose@OverdosedeMacBook-Air ~ %
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-23
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-09-13
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/JVM/" class="post-category">
-                                    JVM
+                            <a href="/categories/crypto/" class="post-category">
+                                    crypto
                                 </a>
                             
                             
@@ -853,8 +821,8 @@ overdose@OverdosedeMacBook-Air ~ %
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/JVM/">
-                        <span class="chip bg-color">JVM</span>
+                    <a href="/tags/crypto/">
+                        <span class="chip bg-color">crypto</span>
                     </a>
                     
                 </div>

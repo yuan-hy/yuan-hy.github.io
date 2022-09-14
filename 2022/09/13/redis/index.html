@@ -469,14 +469,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    6.6k
+                    7.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    29 分
+                    31 分
                 </div>
                 
 
@@ -1521,6 +1521,75 @@ sending REPLCONF ACK 0
 </code></pre>
 </li>
 </ul>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ul>
+<li>Redis 是一个<code>数据结构</code>服务器(主要以数据为驱动)。<u>Redis 的核心是提供一系列原生数据类型</u>，可帮助您解决从<code>缓存</code>到<code>队列</code>再到<code>事件处理</code>的各种问题。</li>
+</ul>
+<h3 id="包含的数据类型"><a href="#包含的数据类型" class="headerlink" title="包含的数据类型"></a>包含的数据类型</h3><ol>
+<li>strings 字符串<ul>
+<li>strings 是最基本的数据类型</li>
+<li><a target="_blank" rel="noopener" href="https://redis.io/docs/data-types/strings/">strings 概述</a></li>
+<li><a target="_blank" rel="noopener" href="https://redis.io/commands/?group=string">strings 在线命令参考</a></li>
+<li><a href="https://yuan-hy.github.io/2022/09/14/redis-strings/">strings 详细教程</a></li>
+</ul>
+</li>
+<li>lists 列表<ul>
+<li>按<code>插入列表的顺序排序</code>的<code>字符串列表</code></li>
+<li>特点 ： <code>有序</code></li>
+<li><a target="_blank" rel="noopener" href="https://redis.io/docs/data-types/lists/">lists 概述</a></li>
+<li><a target="_blank" rel="noopener" href="https://redis.io/commands/?group=list">lists 在线命令参考</a></li>
+</ul>
+</li>
+<li>sets 无序集合<ul>
+<li><code>无序的</code>，<code>元素唯一</code>的集合，类似 Java 的 HashSet </li>
+<li>无论集合中数据量多大，元素增加/删除的<code>时间复杂度为 O(1)</code></li>
+<li><a target="_blank" rel="noopener" href="https://redis.io/docs/data-types/sets/">sets 概述</a></li>
+<li><a target="_blank" rel="noopener" href="https://redis.io/commands/?group=set">sets 在线命令参考</a></li>
+</ul>
+</li>
+<li>hashes 哈希<ul>
+<li>Redis 哈希是建模为<code>字段值对集合</code>的记录类型。因此，Redis 哈希类似于 Java HashMap。</li>
+<li><a target="_blank" rel="noopener" href="https://redis.io/docs/data-types/hashes/">hashes 概述</a></li>
+<li><a target="_blank" rel="noopener" href="https://redis.io/commands/?group=hash">hashes 在线命令参考</a></li>
+</ul>
+</li>
+<li>Sorted sets 排序集合<ul>
+<li><code>有序</code>的<code>唯一元素</code>的集合</li>
+<li><a target="_blank" rel="noopener" href="https://redis.io/docs/data-types/sorted-sets/">Sorted sets 概述</a></li>
+<li><a target="_blank" rel="noopener" href="https://redis.io/commands/?group=sorted-set">Sorted sets 在线命令参考</a></li>
+</ul>
+</li>
+<li>Streams 流<ul>
+<li>Redis 流是一种数据结构，其作用类似于<code>仅附加日志</code>(append-only log)。流有助于<code>按事件发生的顺序记录事件，然后将它们联合起来进行处理</code>。</li>
+<li><a target="_blank" rel="noopener" href="https://redis.io/docs/data-types/streams/">Streams 概述</a></li>
+<li><a target="_blank" rel="noopener" href="https://redis.io/commands/?group=stream">Streams 在线命令参考</a></li>
+<li><a target="_blank" rel="noopener" href="https://redis.io/docs/data-types/streams-tutorial/">Streams 教程</a></li>
+</ul>
+</li>
+<li>Geospatial indexes 地理空间索引<ul>
+<li>Redis 地理空间索引对于查找给定地理半径(geographic radius)或边界框内的位置很有用</li>
+<li><a target="_blank" rel="noopener" href="https://redis.io/docs/data-types/geospatial/">Geospatial indexes 概述</a></li>
+<li><a target="_blank" rel="noopener" href="https://redis.io/commands/?group=geo">Geospatial indexes 在线命令参考</a></li>
+</ul>
+</li>
+<li>Bitmaps 位图<ul>
+<li>Redis 位图有效地<code>将多个计数器编码为字符串值</code>。位图提供<code>原子</code>(atomic)获取(get)、设置(set)和递增(increment)操作，并支持不同的溢出策略。</li>
+<li><a target="_blank" rel="noopener" href="https://redis.io/docs/data-types/bitfields/">Bitmaps 概述</a></li>
+<li><a target="_blank" rel="noopener" href="https://redis.io/commands/bitfield/">Bitmaps 使用</a></li>
+</ul>
+</li>
+<li>HyperLogLog 超级日志<ul>
+<li>Redis HyperLogLog 数据结构提供了对大集合的基数（即元素的数量）的概率估计</li>
+<li><a target="_blank" rel="noopener" href="https://redis.io/docs/data-types/hyperloglogs/">HyperLogLog 概述</a></li>
+<li><a target="_blank" rel="noopener" href="https://redis.io/commands/?group=hyperloglog">HyperLogLog 在线命令参考</a></li>
+</ul>
+</li>
+</ol>
+<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><p>要扩展包含的数据类型提供的功能，请使用以下选项之一：</p>
+<ul>
+<li>在 Lua 中编写您自己的自定义<a target="_blank" rel="noopener" href="https://redis.io/docs/manual/programmability/">服务器端函数</a> 。</li>
+<li><a target="_blank" rel="noopener" href="https://redis.io/docs/reference/modules/">使用模块 API</a> 编写您自己的 Redis 模块或查看 <a target="_blank" rel="noopener" href="https://redis.io/docs/modules/">社区支持的模块</a> 。</li>
+<li>使用<a target="_blank" rel="noopener" href="https://redis.io/docs/stack/">Redis Stack提供的JSON、查询、时间序列</a> 和其他功能。</li>
+</ul>
 
                 
             </div>
@@ -2004,8 +2073,8 @@ sending REPLCONF ACK 0
     <div class="row">
         <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
                    server="kugou"
-                   type="album"
-                   id="973251"
+                   type="song"
+                   id="4YENl40zDV2"
                    fixed='true'
                    autoplay='false'
                    theme='#42b983'
@@ -2037,7 +2106,7 @@ sending REPLCONF ACK 0
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">33.7k</span>
+                        class="white-color">34.2k</span>
             
             
             
