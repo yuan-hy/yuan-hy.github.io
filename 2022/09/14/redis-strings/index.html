@@ -465,14 +465,14 @@ strings 包含以下命令
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.9k
+                    3.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    13 分
+                    16 分
                 </div>
                 
 
@@ -695,7 +695,7 @@ OK
 <h3 id="DECRBY"><a href="#DECRBY" class="headerlink" title="DECRBY"></a><code>DECRBY</code></h3><ul>
 <li><p>语法：<code>DECRBY key decrement</code></p>
 </li>
-<li><p>描述：某个 key 对应的 value 值为整数，DECR key decrement 表示给存储在某个 key 的整数值减去给定的 decrement ，返回操作后的值</p>
+<li><p>描述：某个 key 对应的 value 值为整数，DECRBY key decrement 表示给存储在某个 key 的整数值减去给定的 decrement ，返回操作后的值</p>
 </li>
 <li><p>时间复杂度：O(1)</p>
 </li>
@@ -705,7 +705,7 @@ OK
 OK
 127.0.0.1:6379<span class="token operator">></span> decrby mykey 4
 <span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 6
-<span class="token comment" spellcheck="true"># 当 decr 操作的 key 不存在时，在操作减 之前，会将这个 key 设置为 0 ，再执行减 4 操作</span>
+<span class="token comment" spellcheck="true"># 当 decrby 操作的 key 不存在时，在操作减 之前，会将这个 key 设置为 0 ，再执行减 4 操作</span>
 127.0.0.1:6379<span class="token operator">></span> getdel dec
 <span class="token string">"-2"</span>
 127.0.0.1:6379<span class="token operator">></span> exists dec
@@ -890,10 +890,114 @@ OK
 127.0.0.1:6379<span class="token operator">></span> incr flag
 <span class="token punctuation">(</span>error<span class="token punctuation">)</span> ERR value is not an integer or out of range
 </code></pre>
+</li>
+</ul>
+<h3 id="INCRBY"><a href="#INCRBY" class="headerlink" title="INCRBY"></a><code>INCRBY</code></h3><ul>
+<li><p>语法：<code>INCRBY key increment</code></p>
+</li>
+<li><p>描述：某个 key 对应的 value 值为整数，INCRBY key decrement 表示给存储在某个 key 的整数值减去给定的 decrement ，返回操作后的值</p>
+</li>
+<li><p>时间复杂度：O(1)</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://redis.io/commands/incrby/">参考官方 incrby 命令</a></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># incrby 命令返回值为加上指定数字值 increment 之后的整数值，如下面的返回值 14 = 10 + 4</span>
+127.0.0.1:6379<span class="token operator">></span> <span class="token keyword">set</span> mykey 10
+OK
+127.0.0.1:6379<span class="token operator">></span> incrby mykey 4
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 14
+<span class="token comment" spellcheck="true"># 当 incrby 操作的 key 不存在时，在操作加之前，会将这个 key 设置为 0 ，再执行加 4 操作</span>
+127.0.0.1:6379<span class="token operator">></span> getdel inc
+<span class="token string">"-2"</span>
+127.0.0.1:6379<span class="token operator">></span> exists inc
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 0
+127.0.0.1:6379<span class="token operator">></span> incrby inc 4
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 4
+127.0.0.1:6379<span class="token operator">></span> exists inc <span class="token comment" spellcheck="true"># 此时 inc 这个 key 在设置为 0 时已被创建</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+  
+<span class="token comment" spellcheck="true"># key 对应的 value 值范围是：64 位的有符号整数，即 -2^63~2^63-1</span>
+127.0.0.1:6379<span class="token operator">></span> SET mykey <span class="token string">"234293482390480948029348230948"</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 0
+127.0.0.1:6379<span class="token operator">></span> incrby mykey 4
+<span class="token punctuation">(</span>error<span class="token punctuation">)</span> ERR value is not an integer or out of range <span class="token comment" spellcheck="true"># 超过了限制长度范围，报错了</span>
+<span class="token comment" spellcheck="true"># 当 key 对应的值不为整数或者超出限制范围，都会报如下错误</span>
+127.0.0.1:6379<span class="token operator">></span> get key
+<span class="token string">"hello"</span>
+127.0.0.1:6379<span class="token operator">></span> incrby key 4
+<span class="token punctuation">(</span>error<span class="token punctuation">)</span> ERR value is not an integer or out of range
+  
+127.0.0.1:6379<span class="token operator">></span> <span class="token keyword">set</span> flag <span class="token boolean">true</span>
+OK
+127.0.0.1:6379<span class="token operator">></span> incrby flag 4
+<span class="token punctuation">(</span>error<span class="token punctuation">)</span> ERR value is not an integer or out of range
+</code></pre>
+</li>
+</ul>
+<h3 id="INCRBYFLOAT"><a href="#INCRBYFLOAT" class="headerlink" title="INCRBYFLOAT"></a><code>INCRBYFLOAT</code></h3><ul>
+<li><p>语法：<code>INCRBYFLOAT key increment</code></p>
+</li>
+<li><p>描述：INCRBYFLOAT key increment 表示给存储在某个 key 的数值(支持浮点数)加 increment(支持浮点数)，返回增加 increment 后的值</p>
+</li>
+<li><p>时间复杂度：O(1)</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://redis.io/commands/incrbyfloat/">参考官方 incrbyfloat 命令</a></p>
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> SET mykey <span class="token string">"10"</span>
+OK
+127.0.0.1:6379<span class="token operator">></span> incrbyfloat mykey 1 <span class="token comment" spellcheck="true"># 可以增加正整数</span>
+<span class="token string">"11"</span>
+127.0.0.1:6379<span class="token operator">></span> incrbyfloat mykey 0.5 <span class="token comment" spellcheck="true"># 可以加浮点数(小数)</span>
+<span class="token string">"11.5"</span>
+127.0.0.1:6379<span class="token operator">></span> incrbyfloat mykey -1 <span class="token comment" spellcheck="true"># 可以加负数，就是减法</span>
+<span class="token string">"10.5"</span>
+127.0.0.1:6379<span class="token operator">></span> exists noexistskey
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 0
+127.0.0.1:6379<span class="token operator">></span> incrbyfloat noexistskey -1 <span class="token comment" spellcheck="true"># 不存在时先设置为 0 ，后再执行操作，-1 表示减 1</span>
+<span class="token string">"-1"</span>
+127.0.0.1:6379<span class="token operator">></span> <span class="token keyword">set</span> mykey 5.0e3 <span class="token comment" spellcheck="true"># 支持为指数</span>
+OK
+127.0.0.1:6379<span class="token operator">></span> incrbyfloat mykey 2.0e2 <span class="token comment" spellcheck="true"># 支持为指数</span>
+<span class="token string">"5200"</span> 
+</code></pre>
+</li>
+</ul>
+<h3 id="LCS"><a href="#LCS" class="headerlink" title="LCS"></a><code>LCS</code></h3><ul>
+<li><p>语法：<code>LCS key1 key2 [LEN] [IDX] [MINMATCHLEN len] [WITHMATCHLEN]</code></p>
+</li>
+<li><p>描述：找出两个字符串最长的公共子串</p>
+</li>
+<li><p>时间复杂度：O(N*M) N 和 M 分别是 key1 和 key2 字符串的长度</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://redis.io/commands/incrbyfloat/">参考官方 incrbyfloat 命令</a></p>
+</li>
+<li><p>大意就是从左到右匹配子序列，将选出公共的子序列，可以不连续</p>
+</li>
+<li><p>参数</p>
 <ul>
-<li><code>INCRBY key increment</code></li>
-<li><code>INCRBYFLOAT key increment</code></li>
-<li><code>LCS key1 key2 [LEN] [IDX] [MINMATCHLEN len] [WITHMATCHLEN]</code></li>
+<li>len 长度，匹配输出最长的公共子序列</li>
+</ul>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 不加参数选项匹配</span>
+127.0.0.1:6379<span class="token operator">></span> MSET key1 ohmytext key2 mynewtext
+OK
+127.0.0.1:6379<span class="token operator">></span> lcs key1 key2
+<span class="token string">"mytext"</span>
+
+<span class="token comment" spellcheck="true"># 127.0.0.1:6379> lcs key1 key2 len</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 6
+
+127.0.0.1:6379<span class="token operator">></span> lcs key1 key2 idx
+1<span class="token punctuation">)</span> <span class="token string">"matches"</span>
+2<span class="token punctuation">)</span> 1<span class="token punctuation">)</span> 1<span class="token punctuation">)</span> 1<span class="token punctuation">)</span> <span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 4
+         2<span class="token punctuation">)</span> <span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 7
+      2<span class="token punctuation">)</span> 1<span class="token punctuation">)</span> <span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 5
+         2<span class="token punctuation">)</span> <span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 8
+   2<span class="token punctuation">)</span> 1<span class="token punctuation">)</span> 1<span class="token punctuation">)</span> <span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 2
+         2<span class="token punctuation">)</span> <span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 3
+      2<span class="token punctuation">)</span> 1<span class="token punctuation">)</span> <span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 0
+         2<span class="token punctuation">)</span> <span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+3<span class="token punctuation">)</span> <span class="token string">"len"</span>
+4<span class="token punctuation">)</span> <span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 6
+</code></pre>
+<ul>
 <li><code>MGET key [key ...]</code></li>
 <li><code>MSET key value [key value ...]</code></li>
 <li><code>MSETNX key value [key value ...]</code></li>
@@ -1425,7 +1529,7 @@ OK
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">37.2k</span>
+                        class="white-color">37.9k</span>
             
             
             
