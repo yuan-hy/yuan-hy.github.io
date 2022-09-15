@@ -465,14 +465,14 @@ strings 包含以下命令
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    991
+                    2.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    9 分
                 </div>
                 
 
@@ -548,7 +548,8 @@ strings 包含以下命令
 </ul>
 <h2 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h2><p>因为在记录 string 的命令时可能会用到以下还没介绍的命令，所以在这里预先记录一下</p>
 <ul>
-<li><code>EXISTS</code><ul>
+<li><p><code>EXISTS</code></p>
+<ul>
 <li>语法：EXISTS key [key …] ,支持对多个 key 检查</li>
 <li>时间复杂度：O(N), N 表示要检查的 key 的数量，例如</li>
 </ul>
@@ -582,10 +583,31 @@ OK
 <span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 2
 </code></pre>
 </li>
+<li><p><code>TTL</code></p>
+<ul>
+<li>语法：TTL key </li>
+<li>时间复杂度：O(1)</li>
+<li>描述：获取某个 key 存活的时间，单位为秒</li>
+</ul>
+<pre class=" language-bash"><code class="language-bash">$ EXISTS key1,key2,key3,key4,key5,key6
+
+这个时间复杂度为 O<span class="token punctuation">(</span>6<span class="token punctuation">)</span> 
+</code></pre>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 正常情况，当判断某一个 key 是否存在时，会根据具体情况返回整数，这个整数表示实际存在的 key 的数量</span>
+<span class="token comment" spellcheck="true"># key 不存在时返回 0</span>
+127.0.0.1:6379<span class="token operator">></span> exists key
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 0
+
+127.0.0.1:6379<span class="token operator">></span> <span class="token keyword">set</span> key <span class="token string">"hello"</span>
+OK
+</code></pre>
+</li>
 </ul>
 <h2 id="每个命令的用法"><a href="#每个命令的用法" class="headerlink" title="每个命令的用法"></a>每个命令的用法</h2><ul>
-<li><code>APPEND</code><ul>
+<li><p><code>APPEND</code></p>
+<ul>
 <li>语法：<code>APPEND key value</code></li>
+<li>描述：给某个 key 追加 value 值</li>
 <li>时间复杂度：O(1)</li>
 <li><a target="_blank" rel="noopener" href="https://redis.io/commands/append/">参考官方 append 命令</a></li>
 </ul>
@@ -621,27 +643,182 @@ OK
 <span class="token string">"0035"</span>
 </code></pre>
 </li>
-<li><code>DECR key</code></li>
-<li><code>DECRBY key decrement</code></li>
-<li><code>GET key</code></li>
-<li><code>GETDEL key</code></li>
-<li><code>GETEX key [EX seconds|PX milliseconds|EXAT unix-time-seconds|PXAT unix-time-milliseconds|PERSIST]</code></li>
-<li><code>GETRANGE key start end</code></li>
-<li><code>GETSET key value</code></li>
-<li><code>INCR key</code></li>
-<li><code>INCRBY key increment</code></li>
-<li><code>INCRBYFLOAT key increment</code></li>
-<li><code>LCS key1 key2 [LEN] [IDX] [MINMATCHLEN len] [WITHMATCHLEN]</code></li>
-<li><code>MGET key [key ...]</code></li>
-<li><code>MSET key value [key value ...]</code></li>
-<li><code>MSETNX key value [key value ...]</code></li>
-<li><code>PSETEX key milliseconds value</code></li>
-<li><code>SET key value [NX|XX] [GET] [EX seconds|PX milliseconds|EXAT unix-time-seconds|PXAT unix-time-milliseconds|KEEPTTL]</code></li>
-<li><code>SETEX key seconds value</code></li>
-<li><code>SETNX key value</code></li>
-<li><code>SETRANGE key offset value</code></li>
-<li><code>STRLEN key</code></li>
-<li><code>SUBSTR key start end</code></li>
+<li><p><code>DECR</code></p>
+<ul>
+<li>语法：<code>DECR key</code></li>
+<li>描述：某个 key 对应的 value 值为整数，DECR key 表示给存储在某个 key 的整数值减 1</li>
+<li>时间复杂度：O(1)</li>
+<li><a target="_blank" rel="noopener" href="https://redis.io/commands/decr/">参考官方 decr 命令</a></li>
+</ul>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># decr 命令返回值为减 1 之后的整数值，如 下面的返回值 9 = 10 - 1</span>
+127.0.0.1:6379<span class="token operator">></span> SET mykey <span class="token string">"10"</span>
+<span class="token string">"OK"</span>
+127.0.0.1:6379<span class="token operator">></span> DECR mykey
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 9
+<span class="token comment" spellcheck="true"># 当 decr 操作的 key 不存在时，在操作减 1 之前，会将这个 key 设置为 0 ，再执行减 1 操作</span>
+127.0.0.1:6379<span class="token operator">></span> exists dec
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 0
+127.0.0.1:6379<span class="token operator">></span> decr dec
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> -1
+127.0.0.1:6379<span class="token operator">></span> decr dec
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> -2
+127.0.0.1:6379<span class="token operator">></span> exists dec <span class="token comment" spellcheck="true"># 此时 dec 这个 key 在设置为 0 时已被创建</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+
+<span class="token comment" spellcheck="true"># key 对应的 value 值范围是：64 位的有符号整数，即 -2^63~2^63-1</span>
+127.0.0.1:6379<span class="token operator">></span> SET mykey <span class="token string">"234293482390480948029348230948"</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 0
+127.0.0.1:6379<span class="token operator">></span> decr mykey
+<span class="token punctuation">(</span>error<span class="token punctuation">)</span> ERR value is not an integer or out of range <span class="token comment" spellcheck="true"># 超过了限制长度范围，报错了</span>
+<span class="token comment" spellcheck="true"># 当 key 对应的值不为整数或者超出限制范围，都会报如下错误</span>
+127.0.0.1:6379<span class="token operator">></span> get key
+<span class="token string">"hello"</span>
+127.0.0.1:6379<span class="token operator">></span> decr key
+<span class="token punctuation">(</span>error<span class="token punctuation">)</span> ERR value is not an integer or out of range
+
+127.0.0.1:6379<span class="token operator">></span> <span class="token keyword">set</span> flag <span class="token boolean">true</span>
+OK
+127.0.0.1:6379<span class="token operator">></span> decr flag
+<span class="token punctuation">(</span>error<span class="token punctuation">)</span> ERR value is not an integer or out of range
+</code></pre>
+</li>
+<li><p><code>DECRBY key decrement</code></p>
+<ul>
+<li>语法：<code>DECRBY key decrement</code></li>
+<li>描述：某个 key 对应的 value 值为整数，DECR key decrement 表示给存储在某个 key 的整数值减去给定的 decrement ，返回操作后的值</li>
+<li>时间复杂度：O(1)</li>
+<li><a target="_blank" rel="noopener" href="https://redis.io/commands/decrby/">参考官方 decrby 命令</a></li>
+</ul>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># decrby 命令返回值为减去指定数字值 之后的整数值，如下面的返回值 6 = 10 - 4</span>
+127.0.0.1:6379<span class="token operator">></span> <span class="token keyword">set</span> mykey 10
+OK
+127.0.0.1:6379<span class="token operator">></span> decrby mykey 4
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 6
+<span class="token comment" spellcheck="true"># 当 decr 操作的 key 不存在时，在操作减 之前，会将这个 key 设置为 0 ，再执行减 4 操作</span>
+127.0.0.1:6379<span class="token operator">></span> getdel dec
+<span class="token string">"-2"</span>
+127.0.0.1:6379<span class="token operator">></span> exists dec
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 0
+127.0.0.1:6379<span class="token operator">></span> decrby dec 4
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> -4
+127.0.0.1:6379<span class="token operator">></span> exists dec <span class="token comment" spellcheck="true"># 此时 dec 这个 key 在设置为 0 时已被创建</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+
+<span class="token comment" spellcheck="true"># key 对应的 value 值范围是：64 位的有符号整数，即 -2^63~2^63-1</span>
+127.0.0.1:6379<span class="token operator">></span> SET mykey <span class="token string">"234293482390480948029348230948"</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 0
+127.0.0.1:6379<span class="token operator">></span> decrby mykey 4
+<span class="token punctuation">(</span>error<span class="token punctuation">)</span> ERR value is not an integer or out of range <span class="token comment" spellcheck="true"># 超过了限制长度范围，报错了</span>
+<span class="token comment" spellcheck="true"># 当 key 对应的值不为整数或者超出限制范围，都会报如下错误</span>
+127.0.0.1:6379<span class="token operator">></span> get key
+<span class="token string">"hello"</span>
+127.0.0.1:6379<span class="token operator">></span> decrby key 4
+<span class="token punctuation">(</span>error<span class="token punctuation">)</span> ERR value is not an integer or out of range
+
+127.0.0.1:6379<span class="token operator">></span> <span class="token keyword">set</span> flag <span class="token boolean">true</span>
+OK
+127.0.0.1:6379<span class="token operator">></span> decrby flag 4
+<span class="token punctuation">(</span>error<span class="token punctuation">)</span> ERR value is not an integer or out of range
+</code></pre>
+</li>
+<li><p><code>GET</code></p>
+<ul>
+<li>语法：<code>GET key</code></li>
+<li>描述：获取某个 key 的 value 值</li>
+<li>时间复杂度：O(1)</li>
+<li><a target="_blank" rel="noopener" href="https://redis.io/commands/get/">参考官方 get 命令</a></li>
+</ul>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># get 命令返回 key 的字符串值</span>
+127.0.0.1:6379<span class="token operator">></span> get key
+<span class="token string">"hello"</span>
+
+<span class="token comment" spellcheck="true"># 当 key 不存在时，返回 nil</span>
+127.0.0.1:6379<span class="token operator">></span> get nonexisting
+<span class="token punctuation">(</span>nil<span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># get 只处理 string 的值</span>
+</code></pre>
+</li>
+<li><p><code>GETDEL key</code></p>
+<ul>
+<li>语法：<code>GETDEL key</code></li>
+<li>描述：获取返回 key 的值并删除这个 key,与 get 用法类似，只是返回值时同时删除 key</li>
+<li>时间复杂度：O(1)</li>
+<li><a target="_blank" rel="noopener" href="https://redis.io/commands/getdel/">参考官方 getdel 命令</a></li>
+</ul>
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> <span class="token keyword">set</span> mykey <span class="token string">"hello"</span>
+OK
+<span class="token comment" spellcheck="true"># 获取返回 key 的值并删除 mykey</span>
+127.0.0.1:6379<span class="token operator">></span> getdel mykey
+<span class="token string">"hello"</span>
+127.0.0.1:6379<span class="token operator">></span> getdel mykey
+<span class="token punctuation">(</span>nil<span class="token punctuation">)</span>
+127.0.0.1:6379<span class="token operator">></span> get mykey
+<span class="token punctuation">(</span>nil<span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># 当 key 不存在时，返回 nil</span>
+127.0.0.1:6379<span class="token operator">></span> getdel nonexisting
+<span class="token punctuation">(</span>nil<span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># getdel 只处理 string 的值</span>
+</code></pre>
+</li>
+<li><p><code>GETEX</code></p>
+<ul>
+<li>语法：<code>GETEX key [EX seconds|PX milliseconds|EXAT unix-time-seconds|PXAT unix-time-milliseconds|PERSIST]</code></li>
+<li>描述：获取返回 key 的值并删除这个 key,与 get 用法类似，只是返回值时同时删除 key</li>
+<li>时间复杂度：O(1)</li>
+<li><a target="_blank" rel="noopener" href="https://redis.io/commands/getdel/">参考官方 getdel 命令</a></li>
+</ul>
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> <span class="token keyword">set</span> mykey <span class="token string">"hello"</span>
+OK
+<span class="token comment" spellcheck="true"># 获取返回 key 的值并删除 mykey</span>
+127.0.0.1:6379<span class="token operator">></span> getdel mykey
+<span class="token string">"hello"</span>
+127.0.0.1:6379<span class="token operator">></span> getdel mykey
+<span class="token punctuation">(</span>nil<span class="token punctuation">)</span>
+127.0.0.1:6379<span class="token operator">></span> get mykey
+<span class="token punctuation">(</span>nil<span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># 当 key 不存在时，返回 nil</span>
+127.0.0.1:6379<span class="token operator">></span> getdel nonexisting
+<span class="token punctuation">(</span>nil<span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># getdel 只处理 string 的值</span>
+</code></pre>
+</li>
+<li><p><code>GETRANGE key start end</code></p>
+</li>
+<li><p><code>GETSET key value</code></p>
+</li>
+<li><p><code>INCR key</code></p>
+</li>
+<li><p><code>INCRBY key increment</code></p>
+</li>
+<li><p><code>INCRBYFLOAT key increment</code></p>
+</li>
+<li><p><code>LCS key1 key2 [LEN] [IDX] [MINMATCHLEN len] [WITHMATCHLEN]</code></p>
+</li>
+<li><p><code>MGET key [key ...]</code></p>
+</li>
+<li><p><code>MSET key value [key value ...]</code></p>
+</li>
+<li><p><code>MSETNX key value [key value ...]</code></p>
+</li>
+<li><p><code>PSETEX key milliseconds value</code></p>
+</li>
+<li><p><code>SET key value [NX|XX] [GET] [EX seconds|PX milliseconds|EXAT unix-time-seconds|PXAT unix-time-milliseconds|KEEPTTL]</code></p>
+</li>
+<li><p><code>SETEX key seconds value</code></p>
+</li>
+<li><p><code>SETNX key value</code></p>
+</li>
+<li><p><code>SETRANGE key offset value</code></p>
+</li>
+<li><p><code>STRLEN key</code></p>
+</li>
+<li><p><code>SUBSTR key start end</code></p>
+</li>
 </ul>
 
                 
@@ -1161,7 +1338,7 @@ OK
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">35.2k</span>
+                        class="white-color">36.3k</span>
             
             
             
