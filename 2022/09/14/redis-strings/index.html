@@ -465,14 +465,14 @@ strings 包含以下命令
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.1k
+                    3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    9 分
+                    13 分
                 </div>
                 
 
@@ -587,19 +587,33 @@ OK
 <ul>
 <li>语法：TTL key </li>
 <li>时间复杂度：O(1)</li>
-<li>描述：获取某个 key 存活的时间，单位为秒</li>
+<li>描述：获取某个 key 存活剩余的时间，单位为秒</li>
 </ul>
-<pre class=" language-bash"><code class="language-bash">$ EXISTS key1,key2,key3,key4,key5,key6
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 在 Redis 2.6 或更早版本， ttl key , 如果 key 不存在或者 key 存在，但是没有设置关联过期时间，返回 -1</span>
 
-这个时间复杂度为 O<span class="token punctuation">(</span>6<span class="token punctuation">)</span> 
-</code></pre>
-<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 正常情况，当判断某一个 key 是否存在时，会根据具体情况返回整数，这个整数表示实际存在的 key 的数量</span>
-<span class="token comment" spellcheck="true"># key 不存在时返回 0</span>
-127.0.0.1:6379<span class="token operator">></span> exists key
-<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 0
+<span class="token comment" spellcheck="true"># 而从 Redis 2.8 开始</span>
+<span class="token comment" spellcheck="true"># key 不存在，返回 -2</span>
+<span class="token comment" spellcheck="true"># key 存在，但是没有设置关联过期时间，返回 -1</span>
 
-127.0.0.1:6379<span class="token operator">></span> <span class="token keyword">set</span> key <span class="token string">"hello"</span>
+<span class="token comment" spellcheck="true"># 与 pttl 命令类似，只不过 pttl 命令返回值单位为毫秒</span>
+
+
+127.0.0.1:6379<span class="token operator">></span> <span class="token keyword">set</span> expirekey <span class="token string">"hello"</span> <span class="token comment" spellcheck="true"># 创建 expirekey 的键</span>
 OK
+127.0.0.1:6379<span class="token operator">></span> ttl expirekey
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> -1 <span class="token comment" spellcheck="true"># expirekey 存在，但是不关联过期时间，使用 ttl 命令返回 -1</span>
+127.0.0.1:6379<span class="token operator">></span> expire expirekey 10 <span class="token comment" spellcheck="true"># 给 expirekey 键关联存活时间</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+127.0.0.1:6379<span class="token operator">></span> ttl expirekey <span class="token comment" spellcheck="true"># 每次执行返回的都是剩余的存活时间</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 8
+127.0.0.1:6379<span class="token operator">></span> ttl expirekey
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 6
+127.0.0.1:6379<span class="token operator">></span> ttl expirekey
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+127.0.0.1:6379<span class="token operator">></span> ttl expirekey <span class="token comment" spellcheck="true"># 当 key 存活时间过期，expirekey 自动被删除，expirekey 不存在则返回 -2</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> -2
+127.0.0.1:6379<span class="token operator">></span> get expirekey <span class="token comment" spellcheck="true"># 当 key 的存活时间超时再去获取时， key 已经不存在了，返回 nil</span>
+<span class="token punctuation">(</span>nil<span class="token punctuation">)</span>
 </code></pre>
 </li>
 </ul>
@@ -766,32 +780,104 @@ OK
 <li><p><code>GETEX</code></p>
 <ul>
 <li>语法：<code>GETEX key [EX seconds|PX milliseconds|EXAT unix-time-seconds|PXAT unix-time-milliseconds|PERSIST]</code></li>
-<li>描述：获取返回 key 的值并删除这个 key,与 get 用法类似，只是返回值时同时删除 key</li>
+<li>描述：获取返回 key 的值,如果使用选项，则可以给这个 key 设置过期时间</li>
 <li>时间复杂度：O(1)</li>
-<li><a target="_blank" rel="noopener" href="https://redis.io/commands/getdel/">参考官方 getdel 命令</a></li>
+<li><a target="_blank" rel="noopener" href="https://redis.io/commands/getex/">参考官方 getex 命令</a></li>
+<li>额外选项<ul>
+<li>EX seconds ：设置指定的过期时间，以秒为单位</li>
+<li>PX milliseconds ：设置指定的过期时间，以毫秒为单位</li>
+<li>EXAT unix-time-seconds ：设置密钥过期的指定 Unix 时间，以秒为单位</li>
+<li>PXAT unix-time-milliseconds ：设置密钥过期的指定 Unix 时间，以毫秒为单位。</li>
+<li>PERSIST ：删除与密钥关联的生存时间。</li>
 </ul>
-<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> <span class="token keyword">set</span> mykey <span class="token string">"hello"</span>
+</li>
+</ul>
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> <span class="token keyword">set</span> expirekey <span class="token string">"hello"</span>
 OK
-<span class="token comment" spellcheck="true"># 获取返回 key 的值并删除 mykey</span>
-127.0.0.1:6379<span class="token operator">></span> getdel mykey
+<span class="token comment" spellcheck="true"># 仅仅只是获取时间，并没有设置关联过期时间</span>
+127.0.0.1:6379<span class="token operator">></span> getex expirekey
 <span class="token string">"hello"</span>
-127.0.0.1:6379<span class="token operator">></span> getdel mykey
-<span class="token punctuation">(</span>nil<span class="token punctuation">)</span>
-127.0.0.1:6379<span class="token operator">></span> get mykey
-<span class="token punctuation">(</span>nil<span class="token punctuation">)</span>
+127.0.0.1:6379<span class="token operator">></span> ttl expirekey
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> -1
+<span class="token comment" spellcheck="true"># 获取时间，并设置关联过期时间</span>
+127.0.0.1:6379<span class="token operator">></span> getex expirekey ex 10
+<span class="token string">"hello"</span>
+127.0.0.1:6379<span class="token operator">></span> ttl expirekey
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+127.0.0.1:6379<span class="token operator">></span> ttl expirekey
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> -2
 
-<span class="token comment" spellcheck="true"># 当 key 不存在时，返回 nil</span>
-127.0.0.1:6379<span class="token operator">></span> getdel nonexisting
-<span class="token punctuation">(</span>nil<span class="token punctuation">)</span>
-
-<span class="token comment" spellcheck="true"># getdel 只处理 string 的值</span>
+<span class="token comment" spellcheck="true"># 通过 persist 选项删除关联的过期时间</span>
+127.0.0.1:6379<span class="token operator">></span> getex expirekey ex 100
+<span class="token string">"hello"</span>
+127.0.0.1:6379<span class="token operator">></span> ttl expirekey
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 93
+127.0.0.1:6379<span class="token operator">></span> getex expirekey persist
+<span class="token string">"hello"</span>
+127.0.0.1:6379<span class="token operator">></span> ttl expirekey
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> -1
 </code></pre>
 </li>
 <li><p><code>GETRANGE key start end</code></p>
+<ul>
+<li>语法：<code>GETRANGE key start end</code></li>
+<li>描述：获取存储在一个键中的字符串的子串</li>
+<li>时间复杂度：O(N)，N 表示截取返回字符串的长度，但小字符串的复杂度认为是 O(1)</li>
+<li><a target="_blank" rel="noopener" href="https://redis.io/commands/getrange/">参考官方 getrange 命令</a></li>
+<li>额外选项<ul>
+<li>start ：截取起始位置(包含在内)</li>
+<li>end ：截取结束位置(包含在内)</li>
+</ul>
 </li>
-<li><p><code>GETSET key value</code></p>
+<li>支持负数偏移量，例如 -1 表示字符串最后一个字符的位置，-2 表示倒数第二位，-3 即倒数第三位<br>```bash</li>
+</ul>
+<p>127.0.0.1:6379&gt; SET mykey “This is a string”<br>“OK”<br>127.0.0.1:6379&gt; GETRANGE mykey 0 3<br>“This”<br>127.0.0.1:6379&gt; GETRANGE mykey -3 -1 # 截取从倒数第三位到倒数第一位<br>“ing”<br>127.0.0.1:6379&gt; GETRANGE mykey 0 -1<br>“This is a string”<br>127.0.0.1:6379&gt; GETRANGE mykey 10 100<br>“string”<br>```</p>
 </li>
-<li><p><code>INCR key</code></p>
+<li><p><code>GETSET</code></p>
+<ul>
+<li>Redis 6.2.0 版本废弃了，使用 set 与 get 操作替代</li>
+<li>语法：<code>GETSET key value</code></li>
+<li>描述：给 key 设置新值，返回旧值</li>
+</ul>
+</li>
+<li><p><code>INCR</code></p>
+<ul>
+<li>语法：<code>INCR key</code></li>
+<li>描述：某个 key 对应的 value 值为整数，INCR key 表示给存储在某个 key 的整数值加 1</li>
+<li>时间复杂度：O(1)</li>
+<li><a target="_blank" rel="noopener" href="https://redis.io/commands/incr/">参考官方 incr 命令</a></li>
+</ul>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># incr 命令返回值为加 1 之后的整数值，如 下面的返回值 11 = 10 + 1</span>
+127.0.0.1:6379<span class="token operator">></span> SET mykey <span class="token string">"10"</span>
+<span class="token string">"OK"</span>
+127.0.0.1:6379<span class="token operator">></span> incr mykey
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 11
+<span class="token comment" spellcheck="true"># 当 incr 操作的 key 不存在时，在操作加 1 之前，会将这个 key 设置为 0 ，再执行加 1 操作</span>
+127.0.0.1:6379<span class="token operator">></span> exists inc
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 0
+127.0.0.1:6379<span class="token operator">></span> incr inc
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+127.0.0.1:6379<span class="token operator">></span> incr inc
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 2
+127.0.0.1:6379<span class="token operator">></span> exists inc <span class="token comment" spellcheck="true"># 此时 inc 这个 key 在设置为 0 时已被创建</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+
+<span class="token comment" spellcheck="true"># key 对应的 value 值范围是：64 位的有符号整数，即 -2^63~2^63-1</span>
+127.0.0.1:6379<span class="token operator">></span> SET mykey <span class="token string">"234293482390480948029348230948"</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 0
+127.0.0.1:6379<span class="token operator">></span> incr mykey
+<span class="token punctuation">(</span>error<span class="token punctuation">)</span> ERR value is not an integer or out of range <span class="token comment" spellcheck="true"># 超过了限制长度范围，报错了</span>
+<span class="token comment" spellcheck="true"># 当 key 对应的值不为整数或者超出限制范围，都会报如下错误</span>
+127.0.0.1:6379<span class="token operator">></span> get key
+<span class="token string">"hello"</span>
+127.0.0.1:6379<span class="token operator">></span> incr key
+<span class="token punctuation">(</span>error<span class="token punctuation">)</span> ERR value is not an integer or out of range
+
+127.0.0.1:6379<span class="token operator">></span> <span class="token keyword">set</span> flag <span class="token boolean">true</span>
+OK
+127.0.0.1:6379<span class="token operator">></span> incr flag
+<span class="token punctuation">(</span>error<span class="token punctuation">)</span> ERR value is not an integer or out of range
+</code></pre>
 </li>
 <li><p><code>INCRBY key increment</code></p>
 </li>
@@ -1338,7 +1424,7 @@ OK
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">36.3k</span>
+                        class="white-color">37.2k</span>
             
             
             
