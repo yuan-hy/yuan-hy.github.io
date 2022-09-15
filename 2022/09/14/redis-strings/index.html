@@ -829,9 +829,19 @@ OK
 <li>end ：截取结束位置(包含在内)</li>
 </ul>
 </li>
-<li>支持负数偏移量，例如 -1 表示字符串最后一个字符的位置，-2 表示倒数第二位，-3 即倒数第三位<br>```bash</li>
+<li>支持负数偏移量，例如 -1 表示字符串最后一个字符的位置，-2 表示倒数第二位，-3 即倒数第三位</li>
 </ul>
-<p>127.0.0.1:6379&gt; SET mykey “This is a string”<br>“OK”<br>127.0.0.1:6379&gt; GETRANGE mykey 0 3<br>“This”<br>127.0.0.1:6379&gt; GETRANGE mykey -3 -1 # 截取从倒数第三位到倒数第一位<br>“ing”<br>127.0.0.1:6379&gt; GETRANGE mykey 0 -1<br>“This is a string”<br>127.0.0.1:6379&gt; GETRANGE mykey 10 100<br>“string”<br>```</p>
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> SET mykey <span class="token string">"This is a string"</span>
+<span class="token string">"OK"</span>
+127.0.0.1:6379<span class="token operator">></span> GETRANGE mykey 0 3
+<span class="token string">"This"</span>
+127.0.0.1:6379<span class="token operator">></span> GETRANGE mykey -3 -1 <span class="token comment" spellcheck="true"># 截取从倒数第三位到倒数第一位</span>
+<span class="token string">"ing"</span>
+127.0.0.1:6379<span class="token operator">></span> GETRANGE mykey 0 -1
+<span class="token string">"This is a string"</span>
+127.0.0.1:6379<span class="token operator">></span> GETRANGE mykey 10 100
+<span class="token string">"string"</span>
+</code></pre>
 </li>
 <li><p><code>GETSET</code></p>
 <ul>
