@@ -465,14 +465,14 @@ strings 包含以下命令
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5.2k
+                    5.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    23 分
+                    24 分
                 </div>
                 
 
@@ -1058,7 +1058,9 @@ OK
 4<span class="token punctuation">)</span> <span class="token punctuation">(</span>nil<span class="token punctuation">)</span>
 5<span class="token punctuation">)</span> <span class="token string">"msetnx"</span>
 </code></pre>
-<h3 id="MSETNX"><a href="#MSETNX" class="headerlink" title="MSETNX"></a><code>MSETNX</code></h3></li>
+</li>
+</ul>
+<h3 id="MSETNX"><a href="#MSETNX" class="headerlink" title="MSETNX"></a><code>MSETNX</code></h3><ul>
 <li><p>语法：<code>MSETNX key value [key value ...]</code></p>
 </li>
 <li><p>描述：批量给指定的 key 设值，格式为 key value 为一组，只有 key 不存在才成功,即使只有其中一个 key 存在值，所有的都不会设置成功</p>
@@ -1116,6 +1118,8 @@ OK
 </li>
 <li><p>时间复杂度：O(1)</p>
 </li>
+<li><p><a target="_blank" rel="noopener" href="https://redis.io/commands/set/">参考官方 set 命令</a></p>
+</li>
 <li><p>参数选项</p>
 <ul>
 <li>EX seconds – 设置指定的过期时间，以秒为单位。 </li>
@@ -1128,8 +1132,6 @@ OK
 <li>GET– 返回存储在 key 中的旧字符串，如果 key 不存在，则返回 nil。SET如果存储在 key 的值不是字符串，则返回并中止错误。</li>
 <li>注意：由于SET命令选项可以替换SETNX, SETEX, PSETEX, GETSET，因此在未来的 Redis 版本中，这些命令可能会被弃用并最终被删除。</li>
 </ul>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://redis.io/commands/set/">参考官方 set 命令</a></p>
 <pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> SET mykey <span class="token string">"Hello"</span>
 <span class="token string">"OK"</span>
 127.0.0.1:6379<span class="token operator">></span> GET mykey
@@ -1149,7 +1151,6 @@ OK
 </li>
 <li><p><a target="_blank" rel="noopener" href="https://redis.io/commands/setex/">参考官方 setex 命令</a></p>
 <pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># setex 相当于以下命令</span>
-
 SET mykey value
 EXPIRE mykey seconds
 
@@ -1203,11 +1204,31 @@ OK
 127.0.0.1:6379<span class="token operator">></span> get key5 <span class="token comment" spellcheck="true"># 当偏移量 6 大于原本 key5 的值的长度时，会在前面补 0</span>
 <span class="token string">"\x00\x00\x00\x00\x00\x00Redis"</span>
 </code></pre>
-<ul>
-<li><code>STRLEN key</code></li>
-<li><code>SUBSTR key start end</code></li>
-</ul>
 </li>
+</ul>
+<h3 id="STRLEN"><a href="#STRLEN" class="headerlink" title="STRLEN"></a><code>STRLEN</code></h3><ul>
+<li><p>语法：<code>STRLEN key</code></p>
+</li>
+<li><p>描述：返回这个存储在这个 key 的字符串值的长度，如果该值不是字符串，返回错误。 key 不存在返回 0</p>
+</li>
+<li><p>时间复杂度：O(1)</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://redis.io/commands/strlen/">参考官方 strlen 命令</a></p>
+<pre class=" language-bash"><code class="language-bash">redis<span class="token operator">></span> SET mykey <span class="token string">"Hello world"</span>
+<span class="token string">"OK"</span>
+redis<span class="token operator">></span> STRLEN mykey
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 11
+redis<span class="token operator">></span> STRLEN nonexisting
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 0
+</code></pre>
+</li>
+</ul>
+<h3 id="SUBSTR"><a href="#SUBSTR" class="headerlink" title="SUBSTR"></a><code>SUBSTR</code></h3><ul>
+<li>语法：<code>SUBSTR key start end</code></li>
+<li>描述：截取存储在 key 的子字符串，起始位置为 start,结束位置为 end</li>
+<li>时间复杂度：O(N)</li>
+<li>redis 2.0.0 版本过期了，getrange 替换</li>
+<li><a target="_blank" rel="noopener" href="https://redis.io/commands/substr/">参考官方 substr 命令</a></li>
 </ul>
 
                 
@@ -1727,7 +1748,7 @@ OK
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">39.4k</span>
+                        class="white-color">39.5k</span>
             
             
             
