@@ -465,14 +465,14 @@ strings 包含以下命令
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.6k
+                    4.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    16 分
+                    20 分
                 </div>
                 
 
@@ -997,11 +997,117 @@ OK
 3<span class="token punctuation">)</span> <span class="token string">"len"</span>
 4<span class="token punctuation">)</span> <span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 6
 </code></pre>
+</li>
+</ul>
+<h3 id="MGET"><a href="#MGET" class="headerlink" title="MGET"></a><code>MGET</code></h3><ul>
+<li>语法：<code>MGET key [key ...]</code></li>
+<li>描述：获取所有给定的 key 的值，支持多个 key ,key 之间空格隔开</li>
+<li>时间复杂度：O(N) ，其中 N 是要检索的键的数量</li>
+<li><a target="_blank" rel="noopener" href="https://redis.io/commands/mget/">参考官方 mget 命令</a><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 返回所有指定检索 key 的值，如果该 key 不存在或者不持有 string 值，则返回 nil ,这个操作永远不会失败 </span>
+127.0.0.1:6379<span class="token operator">></span> <span class="token keyword">set</span> key1 <span class="token string">"hello"</span>
+OK
+127.0.0.1:6379<span class="token operator">></span> <span class="token keyword">set</span> key2 <span class="token string">"world"</span>
+OK
+127.0.0.1:6379<span class="token operator">></span> <span class="token keyword">set</span> key3 <span class="token string">""</span>
+OK
+127.0.0.1:6379<span class="token operator">></span> mget key1 key2 key3 noexistkey
+1<span class="token punctuation">)</span> <span class="token string">"hello"</span>
+2<span class="token punctuation">)</span> <span class="token string">"world"</span>
+3<span class="token punctuation">)</span> <span class="token string">""</span>
+4<span class="token punctuation">)</span> <span class="token punctuation">(</span>nil<span class="token punctuation">)</span>
+</code></pre>
+</li>
+</ul>
+<h3 id="MSET"><a href="#MSET" class="headerlink" title="MSET"></a><code>MSET</code></h3><ul>
+<li><p>语法：<code>MSET key value [key value ...]</code></p>
+</li>
+<li><p>描述：批量给指定的 key 设值，格式为 key value 为一组</p>
+</li>
+<li><p>时间复杂度：O(N) ，其中 N 是要设置的 key 的数量</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://redis.io/commands/mset/">参考官方 mset 命令</a></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># MSET 命令会使用新值覆盖旧值，原子操作，与 set 命令效果一样。如果不想覆盖旧值，可以考虑 MSETNX  </span>
+127.0.0.1:6379<span class="token operator">></span> <span class="token keyword">set</span> key1 <span class="token string">"hello"</span>
+OK
+127.0.0.1:6379<span class="token operator">></span> <span class="token keyword">set</span> key2 <span class="token string">"world"</span>
+OK
+127.0.0.1:6379<span class="token operator">></span> <span class="token keyword">set</span> key3 <span class="token string">""</span>
+OK
+127.0.0.1:6379<span class="token operator">></span> mset key1 <span class="token string">"hellomset"</span> key2 <span class="token string">"worldset"</span>
+OK
+127.0.0.1:6379<span class="token operator">></span> mget key1 key2 key3 noexistkey
+1<span class="token punctuation">)</span> <span class="token string">"hellomset"</span>
+2<span class="token punctuation">)</span> <span class="token string">"worldset"</span>
+3<span class="token punctuation">)</span> <span class="token string">""</span>
+4<span class="token punctuation">)</span> <span class="token punctuation">(</span>nil<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># key1 ,key2 存在值，使用 msetnx 命令设置值时，返回 0</span>
+127.0.0.1:6379<span class="token operator">></span> msetnx key1 <span class="token string">"hello"</span> key2 <span class="token string">"world"</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 0
+127.0.0.1:6379<span class="token operator">></span> mget key1 key2 key3 noexistkey <span class="token comment" spellcheck="true"># 获取 key1,key2 的值不变，表示没有设值成功</span>
+1<span class="token punctuation">)</span> <span class="token string">"hellomset"</span>
+2<span class="token punctuation">)</span> <span class="token string">"worldset"</span>
+3<span class="token punctuation">)</span> <span class="token string">""</span>
+4<span class="token punctuation">)</span> <span class="token punctuation">(</span>nil<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># key4 不存在，使用 msetnx 命令设置值时，返回 1</span>
+127.0.0.1:6379<span class="token operator">></span> msetnx key4 <span class="token string">"msetnx"</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+127.0.0.1:6379<span class="token operator">></span> mget key1 key2 key3 noexistkey key4 <span class="token comment" spellcheck="true"># 获取 key4 ，设值成功</span>
+1<span class="token punctuation">)</span> <span class="token string">"hellomset"</span>
+2<span class="token punctuation">)</span> <span class="token string">"worldset"</span>
+3<span class="token punctuation">)</span> <span class="token string">""</span>
+4<span class="token punctuation">)</span> <span class="token punctuation">(</span>nil<span class="token punctuation">)</span>
+5<span class="token punctuation">)</span> <span class="token string">"msetnx"</span>
+</code></pre>
+<h3 id="MSETNX"><a href="#MSETNX" class="headerlink" title="MSETNX"></a><code>MSETNX</code></h3></li>
+<li><p>语法：<code>MSETNX key value [key value ...]</code></p>
+</li>
+<li><p>描述：批量给指定的 key 设值，格式为 key value 为一组，只有 key 不存在才成功,即使只有其中一个 key 存在值，所有的都不会设置成功</p>
+</li>
+<li><p>时间复杂度：O(N) ，其中 N 是要设置的 key 的数量</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://redis.io/commands/msetnx/">参考官方 msetnx 命令</a></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># MSETNX 命令不会使用新值覆盖旧值  </span>
+<span class="token comment" spellcheck="true"># key1 ,key2 存在值，使用 msetnx 命令设置值时，即使有一个 key 有值，都是不会设置成功的，返回 0</span>
+127.0.0.1:6379<span class="token operator">></span> msetnx key1 <span class="token string">"hello"</span> key2 <span class="token string">"world"</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 0
+127.0.0.1:6379<span class="token operator">></span> mget key1 key2 key3 noexistkey <span class="token comment" spellcheck="true"># 获取 key1,key2 的值不变，表示没有设值成功</span>
+1<span class="token punctuation">)</span> <span class="token string">"hellomset"</span>
+2<span class="token punctuation">)</span> <span class="token string">"worldset"</span>
+3<span class="token punctuation">)</span> <span class="token string">""</span>
+4<span class="token punctuation">)</span> <span class="token punctuation">(</span>nil<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># key4 不存在，使用 msetnx 命令设置值时，所有 key 设置成功返回 1</span>
+127.0.0.1:6379<span class="token operator">></span> msetnx key4 <span class="token string">"msetnx"</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+127.0.0.1:6379<span class="token operator">></span> mget key1 key2 key3 noexistkey key4 <span class="token comment" spellcheck="true"># 获取 key4 ，设值成功</span>
+1<span class="token punctuation">)</span> <span class="token string">"hellomset"</span>
+2<span class="token punctuation">)</span> <span class="token string">"worldset"</span>
+3<span class="token punctuation">)</span> <span class="token string">""</span>
+4<span class="token punctuation">)</span> <span class="token punctuation">(</span>nil<span class="token punctuation">)</span>
+5<span class="token punctuation">)</span> <span class="token string">"msetnx"</span>
+</code></pre>
+<h3 id="PSETEX"><a href="#PSETEX" class="headerlink" title="PSETEX"></a><code>PSETEX</code></h3></li>
+<li><p>语法：<code>PSETEX key milliseconds value</code></p>
+</li>
+<li><p>描述：给某个 key 设置过期时间和值，过期时间的单位为 <code>毫秒</code></p>
+</li>
+<li><p>时间复杂度：O(1)</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://redis.io/commands/psetex/">参考官方 psetex 命令</a></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 工作原理与 setex 唯一区别就是 psetex 的过期时间单位是毫秒而不是秒</span>
+<span class="token comment" spellcheck="true"># key1 ,key2 存在值，使用 msetnx 命令设置值时，即使有一个 key 有值，都是不会设置成功的，返回 0</span>
+127.0.0.1:6379<span class="token operator">></span> PSETEX mykey 10000 <span class="token string">"Hello"</span>
+<span class="token string">"OK"</span>
+127.0.0.1:6379<span class="token operator">></span> PTTL mykey
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 7682
+127.0.0.1:6379<span class="token operator">></span> GET mykey
+<span class="token string">"Hello"</span>
+<span class="token comment" spellcheck="true"># 过期时间到了，mykey 不存在了，获取值为 nil ,通过 pttl 查看返回 -2</span>
+127.0.0.1:6379<span class="token operator">></span> get mykey
+<span class="token punctuation">(</span>nil<span class="token punctuation">)</span>
+127.0.0.1:6379<span class="token operator">></span> pttl mykey
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> -2
+</code></pre>
 <ul>
-<li><code>MGET key [key ...]</code></li>
-<li><code>MSET key value [key value ...]</code></li>
-<li><code>MSETNX key value [key value ...]</code></li>
-<li><code>PSETEX key milliseconds value</code></li>
 <li><code>SET key value [NX|XX] [GET] [EX seconds|PX milliseconds|EXAT unix-time-seconds|PXAT unix-time-milliseconds|KEEPTTL]</code></li>
 <li><code>SETEX key seconds value</code></li>
 <li><code>SETNX key value</code></li>
@@ -1529,7 +1635,7 @@ OK
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">37.9k</span>
+                        class="white-color">38.7k</span>
             
             
             
