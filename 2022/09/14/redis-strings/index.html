@@ -465,14 +465,14 @@ strings 包含以下命令
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.4k
+                    5.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    20 分
+                    23 分
                 </div>
                 
 
@@ -1107,11 +1107,111 @@ OK
 127.0.0.1:6379<span class="token operator">></span> pttl mykey
 <span class="token punctuation">(</span>integer<span class="token punctuation">)</span> -2
 </code></pre>
+</li>
+</ul>
+<h3 id="SET"><a href="#SET" class="headerlink" title="SET"></a><code>SET</code></h3><ul>
+<li><p>语法：<code>SET key value [NX|XX] [GET] [EX seconds|PX milliseconds|EXAT unix-time-seconds|PXAT unix-time-milliseconds|KEEPTTL]</code></p>
+</li>
+<li><p>描述：给某个 key 设置值，如果该 key 存在值，则覆盖，而且无视旧值的类型，任何先前与该键关联的生存时间在成功SET操作时都将被丢弃。</p>
+</li>
+<li><p>时间复杂度：O(1)</p>
+</li>
+<li><p>参数选项</p>
 <ul>
-<li><code>SET key value [NX|XX] [GET] [EX seconds|PX milliseconds|EXAT unix-time-seconds|PXAT unix-time-milliseconds|KEEPTTL]</code></li>
-<li><code>SETEX key seconds value</code></li>
-<li><code>SETNX key value</code></li>
-<li><code>SETRANGE key offset value</code></li>
+<li><p>EX seconds – 设置指定的过期时间，以秒为单位。 </p>
+</li>
+<li><p>PX 毫秒——设置指定的过期时间，以毫秒为单位。 </p>
+</li>
+<li><p>EXAT timestamp-seconds – 设置密钥过期的指定 Unix 时间，以秒为单位。 </p>
+</li>
+<li><p>PXAT timestamp-milliseconds – 设置密钥过期的指定 Unix 时间，以毫秒为单位。 </p>
+</li>
+<li><p>NX– 仅当密钥不存在时才设置它。 </p>
+</li>
+<li><p>XX– 仅当密钥已存在时才设置它。 </p>
+</li>
+<li><p>KEEPTTL– 保留与密钥关联的生存时间。 </p>
+</li>
+<li><p>GET– 返回存储在 key 中的旧字符串，如果 key 不存在，则返回 nil。SET如果存储在 key 的值不是字符串，则返回并中止错误。</p>
+<p>注意：由于SET命令选项可以替换SETNX, SETEX, PSETEX, GETSET，因此在未来的 Redis 版本中，这些命令可能会被弃用并最终被删除。</p>
+</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://redis.io/commands/set/">参考官方 set 命令</a></p>
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> SET mykey <span class="token string">"Hello"</span>
+<span class="token string">"OK"</span>
+127.0.0.1:6379<span class="token operator">></span> GET mykey
+<span class="token string">"Hello"</span>
+127.0.0.1:6379<span class="token operator">></span> SET anotherkey <span class="token string">"will expire in a minute"</span> EX 60
+<span class="token string">"OK"</span>
+127.0.0.1:6379<span class="token operator">></span>
+</code></pre>
+</li>
+</ul>
+<h3 id="SETEX"><a href="#SETEX" class="headerlink" title="SETEX"></a><code>SETEX</code></h3><ul>
+<li><p>语法：<code>SETEX key seconds value</code></p>
+</li>
+<li><p>描述：给某个 key 设置值和过期时间，如果该 key 存在值，则覆盖，而且无视旧值的类型，任何先前与该键关联的生存时间在成功SET操作时都将被丢弃。</p>
+</li>
+<li><p>时间复杂度：O(1)</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://redis.io/commands/setex/">参考官方 setex 命令</a></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># setex 相当于以下命令</span>
+
+SET mykey value
+EXPIRE mykey seconds
+
+<span class="token comment" spellcheck="true"># SETEX 是原子的，可以通过在MULTI/EXEC块中使用前两个命令来重现。它是作为给定操作序列的更快替代方案提供的，因为当 Redis 用作缓存时，此操作非常常见。</span>
+127.0.0.1:6379<span class="token operator">></span> SETEX mykey 10 <span class="token string">"Hello"</span>
+<span class="token string">"OK"</span>
+127.0.0.1:6379<span class="token operator">></span> TTL mykey
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 10
+127.0.0.1:6379<span class="token operator">></span> GET mykey
+<span class="token string">"Hello"</span>
+</code></pre>
+</li>
+</ul>
+<h3 id="SETNX"><a href="#SETNX" class="headerlink" title="SETNX"></a><code>SETNX</code></h3><ul>
+<li><p>语法：<code>SETNX key value</code></p>
+</li>
+<li><p>描述：仅当 key 不存在值时给某个 key 设置值，否则不执行设值</p>
+</li>
+<li><p>时间复杂度：O(1)</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://redis.io/commands/setnx/">参考官方 setnx 命令</a></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># key 不存在时返回 1</span>
+127.0.0.1:6379<span class="token operator">></span> SETNX mykey <span class="token string">"Hello"</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+<span class="token comment" spellcheck="true"># key 存在值时，命令不执行，返回 0</span>
+127.0.0.1:6379<span class="token operator">></span> SETNX mykey <span class="token string">"World"</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 0
+127.0.0.1:6379<span class="token operator">></span> GET mykey
+<span class="token string">"Hello"</span>
+</code></pre>
+</li>
+</ul>
+<h3 id="SETRANGE"><a href="#SETRANGE" class="headerlink" title="SETRANGE"></a><code>SETRANGE</code></h3><ul>
+<li><p>语法：<code>SETRANGE key offset value</code></p>
+</li>
+<li><p>描述：覆盖存储在key的部分字符串，从指定的偏移量 offset 开始，覆盖 value 的整个长度</p>
+</li>
+<li><p>时间复杂度：O(1)</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://redis.io/commands/setnx/">参考官方 setnx 命令</a></p>
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> SET key1 <span class="token string">"Hello World"</span>
+OK
+127.0.0.1:6379<span class="token operator">></span> SETRANGE key1 6 <span class="token string">"Redis"</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 11 <span class="token comment" spellcheck="true"># 命令返回值为修改后的字符串长度</span>
+127.0.0.1:6379<span class="token operator">></span> GET key1
+<span class="token string">"Hello Redis"</span>
+
+<span class="token comment" spellcheck="true"># 不存在的密钥当作空值，key5 不存在，所以执行命令时创建了 key5 ,持有空值</span>
+127.0.0.1:6379<span class="token operator">></span> SETRANGE key5 6 <span class="token string">"Redis"</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 11
+127.0.0.1:6379<span class="token operator">></span> get key5 <span class="token comment" spellcheck="true"># 当偏移量 6 大于原本 key5 的值的长度时，会在前面补 0</span>
+<span class="token string">"\x00\x00\x00\x00\x00\x00Redis"</span>
+</code></pre>
+<ul>
 <li><code>STRLEN key</code></li>
 <li><code>SUBSTR key start end</code></li>
 </ul>
@@ -1635,7 +1735,7 @@ OK
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">38.7k</span>
+                        class="white-color">39.4k</span>
             
             
             
