@@ -1118,23 +1118,15 @@ OK
 </li>
 <li><p>参数选项</p>
 <ul>
-<li><p>EX seconds – 设置指定的过期时间，以秒为单位。 </p>
-</li>
-<li><p>PX 毫秒——设置指定的过期时间，以毫秒为单位。 </p>
-</li>
-<li><p>EXAT timestamp-seconds – 设置密钥过期的指定 Unix 时间，以秒为单位。 </p>
-</li>
-<li><p>PXAT timestamp-milliseconds – 设置密钥过期的指定 Unix 时间，以毫秒为单位。 </p>
-</li>
-<li><p>NX– 仅当密钥不存在时才设置它。 </p>
-</li>
-<li><p>XX– 仅当密钥已存在时才设置它。 </p>
-</li>
-<li><p>KEEPTTL– 保留与密钥关联的生存时间。 </p>
-</li>
-<li><p>GET– 返回存储在 key 中的旧字符串，如果 key 不存在，则返回 nil。SET如果存储在 key 的值不是字符串，则返回并中止错误。</p>
-<p>注意：由于SET命令选项可以替换SETNX, SETEX, PSETEX, GETSET，因此在未来的 Redis 版本中，这些命令可能会被弃用并最终被删除。</p>
-</li>
+<li>EX seconds – 设置指定的过期时间，以秒为单位。 </li>
+<li>PX 毫秒——设置指定的过期时间，以毫秒为单位。 </li>
+<li>EXAT timestamp-seconds – 设置密钥过期的指定 Unix 时间，以秒为单位。 </li>
+<li>PXAT timestamp-milliseconds – 设置密钥过期的指定 Unix 时间，以毫秒为单位。 </li>
+<li>NX– 仅当密钥不存在时才设置它。 </li>
+<li>XX– 仅当密钥已存在时才设置它。 </li>
+<li>KEEPTTL– 保留与密钥关联的生存时间。 </li>
+<li>GET– 返回存储在 key 中的旧字符串，如果 key 不存在，则返回 nil。SET如果存储在 key 的值不是字符串，则返回并中止错误。</li>
+<li>注意：由于SET命令选项可以替换SETNX, SETEX, PSETEX, GETSET，因此在未来的 Redis 版本中，这些命令可能会被弃用并最终被删除。</li>
 </ul>
 </li>
 <li><p><a target="_blank" rel="noopener" href="https://redis.io/commands/set/">参考官方 set 命令</a></p>
@@ -1197,7 +1189,7 @@ EXPIRE mykey seconds
 </li>
 <li><p>时间复杂度：O(1)</p>
 </li>
-<li><p><a target="_blank" rel="noopener" href="https://redis.io/commands/setnx/">参考官方 setnx 命令</a></p>
+<li><p><a target="_blank" rel="noopener" href="https://redis.io/commands/setrange/">参考官方 setrange 命令</a></p>
 <pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> SET key1 <span class="token string">"Hello World"</span>
 OK
 127.0.0.1:6379<span class="token operator">></span> SETRANGE key1 6 <span class="token string">"Redis"</span>
