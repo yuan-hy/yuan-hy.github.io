@@ -8,7 +8,7 @@
       <link href="/2022/09/19/redis-reference/"/>
       <url>/2022/09/19/redis-reference/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<h2 id="ARM-支持"><a href="#ARM-支持" class="headerlink" title="ARM 支持"></a>ARM 支持</h2><ul><li>Redis 4.0 及以上版本一般支持 ARM 处理器，特别是 Raspberry Pi(树莓派) 作为主要平台</li><li>官方认为 Redis 非常适合物联网和嵌入式设备，原因如下：<ul><li><strong>Redis 的内存占用和 CPU 要求非常小</strong>。它可以在 Raspberry Pi Zero 等小型设备中运行，而不会影响整体性能，使用少量内存，同时为许多用例提供良好的性能。</li><li><strong>Redis 的数据结构通常是对物联网/嵌入式用例进行建模的理想方式</strong>。一些示例包括累积时间序列数据、接收或排队命令以执行或响应以发送回远程服务器等等。 </li><li><strong>Redis 中的数据建模对于为必须快速响应或远程服务器离线的设备做出设备内决策非常有用</strong> </li><li><strong>Redis 可以用作设备中运行的进程之间的通信系统</strong> </li><li><strong>Redis 的仅附加文件存储非常适合 SSD 卡</strong> </li><li><strong>Redis 5.0 及更高版本中包含的流数据结构是专门为时间序列应用程序设计的，内存开销非常低</strong></li></ul></li></ul><h2 id="Redis-接受客户端连接"><a href="#Redis-接受客户端连接" class="headerlink" title="Redis 接受客户端连接"></a>Redis 接受客户端连接</h2><ul><li><p>当接受新的客户端连接时，将执行以下操作： </p><ul><li>由于 Redis 使用多路复用和非阻塞 I/O，因此<strong>客户端套接字处于非阻塞状态</strong>。 </li><li>设置该 TCP_NODELAY 选项是为了确保<strong>连接没有延迟</strong>。 </li><li><strong>创建一个可读文件事件</strong>，以便 Redis 能够在新数据可在套接字上读取时立即收集客户端查询</li></ul></li></ul>]]></content>
       
       
       <categories>

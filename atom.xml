@@ -6,7 +6,7 @@
   <link href="https://yuan-hy.github.io/atom.xml" rel="self"/>
   
   <link href="https://yuan-hy.github.io/"/>
-  <updated>2022-09-19T00:47:58.086Z</updated>
+  <updated>2022-09-19T05:24:38.069Z</updated>
   <id>https://yuan-hy.github.io/</id>
   
   <author>
@@ -21,8 +21,17 @@
     <link href="https://yuan-hy.github.io/2022/09/19/redis-reference/"/>
     <id>https://yuan-hy.github.io/2022/09/19/redis-reference/</id>
     <published>2022-09-19T00:46:42.000Z</published>
-    <updated>2022-09-19T00:47:58.086Z</updated>
+    <updated>2022-09-19T05:24:38.069Z</updated>
     
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;ARM-支持&quot;&gt;&lt;a href=&quot;#ARM-支持&quot; class=&quot;headerlink&quot; title=&quot;ARM 支持&quot;&gt;&lt;/a&gt;ARM 支持&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Redis 4.0 及以上版本一般支持 ARM 处理器，特别是 Raspberry</summary>
+        
+      
     
     
     
