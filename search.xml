@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Redis 参考</title>
+      <link href="/2022/09/19/redis-reference/"/>
+      <url>/2022/09/19/redis-reference/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> Redis </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Redis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Redis strings 类型教程</title>
       <link href="/2022/09/14/redis-strings/"/>
       <url>/2022/09/14/redis-strings/</url>

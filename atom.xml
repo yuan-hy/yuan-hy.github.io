@@ -6,7 +6,7 @@
   <link href="https://yuan-hy.github.io/atom.xml" rel="self"/>
   
   <link href="https://yuan-hy.github.io/"/>
-  <updated>2022-09-16T13:44:56.362Z</updated>
+  <updated>2022-09-19T00:47:58.086Z</updated>
   <id>https://yuan-hy.github.io/</id>
   
   <author>
@@ -15,6 +15,23 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Redis 参考</title>
+    <link href="https://yuan-hy.github.io/2022/09/19/redis-reference/"/>
+    <id>https://yuan-hy.github.io/2022/09/19/redis-reference/</id>
+    <published>2022-09-19T00:46:42.000Z</published>
+    <updated>2022-09-19T00:47:58.086Z</updated>
+    
+    
+    
+    
+    <category term="Redis" scheme="https://yuan-hy.github.io/categories/Redis/"/>
+    
+    
+    <category term="Redis" scheme="https://yuan-hy.github.io/tags/Redis/"/>
+    
+  </entry>
   
   <entry>
     <title>Redis strings 类型教程</title>
