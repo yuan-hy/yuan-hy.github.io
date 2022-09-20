@@ -464,7 +464,7 @@ Redis 的内存占用和 CPU 要求非常小。它可">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    889
+                    888
                 </div>
                 
 
@@ -524,15 +524,21 @@ Redis 的内存占用和 CPU 要求非常小。它可">
 <h2 id="最大并发连接的客户端"><a href="#最大并发连接的客户端" class="headerlink" title="最大并发连接的客户端"></a>最大并发连接的客户端</h2><ul>
 <li>在 redis 2.4 中对最大并发连接的客户端硬编码，不可通过配置更改</li>
 <li>在 redis 2.6 以及更高版本，最大并发连接的客户端变成可配置，默认 10000 个客户端，可通过 redis.conf 自定义配置</li>
-<li>Redis 会向内核检查我们能够打开的文件描述符的最大数量是多少，默认的限制为最大客户端数+32，如果小于支持的最大限制，是允许的，否则会报错<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 当 maxclients 设置为大于 Redis 可以支持的数字时，启动时会记录一条消息：</span>
+<li>Redis 会向内核检查我们能够打开的文件描述符的最大数量是多少，默认的限制为最大客户端数+32，如果小于支持的最大限制，是允许的，否则会报错</li>
+</ul>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 当 maxclients 设置为大于 Redis 可以支持的数字时，启动时会记录一条消息：</span>
 $ ./redis-server --maxclients 100000
 <span class="token punctuation">[</span>41422<span class="token punctuation">]</span> 23 Jan 11:28:33.179 <span class="token comment" spellcheck="true"># Unable to set the max number of files limit to 100032 (Invalid argument), setting the max clients configuration to 10112.</span>
 </code></pre>
-</li>
-<li>以上超过限制问题可以使用以下命令修改支持<br>```bash<h1 id="当配置-Redis-以处理特定数量的客户端时，最好确保也相应地设置操作系统对每个进程的最大文件描述符数的限制。"><a href="#当配置-Redis-以处理特定数量的客户端时，最好确保也相应地设置操作系统对每个进程的最大文件描述符数的限制。" class="headerlink" title="当配置 Redis 以处理特定数量的客户端时，最好确保也相应地设置操作系统对每个进程的最大文件描述符数的限制。"></a>当配置 Redis 以处理特定数量的客户端时，最好确保也相应地设置操作系统对每个进程的最大文件描述符数的限制。</h1></li>
+<ul>
+<li>以上超过限制问题可以使用以下命令修改支持</li>
 </ul>
-<h1 id="在-Linux-下，可以在当前会话中设置这些限制，也可以使用以下命令将其设置为系统范围的设置："><a href="#在-Linux-下，可以在当前会话中设置这些限制，也可以使用以下命令将其设置为系统范围的设置：" class="headerlink" title="在 Linux 下，可以在当前会话中设置这些限制，也可以使用以下命令将其设置为系统范围的设置："></a>在 Linux 下，可以在当前会话中设置这些限制，也可以使用以下命令将其设置为系统范围的设置：</h1><p>$ ulimit -Sn 100000 # This will only work if hard limit is big enough.<br>$ sysctl -w fs.file-max=100000</p>
-<pre><code>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 当配置 Redis 以处理特定数量的客户端时，最好确保也相应地设置操作系统对每个进程的最大文件描述符数的限制。</span>
+
+<span class="token comment" spellcheck="true"># 在 Linux 下，可以在当前会话中设置这些限制，也可以使用以下命令将其设置为系统范围的设置：</span>
+
+$ <span class="token function">ulimit</span> -Sn 100000 <span class="token comment" spellcheck="true"># This will only work if hard limit is big enough.</span>
+$ sysctl -w fs.file-max<span class="token operator">=</span>100000
 </code></pre>
 
                 
