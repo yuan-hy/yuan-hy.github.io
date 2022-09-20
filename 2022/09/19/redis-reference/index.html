@@ -464,14 +464,14 @@ Redis 的内存占用和 CPU 要求非常小。它可">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    888
+                    1.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    4 分
                 </div>
                 
 
@@ -540,6 +540,29 @@ $ ./redis-server --maxclients 100000
 $ <span class="token function">ulimit</span> -Sn 100000 <span class="token comment" spellcheck="true"># This will only work if hard limit is big enough.</span>
 $ sysctl -w fs.file-max<span class="token operator">=</span>100000
 </code></pre>
+<h2 id="输出缓冲区限制"><a href="#输出缓冲区限制" class="headerlink" title="输出缓冲区限制"></a>输出缓冲区限制</h2><ul>
+<li><p>每个客户端发送命令到 redis 服务器，redis 需要针对每个客户端的命令处理可变长度的输出缓冲区字符串，可能会有一个问题，客户端输出缓冲区增长并消耗越来越多的内存</p>
+</li>
+<li><p>因此，默认情况下，Redis 会为不同类型的客户端<strong>设置输出缓冲区大小的限制</strong>。<strong>当达到限制时，客户端连接关闭，事件记录在 Redis 日志文件中</strong>。 </p>
+<ul>
+<li>Redis 使用了两种限制：<ul>
+<li><strong>硬限制</strong>，是一个固定限制，当达到该限制时，Redis 会尽快关闭客户端连接。</li>
+<li><strong>软限制</strong> ，取决于时间的限制，例如每 10 秒 32 兆字节的软限制意味着如果客户端的输出缓冲区连续 10 秒大于 32 兆字节，则连接将关闭</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>不同类型的客户端有不同的默认限制：</p>
+</li>
+<li><p>普通客户端的默认限制为 0，这意味着根本没有限制，因为大多数普通客户端使用阻塞实现发送单个命令并在发送下一个命令之前等待完全读取回复，所以总是不希望在普通客户端的情况下关闭连接。</p>
+</li>
+<li><p>Pub/Sub 客户端的默认硬限制为 32 兆字节，软限制为每 60 秒 8 兆字节。</p>
+</li>
+<li><p>副本的默认硬限制为 256 兆字节，软限制为每 60 秒 64 兆字节。</p>
+</li>
+<li><p>可以使用命令在运行时更改限制，也可以CONFIG SET使用 Redis 配置文件以永久方式更改限制</p>
+</li>
+</ul>
 
                 
             </div>
@@ -1058,7 +1081,7 @@ $ sysctl -w fs.file-max<span class="token operator">=</span>100000
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">40.4k</span>
+                        class="white-color">40.8k</span>
             
             
             
