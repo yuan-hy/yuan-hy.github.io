@@ -464,14 +464,14 @@ Redis 的内存占用和 CPU 要求非常小。它可">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    399
+                    647
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -516,6 +516,14 @@ Redis 的内存占用和 CPU 要求非常小。它可">
 <li><strong>创建一个可读文件事件</strong>，以便 Redis 能够在新数据可在套接字上读取时立即收集客户端查询</li>
 </ul>
 </li>
+<li><p>客户端初始化后，Redis 会检查它是否已经达到为同时的客户端数量配置的限制(也就是检查是否达到支持的最大客户端连接数，可使用 maxclients 参数配置)</p>
+</li>
+<li><p>当 Redis 由于已达到最大客户端数而无法接受新的客户端连接时，它会尝试向客户端发送错误以使其了解这种情况，并立即关闭连接。即使连接被 Redis 立即关闭，错误消息也会到达客户端，因为新的套接字输出缓冲区通常足够大以包含错误，因此内核将处理错误的传输。</p>
+</li>
+</ul>
+<h2 id="最大并发连接的客户端"><a href="#最大并发连接的客户端" class="headerlink" title="最大并发连接的客户端"></a>最大并发连接的客户端</h2><ul>
+<li>在 redis 2.4 中对最大并发连接的客户端硬编码，不可通过配置更改</li>
+<li>在 redis 2.6 以及更高版本，最大并发连接的客户端变成可配置，默认 10000 个客户端，可通过 redis.conf 自定义配置</li>
 </ul>
 
                 
@@ -1035,7 +1043,7 @@ Redis 的内存占用和 CPU 要求非常小。它可">
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">39.9k</span>
+                        class="white-color">40.2k</span>
             
             
             
